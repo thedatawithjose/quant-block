@@ -1,0 +1,10 @@
+test_frozen_contract_is_canonical_and_cannot_be_replaced (test_external_flow.ExternalCLI.test_frozen_contract_is_canonical_and_cannot_be_replaced) ... ok
+test_invalid_contract_inputs_no_reuse_or_writes (test_external_flow.ExternalCLI.test_invalid_contract_inputs_no_reuse_or_writes) ... ok
+test_state_and_acceptance_must_be_outside_canonical_repo (test_external_flow.ExternalCLI.test_state_and_acceptance_must_be_outside_canonical_repo) ... ok
+test_exact_authorized_paths_only (test_external_flow.ExternalCLI.test_exact_authorized_paths_only) ... ok
+test_frozen_acceptance_bytes_checked_and_original_not_reused (test_external_flow.ExternalCLI.test_frozen_acceptance_bytes_checked_and_original_not_reused) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.748s
+
+OK

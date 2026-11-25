@@ -1,0 +1,1 @@
+d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae  authoritative-inputs/qr-result.md

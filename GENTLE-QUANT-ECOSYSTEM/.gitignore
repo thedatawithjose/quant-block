@@ -1,0 +1,26 @@
+# Temporary / editor files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Gentle-AI generated skill registry
+.atl/

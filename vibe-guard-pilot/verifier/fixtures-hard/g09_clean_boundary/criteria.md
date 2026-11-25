@@ -1,0 +1,1 @@
+- [C1] normalize processes every element of the input list, including the first and last.

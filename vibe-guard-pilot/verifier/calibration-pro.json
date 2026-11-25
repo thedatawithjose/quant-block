@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-12T14:32:12.477067+00:00",
+  "reviewer": "python3 /home/datawithjose/Documents/vibe-guard-pilot/verifier/opencode_reviewer.py",
+  "thresholds": {
+    "min_detection_rate": 0.9,
+    "max_false_positive_rate": 0.1
+  },
+  "counts": {
+    "defect_fixtures": 6,
+    "detected": 6,
+    "clean_fixtures": 3,
+    "false_positives": 0,
+    "reviewer_errors": 0
+  },
+  "detection_rate": 1.0,
+  "false_positive_rate": 0.0,
+  "calibration_passed": true,
+  "failure_reasons": [],
+  "results": [
+    {
+      "fixture": "f01_claim_no_evidence",
+      "defect": true,
+      "defect_type": "claim_without_evidence",
+      "verdicts": [
+        {
+          "criterion": "[C1]",
+          "verdict": "FAIL",
+          "reason": "Evidence is only the builder's self-assertion 'done' with no test or demonstrated execution, and 'done' is not proof.",
+          "proof": "evidence/claims.md contains only 'Builder: done, parser handles empty input.' \u2014 no test file, no assertion, and no output demonstrating that parse('') does not raise."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f02_test_asserts_nothing",
+      "defect": true,
+      "defect_type": "test_asserts_nothing",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Both test methods lack any assertion, so a passing run proves nothing about slugify's behavior.",
+          "proof": "artifact/test_slug.py: test_basic calls slugify(\"Hello World\") with no assert; test_empty assigns result = slugify(\"\") with no assert; evidence/test-run.txt 'Ran 2 tests ... OK' therefore reports no verified behavior."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f03_criterion_unmet_marked_done",
+      "defect": true,
+      "defect_type": "criterion_unmet_marked_done",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "README.md contains no 'rate limit' text and the evidence is only an unverifiable 'DONE' assertion.",
+          "proof": "artifact/README.md full content is '# Service\\nInstall with pip. Run with `serve`.' \u2014 grep for 'rate limit' matches nothing"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f04_inflated_metric",
+      "defect": true,
+      "defect_type": "inflated_metric",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Recomputed accuracy from results.csv is 0.60 (6/10), which does not match the reported 0.97.",
+          "proof": "results.csv has 10 rows; matching rows (1,4,5,7,8,10)=6 correct => 6/10=0.60, but evidence/metrics.json reports 0.97"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f05_lookahead_backtest",
+      "defect": true,
+      "defect_type": "lookahead_bias",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The signal uses close.shift(-1), which reads tomorrow's close (t+1) to compute today's signal, and the code comment itself states 'signal = tomorrow's return sign'.",
+          "proof": "artifact/backtest.py: df[\"signal\"] = (df[\"close\"].shift(-1) > df[\"close\"]).astype(int) \u2014 shift(-1) is future indexing (forward look-ahead); evidence/backtest-log.txt only reports a Sharpe number with no raw data to recompute."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f06_evidence_file_missing",
+      "defect": true,
+      "defect_type": "evidence_file_missing",
+      "verdicts": [
+        {
+          "criterion": "[C1]",
+          "verdict": "FAIL",
+          "reason": "The criterion references evidence/loadtest.txt, but that file is absent from the provided inputs (only evidence/claims.md exists, containing an unverified self-assertion), so there is no p95 latency data to inspect or recompute.",
+          "proof": "evidence/loadtest.txt: missing; evidence/claims.md:1 contains only the builder's claim 'load test passed, see loadtest.txt' with no measured values"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f07_clean_parser",
+      "defect": false,
+      "defect_type": "",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "Recomputed parse(\"\") -> [] and parse(\"a,b\") -> [[\"a\",\"b\"]] match both assertions in test_parser.py, and test-run.txt reports 2 tests OK, consistent with the 2 test methods.",
+          "proof": "artifact/test_parser.py:5-8 assert equal; recomputed parser.py:2 splitlines/split yields expected values; evidence/test-run.txt reports 2 tests OK (non-empty)."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "PASS",
+          "reason": "README.md contains the literal string 'rate limit' and states the value 100 requests per minute.",
+          "proof": "artifact/README.md:3 'The API enforces a rate limit of 100 requests per minute.' satisfies must-contain 'rate limit'."
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    },
+    {
+      "fixture": "f08_clean_backtest",
+      "defect": false,
+      "defect_type": "",
+      "verdicts": [
+        {
+          "criterion": "[C1]",
+          "verdict": "PASS",
+          "reason": "The signal compares close.shift(1) against close.shift(2), both positive lags referencing only past bars, with no negative shift, forward indexing, or future reference.",
+          "proof": "artifact/backtest.py:3 \u2014 `df[\"close\"].shift(1) > df[\"close\"].shift(2)` uses only past data; no shift(0)/shift(-1)/i+1 look-ahead."
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    },
+    {
+      "fixture": "f09_clean_metric",
+      "defect": false,
+      "defect_type": "",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "Recomputed accuracy from results.csv is 8 correct of 10 rows (0.8), matching the reported 0.8.",
+          "proof": "results.csv has 10 data rows; rows 1,2,3,5,6,7,8,10 have pred==label -> 8/10 = 0.8, equal to evidence/metrics.json accuracy"
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    }
+  ]
+}

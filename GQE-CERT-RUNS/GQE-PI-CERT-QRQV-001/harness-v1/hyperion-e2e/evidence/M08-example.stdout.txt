@@ -1,0 +1,12 @@
+Base fails expected whitespace assertion: NEEDS_CORRECTION
+Missing mandatory evidence: PENDING_VALIDATION
+Corrected acceptance (whitespace + unchanged Hello World): PASS
+Acceptance passes, review missing: PENDING_VALIDATION
+Review requests changes: NEEDS_CORRECTION
+Exact current pass and distinct approval: DONE
+New same-commit delivery needs fresh evidence: PENDING_VALIDATION
+Stale old approval after new delivery: PENDING_VALIDATION
+New current approval: DONE
+Out-of-scope diff although acceptance passed: BLOCKED_SCOPE
+Public status confirms scope-first verdict: BLOCKED_SCOPE
+All demonstration state, acceptance files and repository are temporary.

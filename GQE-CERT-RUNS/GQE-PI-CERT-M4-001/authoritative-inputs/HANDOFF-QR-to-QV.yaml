@@ -1,0 +1,423 @@
+schema_version: "1.0"
+
+handoff:
+
+  handoff_id: "GQE-PI-CERT-M4-HO-001"
+  handoff_version: "1.0"
+  task_id: "GQE-PI-CERT-M4-QR-001"
+
+  project: "GQE-PI-CERT-M4-001"
+
+  source_role: "quant-researcher"
+  target_role: "quant-validator"
+
+  created_at: "2026-09-26T20:14:30Z"
+
+  status: "APPROVED_FOR_HANDOFF"
+
+allowed_status: ["DRAFT", "READY_FOR_REVIEW", "APPROVED_FOR_HANDOFF", "BLOCKED", "REJECTED"]
+
+status_history:
+  - status: "READY_FOR_REVIEW"
+    declared_by: "quant-researcher"
+    source: "authoritative-inputs/qr-result.md -> handoff_status"
+    rationale: >
+      Source specialist's own declaration: specification complete for review, but
+      independent validation and the Human Gate are outstanding and no implementation is
+      authorized.
+  - status: "APPROVED_FOR_HANDOFF"
+    declared_by: "quant-orchestrator"
+    basis: >
+      Orchestrator HANDOFF_EVALUATION (GENTLE-OPERATIONAL-LOOP-SPEC §13). Identity, source
+      and target roles, status, authoritative inputs, outputs, verification, invariant
+      impact, limitations and required human decisions were all present and consistent.
+      No blocking condition was found, no critical invariant failed, and the handoff is not
+      stale (qr-result.md hash unchanged). This is a workflow-routing approval; it is NOT
+      human approval and it does not authorize implementation or production.
+    evaluated_artifacts:
+      - path: "authoritative-inputs/qr-result.md"
+        sha256: "d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae"
+      - path: "authoritative-inputs/TASK-PACKET-QR.yaml"
+        sha256: "d27b0a7e8c08081be7943813496af357d63f17b48a82dcdd5795365ff40ee3c2"
+
+authority:
+
+  governance:
+    workspace: "/home/datawithjose/Documents/GQE-CERT-RUNS/GQE-PI-CERT-M4-001"
+    contract: ".governance/CONTRACT.md"
+    invariants: ".governance/INVARIANTS.md"
+    enforcement: ".governance/enforcement.yaml"
+    team: ".governance/TEAM.yaml"
+    routing: ".governance/ROUTING.yaml"
+
+  upstream_handoffs: []
+
+  human_authority:
+    required: false
+    decisions: []
+
+task:
+
+  requested_work: >
+    Design a bounded quantitative research methodology determining whether Expected
+    Shortfall / CVaR provides useful tail-risk information beyond VaR for a strategy with
+    possibly fat-tailed and regime-dependent returns. Research methodology only.
+
+  completed_work:
+    - "VaR and Expected Shortfall defined on the loss distribution with an explicit sign convention (L = -r, loss-positive), units, confidence-level semantics (alpha as confidence level, p = 1-alpha) and horizon semantics (h in trading days, no sqrt(h) scaling)."
+    - "Estimand fixed as the Acerbi-Tasche / Rockafellar-Uryasev integral form, with the atom case analysed and the conditional-expectation form shown to disagree."
+    - "Tail-shape ratio d_alpha = ES_alpha / VaR_alpha introduced as the comparison statistic, with the fat-tailed location-scale null H0 (fixed standardized-residual shape) as the primary competitor."
+    - "Three-level test sequence defined: Q0 informational non-redundancy, Q1 estimable incremental information, Q2 decision value."
+    - "Fat-tail treatment without normality: GPD/POT, Student-t, empirical tails; ES existence precondition (tail index < 1) made an explicit tested precondition."
+    - "Regime-dependent analysis design with point-in-time regime definitions and the location-scale invariance result."
+    - "Estimation-error and power treatment: asymptotic variance/covariance of the VaR and ES estimators, bootstrap design, minimum detectable effect, minimum-data rule."
+    - "Supporting evidence criteria S1-S8 and refuting/weakening evidence criteria R1-R10 defined, including an explicit absence-of-evidence rule."
+    - "Worked analytical checks C1-C12 and numerical expectations E1-E8, including the two-bond atom example, the subadditivity example, and Student-t closed forms."
+    - "Sixteen required tests T1-T16 for independent falsification."
+
+  excluded_work:
+    - "Production implementation, data pipeline, or code deliverable."
+    - "Data ingestion or dataset provisioning."
+    - "Empirical estimation against any dataset."
+    - "Independent certification of the research."
+    - "Live trading or any financial side effect."
+
+scope:
+
+  allowed_downstream_interpretation:
+    - "Treat the methodology as a candidate specification to be adversarially validated, not as validated."
+    - "Recompute and falsify any analytical derivation or numeric value in qr-result.md."
+    - "Reject each claim that fails an executed test."
+    - "Report the validation scope precisely, property by property."
+
+  prohibited_downstream_reinterpretation:
+    - "Treating READY_FOR_REVIEW or APPROVED_FOR_HANDOFF as production approval."
+    - "Producing an implementation or production artifact from this handoff."
+    - "Regenerating, paraphrasing, or re-deriving the research instead of reading the frozen artifact."
+    - "Weakening an invariant, test, or criterion to obtain a passing result."
+    - "Converting INCONCLUSIVE or NOT_ESTIMABLE into PASS or into evidence of absence."
+    - "Claiming empirical support; no dataset exists in this run."
+
+authoritative_inputs:
+
+  - id: "qr-result"
+    type: "research_specification"
+    classification: "DERIVED"
+    path: "authoritative-inputs/qr-result.md"
+    version: "1.0"
+    hash: "d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae"
+    status: "FROZEN"
+
+  - id: "task-packet-qr"
+    type: "task_packet"
+    classification: "DISCOVERED"
+    path: "authoritative-inputs/TASK-PACKET-QR.yaml"
+    version: "1.0"
+    hash: "d27b0a7e8c08081be7943813496af357d63f17b48a82dcdd5795365ff40ee3c2"
+    status: "READY_CONSUMED"
+
+  - id: "canonical-researcher-role"
+    type: "specification"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/ROLE.md"
+    git_commit: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+    status: "VERIFIED"
+
+  - id: "canonical-agent-rules"
+    type: "specification"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/governance/core/AGENT-RULES.md"
+    git_commit: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+    status: "VERIFIED"
+
+  - id: "dataset-primary"
+    type: "dataset"
+    classification: "UNKNOWN"
+    path: null
+    status: "NOT_PROVIDED"
+
+facts:
+
+  discovered:
+    - "Canonical researcher role and subagent contract read in full at commit ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b."
+    - "Canonical AGENT-RULES read in full (614 lines)."
+    - "Project governance present and status VALID: CONTRACT.md, INVARIANTS.md, enforcement.yaml, TEAM.yaml, ROUTING.yaml."
+    - "authoritative-inputs/ contained only TASK-PACKET-QR.yaml before QR ran; no prior qr-result.md existed."
+    - "Project INVARIANTS declares PROJECT-INV-010 statistical independence as NOT_ENFORCED."
+
+  user_declared_requirements:
+    - "Compare VaR and Expected Shortfall."
+    - "Do not assume normal returns."
+    - "State assumptions and sign conventions."
+    - "Include fat-tail and regime-dependent analysis."
+    - "Define evidence supporting and evidence weakening/rejecting the conclusion."
+    - "State important limitations."
+    - "Research methodology only; no production implementation."
+
+derived_conclusions:
+  - "ES_alpha does not factor through VaR_alpha: identical VaR, ES differing by a factor of 10 in the two-point counterexample."
+  - "The ES curve and the VaR curve determine each other, so a 'VaR-only' competitor must declare a matched number of levels."
+  - "ES_alpha = VaR_alpha + p^-1 E[(L - VaR_alpha)^+]; d_alpha - 1 is the relative mean exceedance beyond the VaR threshold."
+  - "Under the loss RV/Acerbi-Tasche estimand, atoms at the VaR level make the conditional-expectation form wrong (0.516 vs 0.5102; single bond 0.8 vs 0.04)."
+  - "VaR is not subadditive and ES is; a VaR-only ranking can penalize diversification (0.5 > 0 + 0)."
+  - "ES requires a strictly stronger moment condition than VaR (finite first moment; tail index < 1 under regular variation)."
+  - "The sqrt(h) horizon scaling is invalid under fat tails."
+  - "At alpha=0.99 with n=10,000, SE(ln d) is about 7.9% for t_3 versus 2.4% for Gaussian-like tails; the minimum detectable ln d is about 22%, a 1.57x margin."
+  - "Regime-conditional non-parametric ES at alpha=0.99 daily is not estimable with ~15 stress-day exceedances."
+  - "The substantive question is whether d_alpha varies beyond what VaR plus a stable fat-tailed shape can capture, not whether ES differs from VaR analytically."
+
+assumptions:
+  - "A conditional loss distribution exists with a finite VaR quantile at the declared alpha."
+  - "Alpha, h, decision rule and loss function are fixed before evaluation."
+  - "All filters, thresholds and regime labels are point-in-time available."
+  - "A genuine out-of-time holdout exists."
+  - "A transaction-cost and turnover model is declared for decision-value comparison."
+  - "Explicitly NOT assumed: normality; i.i.d. returns; stationarity; finite variance; finiteness of ES; elicitability of ES alone; a stable tail shape; that any particular alpha, h or estimator is correct; that any advantage persists; any dataset, strategy or market."
+
+unknowns:
+  - "Dataset identity, provenance, frequency, span and hash: NOT_PROVIDED."
+  - "The strategy: instruments, holding period, turnover, return-generating process."
+  - "The intended decision use of ES (reporting/limits/ranking)."
+  - "Alpha, h, primary estimator, primary regime definition, benchmark complexity."
+  - "The decision-relevant effect size and the risk tolerance."
+  - "The cost and turnover model."
+  - "Whether the strategy's tail index is below 1."
+  - "Whether point-in-time filters and regime labels are constructible without look-ahead."
+  - "Whether QR and QV share model error modes (PROJECT-INV-010)."
+  - "Prior trials / experiment family for this question in this project."
+
+decisions:
+
+  made:
+    - "Loss sign convention L = -r with loss-positive reporting."
+    - "Integral/RV form as the estimand; conditional-expectation form rejected under atoms."
+    - "d_alpha = ES/VaR as the comparison statistic."
+    - "A non-Gaussian, fat-tailed location-scale model as the primary null."
+    - "Minimum-data rule and no-test-without-size-check rule."
+
+  not_authorized:
+    - "Changing project objectives or critical invariants."
+    - "Approving production or live financial side effects."
+    - "Accepting residual risk."
+    - "Independently certifying this research."
+    - "Authorizing implementation."
+
+outputs:
+
+  - id: "research-spec"
+    type: "research_specification"
+    path: "authoritative-inputs/qr-result.md"
+    version: "1.0"
+    hash: "d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae"
+    fingerprint: "sha256"
+    status: "READY_FOR_REVIEW"
+    intended_consumer: "quant-validator"
+
+  - id: "qr-result-meta"
+    type: "metadata"
+    path: "authoritative-inputs/qr-result.meta.txt"
+    version: "1.0"
+    status: "RECORDED"
+    intended_consumer: "audit"
+
+verification:
+
+  required_checks:
+    - id: "no-normality-assumption"
+      expected: "no step assumes normally distributed returns"
+    - id: "sign-convention-stated"
+      expected: "loss/return sign convention and units explicit"
+    - id: "support-and-refute-criteria"
+      expected: "both an S-list and an R-list present"
+
+  executed_checks:
+    - id: "self-consistency-of-methodology"
+      method: "specialist internal review (analytical)"
+      command: null
+      expected: "methodology internally consistent"
+      observed: "consistent; normativity separated from exploratory alternatives"
+      evidence_path: "authoritative-inputs/qr-result.md"
+      limitation: >
+        This is a self-check by the author. It is NOT independent verification and is
+        explicitly not evidence of correctness.
+
+    - id: "no-machine-execution-claim"
+      method: "explicit statement in qr-result.md"
+      command: null
+      expected: "all numerics labelled hand-derived and unexecuted"
+      observed: "every decimal labelled DERIVED, hand-arithmetic, machine execution NOT performed"
+      evidence_path: "authoritative-inputs/qr-result.md"
+      limitation: "Labels are assertions about the run; recomputation is the only proof."
+
+  not_executed:
+    - id: "T1-T16"
+      reason: "Falsification tests are assigned to quant-validator by the packet and contract."
+    - id: "empirical-evaluation"
+      reason: "No dataset is in scope; research methodology only."
+    - id: "source-verification-of-literature-premises"
+      reason: >
+        The specialist reported documentation and open-web capabilities blocked in its
+        context. Six literature premises are marked LIT-UNVERIFIED and are a priority for
+        independent verification.
+
+  evidence: []
+
+invariants:
+
+  applicable:
+    - "PROJECT-INV-001"
+    - "PROJECT-INV-002"
+    - "PROJECT-INV-003"
+    - "PROJECT-INV-005"
+    - "PROJECT-INV-008"
+    - "PROJECT-INV-009"
+
+  checked:
+    - id: "PROJECT-INV-002"
+      how: "specialist declared RESEARCH_ONLY posture and trade_authorized=false; no trading artifact produced"
+      result: "HOLDS"
+    - id: "PROJECT-INV-003"
+      how: "single QR execution; no delegation; no retry requested"
+      result: "HOLDS"
+    - id: "PROJECT-INV-008"
+      how: "no code, no production artifact, no data pipeline produced"
+      result: "HOLDS"
+    - id: "PROJECT-INV-009"
+      how: "no canonical GQE file written by the specialist (read-only toolset)"
+      result: "HOLDS"
+
+  not_checked:
+    - id: "PROJECT-INV-001"
+      how: "Human Gate not yet reached"
+    - id: "PROJECT-INV-005"
+      how: "downstream handoff materialization and post-QV hash comparison pending"
+
+  failures: []
+
+  enforcement_status: "NOT_EVALUATED"
+
+limitations:
+
+  known:
+    - "No empirical content: no dataset in scope, so Q1 and Q2 are untestable in this run."
+    - "Level-1 non-redundancy is near-tautological and is not evidence for using ES."
+    - "d_alpha is not a sufficient statistic for risk (silent on scale, body, drawdown, liquidity, capacity)."
+    - "Non-elicitability of ES alone constrains evaluation machinery (LIT-UNVERIFIED)."
+    - "Estimation cost is binding; deep-alpha regime-conditional ES is frequently not estimable."
+    - "ES existence is conditional on tail index < 1."
+    - "Free-parameter surface (alpha, h, estimator, threshold, regime definition, benchmark complexity, decision rule, loss function)."
+    - "Regime labels are analyst choices; conclusions may be definition-sensitive."
+    - "Cost and turnover realism not addressed in detail."
+    - "Multiple-testing control is partial: no historical trial ledger exists."
+    - "Same provider/model family for QR and QV: error-mode independence NOT established."
+    - "Several critical literature premises are recalled, not retrieved (LIT-UNVERIFIED)."
+    - "Not independently validated by construction of the role."
+
+  unresolved_defects: []
+
+  uncertainty:
+    - "All numeric values (E1-E8) are hand-derived and unexecuted; they may contain arithmetic errors."
+    - "The design's power at the eventual (alpha, h) is unknown until the parameters are fixed."
+
+  residual_risk:
+    - "An underpowered design makes INCONCLUSIVE the likely legitimate terminal state; pressure to convert it into a conclusion is the main epistemic hazard."
+    - "Scope drift from methodology into implementation or into an empirical claim."
+
+  unsupported_claims:
+    - "Six literature premises marked LIT-UNVERIFIED: non-elicitability of ES alone; existence of a jointly consistent (VaR, ES) scoring family; canonical ES backtests; GPD/POT formulas; Hill estimator bias-variance threshold; the coherence/non-elicitability debate."
+    - "No empirical claim about any market is made or supported."
+
+  unverified_behavior:
+    - "No implementation exists, so no runtime behavior is verified."
+
+downstream:
+
+  required_work:
+    - "Independently falsify the analytical derivations and numeric values in qr-result.md."
+    - "Execute T1, T2, T3, T4, T7, T8, T16 (mathematical and numeric oracles)."
+    - "Execute T9 (normality audit), T10 (point-in-time audit), T11 (test-size validation)."
+    - "Execute T12 (multiple-testing audit), T13 (holdout integrity), T14 (exceedance-count audit), T15 (reproducibility)."
+    - "Attempt to falsify the central claim that the fat-tailed location-scale null is the right competitor."
+    - "Source-verify or explicitly refuse the LIT-UNVERIFIED premises."
+    - "Return a canonical claim status list, not a single aggregate PASS."
+
+  required_outputs:
+    - "Structured validation result with candidate identity, properties tested, methods, commands, expected vs observed results, failures, counterexamples, inconclusive areas, untested areas, evidence paths, unresolved risks, terminal status."
+    - "Explicit list of which claims were NOT tested and why."
+
+  required_tests:
+    - "T1 two-point counterexample and atom example"
+    - "T2 numerical integration vs closed form agreement to 1e-6"
+    - "T3 independent recomputation of the E1 table"
+    - "T4 Monte Carlo size of the asymptotic variance/covariance formulas"
+    - "T7 tail-index >= 1 handling returns 'ES unsubstantiated'"
+    - "T8 sqrt(h) prohibition under t_2 scaling"
+    - "T9 normality audit"
+    - "T10 point-in-time audit with future-information injection"
+    - "T11 test-size validation for every recalled statistic"
+    - "T12 multiple-testing audit"
+    - "T13 holdout integrity"
+    - "T14 exceedance-count audit"
+    - "T15 reproducibility"
+    - "T16 analytical sanity oracles"
+
+  required_skills: []
+
+  required_governance:
+    - ".governance/CONTRACT.md"
+    - ".governance/INVARIANTS.md"
+    - ".governance/enforcement.yaml"
+    - ".governance/TEAM.yaml"
+    - ".governance/ROUTING.yaml"
+
+  required_independent_verification:
+    - "Distinct child task and session context from the researcher (ISOLATED_REQUIRED)."
+    - "Persisted frozen artifacts read from disk; no regenerated research."
+    - "At least one material quantitative claim recomputed independently."
+
+  prohibited_changes:
+    - "Any file under /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM"
+    - "Any file under /home/datawithjose/Documents/GQE-CERT-RUNS/GQE-PI-CERT-M4-001 (validator is read/execute-only for this run and returns its result)"
+
+change_protection:
+
+  upstream_artifacts_materially_changed: false
+
+  stale: false
+
+  supersedes_handoff: null
+
+  superseded_by: null
+
+  affected_downstream_artifacts: []
+
+evidence:
+  - path: "authoritative-inputs/qr-result.md"
+    sha256: "d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae"
+    type: "ARTIFACT"
+  - path: "authoritative-inputs/qr-result.meta.txt"
+    type: "AUDIT_RECORD"
+  - path: "evidence/qr-result-hash.txt"
+    type: "HASH"
+
+human_decisions_required:
+  - "Decide the decision use of ES: reporting/disclosure, limits/sizing, or ranking/selection."
+  - "Fix the comparison parameters: confidence level, horizon, primary estimator, primary regime definition, benchmark complexity."
+  - "Declare the decision-relevant effect size (which fixes the required minimum detectable effect)."
+  - "Declare the cost and turnover model."
+  - "Authorize or decline dataset and strategy provisioning for an empirical run (a scope change requiring a new task packet)."
+  - "Accept and record the residual risk of PROJECT-INV-010 (independence not established)."
+  - "Confirm the RESEARCH_ONLY posture and that no implementation is authorized."
+  - "Approve the final production disposition."
+
+completion:
+
+  ready_for_handoff: true
+
+  blocking_reasons: []
+
+  notes: >
+    Handoff materialized by the orchestrator from the source specialist's returned
+    structured result because the Pi runtime does not grant quant-researcher a write tool.
+    No content was added that the source specialist did not return; the orchestrator
+    supplied transport and the orchestrator-side HANDOFF_EVALUATION only.

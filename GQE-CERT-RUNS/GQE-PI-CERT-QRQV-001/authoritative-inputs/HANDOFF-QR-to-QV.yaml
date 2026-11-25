@@ -1,0 +1,394 @@
+schema_version: "1.0"
+
+# Canonical Handoff, produced by the Gentle Quant Orchestrator (Pi runtime) for the
+# bounded certification run GQE-PI-CERT-QRQV-001.
+# Conforms to: /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/HANDOFF-CONTRACT-SPEC.md
+# Emitted from: /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/handoffs/HANDOFF.template.yaml
+# Built from the QR result already persisted in qr-result.md. The QR work was NOT regenerated.
+
+handoff:
+
+  handoff_id: "GQE-PI-CERT-HO-001"
+  handoff_version: "1.0"
+  task_id: "GQE-PI-CERT-QR-001"
+
+  project: "GENTLE-QUANT-ECOSYSTEM-certification"
+
+  source_role: "quant-researcher"
+  target_role: "quant-validator"
+
+  created_at: "2026-09-26T19:25:05Z"
+
+  status: "APPROVED_FOR_HANDOFF"
+
+  status_rationale: >-
+    Gentle validated identity (handoff_id, task_id, source/target roles), READY packet
+    authority, the persisted QR artifact and its byte-level provenance, verification
+    status, invariant impact, limitations, stale state and human-decision state. All
+    minimum-handoff fields (contract §16) are present, so the handoff is transfer-ready
+    for quant-validator. No human gate is required by governance for this transition.
+
+allowed_status:
+  - "DRAFT"
+  - "READY_FOR_REVIEW"
+  - "APPROVED_FOR_HANDOFF"
+  - "BLOCKED"
+  - "REJECTED"
+
+authority:
+
+  governance:
+    contract: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/CONTRACT.md"
+    invariants: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/INVARIANTS.md"
+    enforcement: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/enforcement.yaml"
+    team: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/TEAM.yaml"
+    routing: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/ROUTING.yaml"
+    agent_rules: "/home/datawithjose/Documents/AI-GOVERNANCE/AGENT-RULES.md"
+    start_here: "/home/datawithjose/Documents/AI-GOVERNANCE/START-HERE.md"
+    status: "VALID"
+
+  upstream_handoffs: []
+
+  human_authority:
+    required: false
+    decisions: []
+
+task:
+
+  requested_work: >-
+    Evaluate the claim: "Expected Shortfall at a given confidence level can never be
+    smaller than VaR at the same confidence level when losses are represented
+    consistently." State assumptions and the loss/sign convention explicitly, analyse it
+    independently, and produce a concise research result.
+
+  completed_work:
+    - "Declared the loss/sign convention (loss = positive direction; single horizon, unit, alpha)."
+    - "Defined VaR (lower-quantile generalized inverse) and Expected Shortfall (coherent Acerbi-Tasche integral; Rockafellar-Uryasev variational form; atom-aware tail decomposition)."
+    - "Derived ES_alpha(L) >= VaR_alpha(L) from quantile monotonicity plus integral comparison, valid for continuous, discrete and atomic laws."
+    - "Added corollaries: ES also dominates the upper quantile q+_alpha, and the conditional-tail quantity E[L | L >= VaR] when defined."
+    - "Characterised equality: ES = VaR iff P(L > q_alpha(L)) = 0."
+    - "Enumerated 15 definitional boundaries/edge cases where inconsistent conventions break the inequality."
+    - "Produced four unexecuted worked examples (A atom case, B equality case, C mismatched alpha, D mixed sign), all labelled NOT EXECUTED."
+    - "Reached terminal state COMPLETED and handoff status READY_FOR_REVIEW."
+
+  excluded_work:
+    - "Code writing or execution (role had no execution tool)."
+    - "Independent validation or self-certification."
+    - "Data work, backtesting, implementation, production readiness."
+
+scope:
+
+  allowed_downstream_interpretation:
+    - "Treat the result as an unvalidated research candidate, terminal state COMPLETED, verdict HOLDS_WITH_CONDITIONS."
+    - "Recompute any numerical claim independently; none of the numbers in the artifact are execution evidence."
+    - "Treat the declared convention set as an input hypothesis, not as an established fact."
+
+  prohibited_downstream_reinterpretation:
+    - "Do not treat COMPLETED as validated, approved, safe, or production-ready."
+    - "Do not reword or relax the claim under evaluation."
+    - "Do not modify QR_ROLE artifacts, this handoff, or the canonical GQE files."
+    - "Do not rerun the Quant Researcher or repair the research (out of validator authority)."
+
+authoritative_inputs:
+  - id: "claim-under-evaluation"
+    type: "claim"
+    path: null
+    version: "1.0"
+    hash: null
+    status: "UNVERIFIED (user_declared hypothesis)"
+    content: >-
+      Expected Shortfall at a given confidence level can never be smaller than VaR at
+      the same confidence level when losses are represented consistently.
+
+  - id: "qr-task-packet"
+    type: "task_packet"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/TASK-PACKET-QR.yaml"
+    version: "1.0"
+    hash: "sha256:c3a6f1ab0f596c72220af8c300c57992d4c3a6c15350836271136a7f2173d9e8"
+    status: "READY (recorded before the authoritative QR execution)"
+
+  - id: "qr-research-result"
+    type: "research_result"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-result.md"
+    version: "1.0"
+    hash: "sha256:1d9b7cee31176881d3b5de2b3efaf0db4de34d00b8be5a9527dab607b1dcfbde"
+    status: "PERSISTED (byte-identical to the canonical child record .task.result)"
+    intended_consumer: "quant-validator"
+
+  - id: "qr-child-record-metadata"
+    type: "runtime_record"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-result.meta.txt"
+    version: "1.0"
+    hash: null
+    status: "PERSISTED"
+
+  - id: "canonical-input-hashes"
+    type: "evidence"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/canonical-input-hashes.txt"
+    version: "1.0"
+    hash: null
+    status: "PERSISTED"
+
+  - id: "canonical-contracts"
+    type: "specification"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/"
+    version: null
+    git_commit: "ff16b6b"
+    status: "VERIFIED (unmodified; GQE working tree unchanged)"
+
+facts:
+
+  discovered:
+    - "The QR child executed exactly once and reached terminal state COMPLETED."
+    - "The QR child ran on provider/model commandcode/deepseek/deepseek-v4.1-flash, thinking high, 5 turns, 8 tool calls, 118698 tokens."
+    - "The QR child read all six mandated preflight files plus AGENT-RULES.md and chartpy .governance/INVARIANTS.md."
+    - "The QR child has no execution tool and reported code_executed: false and delegation_occurred: false."
+    - "The QR child did not read CONTRACT.md, enforcement.yaml, TEAM.yaml, ROUTING.yaml, START-HERE.md, DCP I-III or HANDOFF-CONTRACT-SPEC.md; it declared that reading gap."
+
+  user_declared_requirements:
+    - "Run exactly one quant-researcher and exactly one quant-validator; zero quant-developer and zero quant-data-engineer."
+    - "No specialist may receive subagent_* tools or self-delegate."
+    - "Do not regenerate QR work when preparing this handoff."
+    - "No canonical GQE modification, no production approval, no Human Gate."
+    - "Preserve any defect found by the validator; do not rerun QR or repair research."
+
+derived_conclusions:
+  - "Under the declared convention set, ES_alpha(L) >= VaR_alpha(L) is a theorem, not a probabilistic expectation (proof via non-decreasing generalized inverse plus Lebesgue comparison)."
+  - "The inequality also holds against the upper-quantile VaR convention, so the lower/upper quantile choice alone cannot break it."
+  - "Equality holds exactly when the alpha-quantile already sits at the essential supremum (no mass above it)."
+  - "The claim is falsifiable only by violating a declared convention: mismatched confidence levels, wrong tail direction, or mixed sign domains."
+  - "Finite-sample estimator noise can produce ES_hat < VaR_hat even when the population ordering holds; this is an estimation artifact, not a definitional break."
+
+assumptions:
+  - id: "A1"
+    text: "L is a real-valued random variable with right-continuous non-decreasing CDF F_L."
+    status: "ASSUMPTION (definitional)"
+  - id: "A2"
+    text: "alpha in (0,1); the degenerate alpha = 0 and alpha = 1 ends are excluded from the main statement."
+    status: "ASSUMPTION (definitional)"
+  - id: "A3"
+    text: "\"Losses are represented consistently\" means one random variable, one horizon, one unit, one sign convention, one alpha; this is the qualifier under test."
+    status: "ASSUMPTION (declared)"
+  - id: "A4"
+    text: "Expected Shortfall means the upper-tail coherent expected shortfall, not a lower-tail conditional expectation."
+    status: "ASSUMPTION (material definitional choice; the claim does not define ES)"
+  - id: "A5"
+    text: "The statement is evaluated at population level, not as a finite-sample estimator property."
+    status: "ASSUMPTION"
+  - id: "A6"
+    text: "E[L+] may be infinite; conclusions are read in the extended reals."
+    status: "ASSUMPTION"
+  - id: "A7"
+    text: "No dataset, time series, backtest or code are involved."
+    status: "FACT (packet scope)"
+
+unknowns:
+  - "UNKNOWN: which ES definition the claim's author intends (coherent ES vs E[L | L >= VaR] vs E[L | L > VaR])."
+  - "UNKNOWN: population statement vs finite-sample behaviour."
+  - "UNKNOWN: intended horizon, and whether losses may be negative (netting/gains)."
+  - "UNKNOWN: lower-quantile or upper-quantile VaR."
+  - "UNKNOWN: the author's intended meaning of \"consistently\"."
+
+decisions:
+
+  made:
+    - "Declared the loss/sign convention before analysis (loss = positive direction)."
+    - "Selected the coherent/upper-tail Expected Shortfall as the primary ES definition, flagging the choice as material."
+    - "Set claim_verdict to HOLDS_WITH_CONDITIONS and explained the strict reading reduces to HOLDS."
+    - "Set handoff_status to READY_FOR_REVIEW and refused to self-certify."
+    - "Escalated the definitional ambiguity to the validator as an input question rather than a human gate."
+
+  not_authorized:
+    - "Independent validation or certification of the research."
+    - "Changing the claim under evaluation."
+    - "Changing critical invariants or governance."
+    - "Production approval or live financial side effects."
+    - "Delegating to another specialist."
+
+outputs:
+  - id: "qr-research-result"
+    type: "research_result"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-result.md"
+    version: "1.0"
+    hash: "sha256:1d9b7cee31176881d3b5de2b3efaf0db4de34d00b8be5a9527dab607b1dcfbde"
+    fingerprint: null
+    status: "PERSISTED"
+    intended_consumer: "quant-validator"
+
+verification:
+
+  required_checks:
+    - id: "definitional-derivation"
+      expected: "EXPLICIT"
+      blocking: true
+    - id: "definitional-consistency"
+      expected: "EXPLICIT"
+      blocking: true
+    - id: "assumption-inventory"
+      expected: "EXPLICIT"
+      blocking: true
+    - id: "numerical-example"
+      expected: "EXPLICIT (unexecuted, labelled)"
+      blocking: false
+    - id: "independent-verification"
+      expected: "delegated to quant-validator"
+      blocking: true
+
+  executed_checks:
+    - id: "definitional-derivation"
+      method: "first-principles derivation in the research result"
+      command: null
+      expected: "EXPLICIT"
+      observed: "EXPLICIT (proof by quantile monotonicity + integral comparison)"
+      evidence_path: "qr-result.md#derivation_or_counterexample"
+    - id: "definitional-consistency"
+      method: "boundary analysis"
+      command: null
+      expected: "EXPLICIT"
+      observed: "EXPLICIT (15 edge cases enumerated with reasons)"
+      evidence_path: "qr-result.md#edge_cases"
+    - id: "assumption-inventory"
+      method: "declaration"
+      command: null
+      expected: "EXPLICIT"
+      observed: "EXPLICIT (A1-A7 plus unknowns list)"
+      evidence_path: "qr-result.md#assumptions"
+    - id: "numerical-example"
+      method: "hand/generative arithmetic"
+      command: null
+      expected: "EXPLICIT but UNEXECUTED"
+      observed: "EXPLICIT, labelled NOT EXECUTED (Examples A-D)"
+      evidence_path: "qr-result.md#expected_numerical_behavior"
+
+  not_executed:
+    - id: "numerical-example-execution"
+      reason: "The quant-researcher role has no execution tool in this certification; the numbers are unexecuted expectations by design."
+    - id: "independent-verification"
+      reason: "Out of role authority; assigned to quant-validator through this handoff."
+
+  evidence:
+    - "qr-result.md (sha256 1d9b7cee31176881d3b5de2b3efaf0db4de34d00b8be5a9527dab607b1dcfbde) — byte-identical to the canonical child record result field."
+    - "qr-result.meta.txt — child task id, session path, model, turns, tool calls, tokens, cost."
+    - "TASK-PACKET-QR.yaml (sha256 c3a6f1ab…) recorded before execution in packet-qr-hash.txt."
+    - "canonical-input-hashes.txt — SHA-256 of every canonical GQE input used."
+
+invariants:
+
+  applicable:
+    - "USER_CLAIM_IS_NOT_EVIDENCE"
+    - "PREMISE_AUDIT_FIRST"
+    - "DETERMINISTIC_MATH"
+    - "EFFECTIVE_CHALLENGE"
+    - "VERSION_EVERYTHING"
+    - "PROJECT-INV-007 (no live financial side effects)"
+    - "PROJECT-INV-012 (governance changes require human approval)"
+
+  checked:
+    - "USER_CLAIM_IS_NOT_EVIDENCE — claim recorded as UNVERIFIED hypothesis, not evidence."
+    - "PREMISE_AUDIT_FIRST — assumptions A1-A7 and unknowns declared before analysis."
+    - "DETERMINISTIC_MATH — every number labelled NOT EXECUTED; no unexecuted arithmetic presented as a result."
+    - "EFFECTIVE_CHALLENGE — no self-certification; validation delegated."
+    - "VERSION_EVERYTHING — task id, packet hash, artifact hash, child record identity recorded."
+    - "PROJECT-INV-007 — no side effects produced."
+
+  not_checked:
+    - "EFFECTIVE_CHALLENGE (independent side) — cannot be checked by the producing role; it is the target of this handoff."
+    - "chartpy application-level invariants (INV-001..INV-011) — no time series, dataset, backtest or code is involved."
+
+  failures: []
+
+  enforcement_status: "TEST_REQUIRED"
+
+limitations:
+
+  known:
+    - "No code was executed; all arithmetic is an unexecuted expectation."
+    - "The result is a population-level statement; estimator behaviour is asserted qualitatively only."
+    - "The verdict is conditional on the declared convention set; \"consistently\" is vague in the claim."
+    - "Literature attributions (Acerbi-Tasche 2002, Rockafellar-Uryasev 2000) are model-prior background, unretrieved and unverified in this execution."
+
+  unresolved_defects: []
+
+  uncertainty:
+    - "The intended ES definition and the intended meaning of \"consistently\" remain unresolved."
+
+  residual_risk:
+    - "A downstream reader could mistake the unexecuted examples for computed evidence."
+    - "A downstream implementation could compute a lower-tail mean or mix sign domains and invert the inequality."
+
+  unsupported_claims:
+    - "Any claim that this research is validated, certified, or production-ready."
+
+  unverified_behavior:
+    - "All numerical values in Examples A-D."
+
+downstream:
+
+  required_work:
+    - "Independently re-derive ES_alpha >= VaR_alpha from the declared definitions, without reusing the QR derivation path."
+    - "Verify by execution the four worked examples (A, B, C, D), including the atom-aware tail identity versus the conditional-tail convention on Example A."
+    - "Decide which ES definition the claim's author intends and whether HOLDS_WITH_CONDITIONS collapses to HOLDS under it."
+    - "Attempt to falsify: search for a population-level configuration under consistent conventions where ES < VaR."
+    - "Confirm or refute the 15-case edge catalogue, and confirm that the only population-level breaks are convention violations."
+    - "Return exactly one terminal validation state: PASS | FAIL | INCONCLUSIVE | BLOCKED."
+
+  required_outputs:
+    - id: "validation-result"
+      type: "structured_result"
+      required: true
+      intended_consumer: "quant-orchestrator"
+
+  required_tests:
+    - "Executable numerical recomputation of Examples A-D (any language; output captured)."
+    - "Independent derivation attempt with a distinct method where possible (for example the Rockafellar-Uryasev variational form or a brute-force discrete construction)."
+
+  required_skills:
+    - name: "quant-harness"
+      source: "/home/datawithjose/.config/opencode/skills/quant-harness/SKILL.md"
+      required: true
+
+  required_governance:
+    - "/home/datawithjose/Documents/AI-GOVERNANCE/AGENT-RULES.md"
+    - "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/INVARIANTS.md"
+
+  required_independent_verification:
+    - "ISOLATED_REQUIRED context: a new child task/session distinct from the QR child (runtime-enforced)."
+    - "Statistical independence is NOT claimed: the same provider/model family may share error modes; record this as a limitation."
+
+  prohibited_changes:
+    - "Do not modify qr-result.md, qr-result.meta.txt, this handoff, TASK-PACKET-QR.yaml or TASK-PACKET-QV.yaml."
+    - "Do not modify any file under /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/."
+    - "Do not rerun quant-researcher, delegate, or repair the research."
+    - "Do not modify the claim under evaluation."
+
+change_protection:
+
+  upstream_artifacts_materially_changed: false
+
+  stale: false
+
+  supersedes_handoff: null
+
+  superseded_by: null
+
+  affected_downstream_artifacts: []
+
+evidence:
+  - "qr-result.md sha256:1d9b7cee31176881d3b5de2b3efaf0db4de34d00b8be5a9527dab607b1dcfbde"
+  - "TASK-PACKET-QR.yaml sha256:c3a6f1ab0f596c72220af8c300c57992d4c3a6c15350836271136a7f2173d9e8"
+  - "child task record: /home/datawithjose/.pi/agent/gentle-agents/tasks/muis1lit-2-ijn6.json"
+  - "child session trace: /home/datawithjose/.pi/agent/gentle-agents/sessions/2026-09-26T19-22-55-610Z_01a0df2b-a8f9-74d9-8fb1-65d863fe0ebd.jsonl"
+  - "ATTEMPT-01-provider-failure.md sha256:7caa3c9e4ac93f89c890bdbdb33940a05dde5cb5ab5bacb2312018e892aa656a"
+
+human_decisions_required: []
+
+completion:
+
+  ready_for_handoff: true
+
+  blocking_reasons: []
+
+  notes: >-
+    Status APPROVED_FOR_HANDOFF. No human decision is required by governance for this
+    transition. The QR work was not regenerated: this handoff was built from the already
+    persisted qr-result.md.

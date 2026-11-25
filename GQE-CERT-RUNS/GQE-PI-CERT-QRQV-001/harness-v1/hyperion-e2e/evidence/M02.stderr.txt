@@ -1,0 +1,7 @@
+test_unknown_malformed_refs_and_blank_executor_rejected (test_external_flow.ExternalCLI.test_unknown_malformed_refs_and_blank_executor_rejected) ... ok
+test_snapshot_not_dirty_worktree_or_moving_ref (test_external_flow.ExternalCLI.test_snapshot_not_dirty_worktree_or_moving_ref) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.036s
+
+OK

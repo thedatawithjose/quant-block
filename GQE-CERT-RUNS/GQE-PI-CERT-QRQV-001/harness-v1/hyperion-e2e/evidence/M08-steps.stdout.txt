@@ -1,0 +1,12 @@
+PASS 01: Contrato congelado -> PENDING_VALIDATION
+PASS 02: Base defectuosa rechazada -> NEEDS_CORRECTION
+PASS 03: Correccion sin evidencia pendiente -> PENDING_VALIDATION
+PASS 04: Aceptacion sin revision pendiente -> PENDING_VALIDATION
+PASS 05: Autorrevision rechazada sin escritura -> PENDING_VALIDATION
+PASS 06: Revision pide cambios -> NEEDS_CORRECTION
+PASS 07: Entrega aprobada con evidencia actual -> DONE
+PASS 08: Nueva entrega invalida evidencia -> PENDING_VALIDATION
+PASS 09: Revision anterior no cierra entrega nueva -> PENDING_VALIDATION
+PASS 10: Entrega nueva aprobada -> DONE
+PASS 11: Cambio fuera de alcance bloqueado -> BLOCKED_SCOPE
+PASS 12: Estado reconstruido al reabrir -> BLOCKED_SCOPE

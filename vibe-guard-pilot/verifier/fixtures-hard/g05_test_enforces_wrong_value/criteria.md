@@ -1,0 +1,1 @@
+- [C1] clamp(x, lo, hi) limits values into the closed range [lo, hi]; in particular clamp(x, 0, 10) never returns a value above 10.

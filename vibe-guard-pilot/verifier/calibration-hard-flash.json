@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-12T14:41:51.481650+00:00",
+  "reviewer": "python3 /home/datawithjose/Documents/vibe-guard-pilot/verifier/opencode_reviewer.py",
+  "thresholds": {
+    "min_detection_rate": 0.9,
+    "max_false_positive_rate": 0.1
+  },
+  "counts": {
+    "defect_fixtures": 7,
+    "detected": 7,
+    "clean_fixtures": 3,
+    "false_positives": 1,
+    "reviewer_errors": 1
+  },
+  "detection_rate": 1.0,
+  "false_positive_rate": 0.3333333333333333,
+  "calibration_passed": false,
+  "failure_reasons": [
+    "1 reviewer error(s)",
+    "false_positive_rate 0.333 > 0.100"
+  ],
+  "results": [
+    {
+      "fixture": "g01_off_by_one_last_row",
+      "defect": true,
+      "defect_type": "off_by_one_last_row",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The loop range(len(rows) - 1) stops at index len(rows)-2, so the last row is never appended, and the evidence itself lists only 4 rows from a claimed 5-row sample.",
+          "proof": "artifact/exporter.py:3 `for i in range(len(rows) - 1)` excludes index len(rows)-1; evidence/claims.md outputs ids 1,2,3,4 while stating a 5-row sample, confirming the last row is dropped."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g02_inverted_condition",
+      "defect": true,
+      "defect_type": "inverted_condition",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The gate's logic is inverted: it accepts scores strictly below the threshold and rejects scores above it, the opposite of the criterion's score >= threshold => accept.",
+          "proof": "artifact/gate.py:5-6 `if score > threshold: return {\"accepted\": False}`; recomputing decide(0.95): 0.95 > 0.7 True -> accepted False (criterion demands accept); decide(0.3): 0.3 > 0.7 False -> accepted True (criterion demands reject)."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g03_swallowed_error",
+      "defect": true,
+      "defect_type": "swallowed_error",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "validate() wraps _check() in try/except Exception: pass, so the ValueError is swallowed and validate() always returns True instead of raising on invalid input.",
+          "proof": "artifact/validate.py:8-11 \u2014 `try: _check(record) except Exception: pass; return True`; calling validate({'age':-1,'email':'x'}) returns True, never raising ValueError."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g04_wrong_denominator",
+      "defect": true,
+      "defect_type": "wrong_metric_formula",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "metrics.py implements recall as tp/(tp+fp), which is precision, not tp/(tp+fn); recomputing with tp=3, fp=1, fn=2 gives precision 0.75 but true recall = 3/(3+2) = 0.6, so the artifact does not state/use recall = TP/(TP+FN).",
+          "proof": "artifact/metrics.py:9 `return tp / (tp + fp) if (tp + fp) else 0.0`; evidence/claims.md claims recall 0.7500 = 3/(3+1), which is tp/(tp+fp) not tp/(tp+fn) (correct recall = 3/5 = 0.6)."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g05_test_enforces_wrong_value",
+      "defect": true,
+      "defect_type": "test_enforces_wrong_behavior",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "clamp has no upper-bound branch, so clamp(11, 0, 10) returns 11, violating the closed range [lo, hi].",
+          "proof": "artifact/clamp.py:4 returns x unconditionally when x >= lo; recomputed clamp(11,0,10) == 11 > 10. The test test_clamp.py:11 asserts 11 (expected failure masked as pass), so evidence/claims.md 'verified' is false."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g06_sign_bug",
+      "defect": true,
+      "defect_type": "sign_bug",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "A midnight-crossing session longer than 12h is not corrected, so the function returns a negative duration.",
+          "proof": "Recomputed artifact/duration.py: duration_minutes(\"10:00\",\"09:00\") = -60 (s=600, e=540; e<s but s-e=60<=720, so the +24h branch is skipped and e-s=-60). Also (\"20:00\",\"09:00\")->-660 and (\"22:00\",\"21:00\")->-60 \u2014 all valid 24h HH:MM inputs where a session crosses midnight, falsifying C1."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g07_off_by_one_window",
+      "defect": true,
+      "defect_type": "off_by_one_window",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "paginate returns limit+1 items for non-final pages because end = start + limit + 1, so the result exceeds limit; the evidence's 'bounded by limit' claim is contradicted by the artifact and no test asserts it.",
+          "proof": "artifact/paginate.py:5 `end = start + limit + 1`; recomputed: paginate(list(range(100)), 1, 10) -> len 11 ([0..10]), paginate(..., 2, 10) -> len 11 ([10..20]), both > limit 10 (evidence/claims.md asserts a bound it never verifies)"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g08_clean_try_except",
+      "defect": false,
+      "defect_type": "clean_log_and_reraise",
+      "error": "reviewer exit 5: ad.json\")\nexcept Exception as e:\n    print(\"C2 type:\", type(e).__name__)\n    print(\"C2 logged ERROR:\", \"failed to load config from /tmp/opencode/vg/bad.json\" in buf.getvalue())\nEOF\npython3 /tmp/opencode/vg/t.py failed\n\u001b[91m\u001b[1mError: \u001b[0mThe user rejected permission to use this specific tool call.\n\n",
+      "reviewer_failed": null,
+      "correct": false
+    },
+    {
+      "fixture": "g09_clean_boundary",
+      "defect": false,
+      "defect_type": "clean_boundary",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "Recomputed normalize on several inputs; every index is written and output length always equals input length, so first and last elements are processed.",
+          "proof": "Ran artifact code: normalize([3,7,5])->[0.0,1.0,0.5], normalize([4])->[0.0], normalize([])->[], normalize([2,2])->[0.0,0.0], normalize([5,1,9,3])->[0.5,0.0,1.0,0.25]; loop `for i in range(len(xs))` writes indices 0..len-1 (artifact/normalize.py:7-8), matching evidence/claims.md; tried to falsify via empty, single, all-equal, and mixed inputs and could not."
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    },
+    {
+      "fixture": "g10_clean_metric",
+      "defect": false,
+      "defect_type": "clean_metric",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The criterion requires a report stating the formula, but no report exists in the deliverable \u2014 artifact/ contains only a Python script (metrics.py), so the demanded content type is absent.",
+          "proof": "artifact/ has a single file metrics.py (code defining recall()); there is no report document anywhere in artifact/ or evidence/; evidence/claims.md gives arithmetic (3/(3+2)=0.6000) but no report stating 'recall = TP/(TP+FN)'."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": false
+    }
+  ]
+}

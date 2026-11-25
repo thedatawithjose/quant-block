@@ -1,0 +1,450 @@
+{
+  "label": "SYNTHETIC DEMO ONLY \u2014 no market-performance evidence",
+  "comparison": {
+    "runs": [
+      {
+        "run_id": "8e56c8894aab431dbaca2fb983ea0086",
+        "request_sha256": "e07e84d9e8b20d69cadb1cf10550d885fe6ed5f10f7658e4bd78f78173893e86",
+        "strategy": "synthetic_momentum",
+        "params": {
+          "lookback": 8
+        },
+        "start": "2020-01-01T00:00:00+00:00",
+        "end": "2021-01-01T00:00:00+00:00",
+        "costs": {
+          "fee_per_side": 0.0005,
+          "slippage_bps": 2.0,
+          "funding_bps_per_day": 0.0
+        },
+        "simulation": true,
+        "metrics": {
+          "n_periods": 366,
+          "n_trades": 9,
+          "total_return": 6.9308522626858675,
+          "cagr": 6.886107660885705,
+          "max_dd": 0.010568869455675256,
+          "max_dd_duration_periods": 13,
+          "sharpe": 25.927609280931126,
+          "volatility": 0.07999697228824952,
+          "var_95": 0.0014676313233024096,
+          "cvar_95": 0.0032588847123979597,
+          "tail_observations_equivalent": 18.3,
+          "tail_sample_warning": true
+        },
+        "backtests_used": 1,
+        "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+        "engine_version": "synthetic-momentum/2.0"
+      },
+      {
+        "run_id": "2b6a6922979342fbbc7434bba5d9fa5c",
+        "request_sha256": "b63b2f5cb3e6e57642328ce89101a75c3954c3f303b3ca72ab6d92077cf412d4",
+        "strategy": "synthetic_momentum",
+        "params": {
+          "lookback": 12
+        },
+        "start": "2020-01-01T00:00:00+00:00",
+        "end": "2021-01-01T00:00:00+00:00",
+        "costs": {
+          "fee_per_side": 0.0005,
+          "slippage_bps": 2.0,
+          "funding_bps_per_day": 0.0
+        },
+        "simulation": true,
+        "metrics": {
+          "n_periods": 366,
+          "n_trades": 9,
+          "total_return": 6.142623694847462,
+          "cagr": 6.104357792562881,
+          "max_dd": 0.01653209272538858,
+          "max_dd_duration_periods": 15,
+          "sharpe": 22.957999408070542,
+          "volatility": 0.08579308448950089,
+          "var_95": 0.002834089903857695,
+          "cvar_95": 0.004447205833639164,
+          "tail_observations_equivalent": 18.3,
+          "tail_sample_warning": true
+        },
+        "backtests_used": 2,
+        "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+        "engine_version": "synthetic-momentum/2.0"
+      },
+      {
+        "run_id": "b0a5847bb23c46d58a48bb27697424ff",
+        "request_sha256": "afb37df4b87b7497a75c8de3be682d5064a7551ec42afaf7675e6a1d6d2e984c",
+        "strategy": "synthetic_momentum",
+        "params": {
+          "lookback": 20
+        },
+        "start": "2020-01-01T00:00:00+00:00",
+        "end": "2021-01-01T00:00:00+00:00",
+        "costs": {
+          "fee_per_side": 0.0005,
+          "slippage_bps": 2.0,
+          "funding_bps_per_day": 0.0
+        },
+        "simulation": true,
+        "metrics": {
+          "n_periods": 366,
+          "n_trades": 9,
+          "total_return": 4.731145363606557,
+          "cagr": 4.703871410024049,
+          "max_dd": 0.03049340121465771,
+          "max_dd_duration_periods": 16,
+          "sharpe": 18.223527018568493,
+          "volatility": 0.09602342298792922,
+          "var_95": 0.004340212069217975,
+          "cvar_95": 0.006049155343093981,
+          "tail_observations_equivalent": 18.3,
+          "tail_sample_warning": true
+        },
+        "backtests_used": 3,
+        "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+        "engine_version": "synthetic-momentum/2.0"
+      }
+    ],
+    "selected": {
+      "run_id": "8e56c8894aab431dbaca2fb983ea0086",
+      "request_sha256": "e07e84d9e8b20d69cadb1cf10550d885fe6ed5f10f7658e4bd78f78173893e86",
+      "strategy": "synthetic_momentum",
+      "params": {
+        "lookback": 8
+      },
+      "start": "2020-01-01T00:00:00+00:00",
+      "end": "2021-01-01T00:00:00+00:00",
+      "costs": {
+        "fee_per_side": 0.0005,
+        "slippage_bps": 2.0,
+        "funding_bps_per_day": 0.0
+      },
+      "simulation": true,
+      "metrics": {
+        "n_periods": 366,
+        "n_trades": 9,
+        "total_return": 6.9308522626858675,
+        "cagr": 6.886107660885705,
+        "max_dd": 0.010568869455675256,
+        "max_dd_duration_periods": 13,
+        "sharpe": 25.927609280931126,
+        "volatility": 0.07999697228824952,
+        "var_95": 0.0014676313233024096,
+        "cvar_95": 0.0032588847123979597,
+        "tail_observations_equivalent": 18.3,
+        "tail_sample_warning": true
+      },
+      "backtests_used": 1,
+      "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+      "engine_version": "synthetic-momentum/2.0"
+    },
+    "selection_rule": "highest training Sharpe subject to minimum completed trades",
+    "warning": "All comparisons count as trials; reported Sharpe is not selection-adjusted."
+  },
+  "walk_forward": {
+    "folds": [
+      {
+        "fold": {
+          "test_end": "2021-01-01",
+          "test_start": "2020-07-02",
+          "train_end": "2020-07-01",
+          "train_start": "2020-01-01"
+        },
+        "train_selection": {
+          "run_id": "e5d9a97ff909484db5e20e1400eabc85",
+          "request_sha256": "d2bd26222d96c0d460ca82edde50fc29b1abb8ad50649e5001a7fe91cc902267",
+          "strategy": "synthetic_momentum",
+          "params": {
+            "lookback": 8
+          },
+          "start": "2020-01-01T00:00:00+00:00",
+          "end": "2020-07-01T00:00:00+00:00",
+          "costs": {
+            "fee_per_side": 0.0005,
+            "slippage_bps": 2.0,
+            "funding_bps_per_day": 0.0
+          },
+          "simulation": true,
+          "metrics": {
+            "n_periods": 182,
+            "n_trades": 5,
+            "total_return": 1.7092144000889866,
+            "cagr": 6.38014697644962,
+            "max_dd": 0.010568869455675256,
+            "max_dd_duration_periods": 5,
+            "sharpe": 24.49307319413647,
+            "volatility": 0.08196603042964129,
+            "var_95": 0.00153549431812805,
+            "cvar_95": 0.003435768275838526,
+            "tail_observations_equivalent": 9.1,
+            "tail_sample_warning": true
+          },
+          "backtests_used": 4,
+          "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+          "engine_version": "synthetic-momentum/2.0"
+        },
+        "validation": {
+          "run_id": "e4b20ea97c1e4125bde12e38d25d286b",
+          "request_sha256": "69cdcf6aff8c5afd1e59354de2b6fa52ab2122949c0cb312e2da1bdf64b6810e",
+          "strategy": "synthetic_momentum",
+          "params": {
+            "lookback": 8
+          },
+          "start": "2020-07-02T00:00:00+00:00",
+          "end": "2021-01-01T00:00:00+00:00",
+          "costs": {
+            "fee_per_side": 0.0005,
+            "slippage_bps": 2.0,
+            "funding_bps_per_day": 0.0
+          },
+          "simulation": true,
+          "metrics": {
+            "n_periods": 183,
+            "n_trades": 5,
+            "total_return": 1.9041214029054458,
+            "cagr": 7.384929195664823,
+            "max_dd": 0.008579281350894918,
+            "max_dd_duration_periods": 13,
+            "sharpe": 27.290053994278846,
+            "volatility": 0.07825824401319648,
+            "var_95": 0.001393143155657195,
+            "cvar_95": 0.0030848598295188084,
+            "tail_observations_equivalent": 9.15,
+            "tail_sample_warning": true
+          },
+          "backtests_used": 7,
+          "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+          "engine_version": "synthetic-momentum/2.0"
+        }
+      },
+      {
+        "fold": {
+          "test_end": "2022-01-01",
+          "test_start": "2021-01-02",
+          "train_end": "2021-01-01",
+          "train_start": "2020-01-01"
+        },
+        "train_selection": {
+          "run_id": "e8f9d5218f0d4840966549c6210dcc56",
+          "request_sha256": "e07e84d9e8b20d69cadb1cf10550d885fe6ed5f10f7658e4bd78f78173893e86",
+          "strategy": "synthetic_momentum",
+          "params": {
+            "lookback": 8
+          },
+          "start": "2020-01-01T00:00:00+00:00",
+          "end": "2021-01-01T00:00:00+00:00",
+          "costs": {
+            "fee_per_side": 0.0005,
+            "slippage_bps": 2.0,
+            "funding_bps_per_day": 0.0
+          },
+          "simulation": true,
+          "metrics": {
+            "n_periods": 366,
+            "n_trades": 9,
+            "total_return": 6.9308522626858675,
+            "cagr": 6.886107660885705,
+            "max_dd": 0.010568869455675256,
+            "max_dd_duration_periods": 13,
+            "sharpe": 25.927609280931126,
+            "volatility": 0.07999697228824952,
+            "var_95": 0.0014676313233024096,
+            "cvar_95": 0.0032588847123979597,
+            "tail_observations_equivalent": 18.3,
+            "tail_sample_warning": true
+          },
+          "backtests_used": 8,
+          "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+          "engine_version": "synthetic-momentum/2.0"
+        },
+        "validation": {
+          "run_id": "83cd615ed47d444eb77e2c8e9f8250ad",
+          "request_sha256": "0d5cb3e049086e8d78d4d7213a4f36ac8b03862356c214d6c5f596d6b798a510",
+          "strategy": "synthetic_momentum",
+          "params": {
+            "lookback": 8
+          },
+          "start": "2021-01-02T00:00:00+00:00",
+          "end": "2022-01-01T00:00:00+00:00",
+          "costs": {
+            "fee_per_side": 0.0005,
+            "slippage_bps": 2.0,
+            "funding_bps_per_day": 0.0
+          },
+          "simulation": true,
+          "metrics": {
+            "n_periods": 364,
+            "n_trades": 10,
+            "total_return": 6.321130784385786,
+            "cagr": 6.361280722673819,
+            "max_dd": 0.010363877866513937,
+            "max_dd_duration_periods": 13,
+            "sharpe": 24.772796153847384,
+            "volatility": 0.08093364206659892,
+            "var_95": 0.0018301368395269302,
+            "cvar_95": 0.0032681993181965102,
+            "tail_observations_equivalent": 18.2,
+            "tail_sample_warning": true
+          },
+          "backtests_used": 11,
+          "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+          "engine_version": "synthetic-momentum/2.0"
+        }
+      }
+    ],
+    "positive_test_folds": 2,
+    "warning": "Development validation, not final holdout. Each fold starts flat; no stitched equity claim."
+  },
+  "stress": {
+    "scenarios": [
+      {
+        "cost_multiplier": 1,
+        "run": {
+          "run_id": "3f2bb77061574f9f9830e4c320d3500d",
+          "request_sha256": "950679465d13beae94aa6fd2c5a5f12e523086758331995df4e7224b470447e3",
+          "strategy": "synthetic_momentum",
+          "params": {
+            "lookback": 8
+          },
+          "start": "2021-01-01T00:00:00+00:00",
+          "end": "2022-01-01T00:00:00+00:00",
+          "costs": {
+            "fee_per_side": 0.0005,
+            "slippage_bps": 2.0,
+            "funding_bps_per_day": 0.0
+          },
+          "simulation": true,
+          "metrics": {
+            "n_periods": 365,
+            "n_trades": 10,
+            "total_return": 6.350986152235533,
+            "cagr": 6.350986152235539,
+            "max_dd": 0.010363877866514049,
+            "max_dd_duration_periods": 13,
+            "sharpe": 24.790715311329382,
+            "volatility": 0.08081800751681341,
+            "var_95": 0.0018301368395269302,
+            "cvar_95": 0.003264259420994676,
+            "tail_observations_equivalent": 18.25,
+            "tail_sample_warning": true
+          },
+          "backtests_used": 12,
+          "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+          "engine_version": "synthetic-momentum/2.0"
+        }
+      },
+      {
+        "cost_multiplier": 2,
+        "run": {
+          "run_id": "5d478b0e72df4112882f099bc806aa89",
+          "request_sha256": "1da71205ee689e0060fd2970b6ce4c71d1e1d92fbceff0ff9a4003922a666e70",
+          "strategy": "synthetic_momentum",
+          "params": {
+            "lookback": 8
+          },
+          "start": "2021-01-01T00:00:00+00:00",
+          "end": "2022-01-01T00:00:00+00:00",
+          "costs": {
+            "fee_per_side": 0.001,
+            "slippage_bps": 4.0,
+            "funding_bps_per_day": 0.0
+          },
+          "simulation": true,
+          "metrics": {
+            "n_periods": 365,
+            "n_trades": 10,
+            "total_return": 6.249098819353306,
+            "cagr": 6.249098819353312,
+            "max_dd": 0.010363877866513826,
+            "max_dd_duration_periods": 13,
+            "sharpe": 24.490998650862586,
+            "volatility": 0.08123540590322667,
+            "var_95": 0.0018301368395269302,
+            "cvar_95": 0.003264259420994676,
+            "tail_observations_equivalent": 18.25,
+            "tail_sample_warning": true
+          },
+          "backtests_used": 13,
+          "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+          "engine_version": "synthetic-momentum/2.0"
+        }
+      },
+      {
+        "cost_multiplier": 3,
+        "run": {
+          "run_id": "123247ed24a24145a3b732f19f64ea56",
+          "request_sha256": "12784352de01a0654cb7057f17ff398ea9f1025e417e0819f46c399c68b1cbb4",
+          "strategy": "synthetic_momentum",
+          "params": {
+            "lookback": 8
+          },
+          "start": "2021-01-01T00:00:00+00:00",
+          "end": "2022-01-01T00:00:00+00:00",
+          "costs": {
+            "fee_per_side": 0.0015,
+            "slippage_bps": 6.0,
+            "funding_bps_per_day": 0.0
+          },
+          "simulation": true,
+          "metrics": {
+            "n_periods": 365,
+            "n_trades": 10,
+            "total_return": 6.148491189910518,
+            "cagr": 6.148491189910528,
+            "max_dd": 0.010363877866514049,
+            "max_dd_duration_periods": 14,
+            "sharpe": 24.129439346368937,
+            "volatility": 0.08187244585421681,
+            "var_95": 0.0018301368395269302,
+            "cvar_95": 0.003264259420994676,
+            "tail_observations_equivalent": 18.25,
+            "tail_sample_warning": true
+          },
+          "backtests_used": 14,
+          "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+          "engine_version": "synthetic-momentum/2.0"
+        }
+      }
+    ]
+  },
+  "final": {
+    "run_id": "b4431c4d13304ad7b94a9fc096a32c77",
+    "request_sha256": "be8b434c28e9d7b31d34377d7efa53da138f08e15eadc1528fdf63f8d425b5b7",
+    "strategy": "synthetic_momentum",
+    "params": {
+      "lookback": 8
+    },
+    "start": "2022-01-01T00:00:00+00:00",
+    "end": "2022-09-01T00:00:00+00:00",
+    "costs": {
+      "fee_per_side": 0.0005,
+      "slippage_bps": 2.0,
+      "funding_bps_per_day": 0.0
+    },
+    "simulation": true,
+    "metrics": {
+      "n_periods": 243,
+      "n_trades": 7,
+      "total_return": 2.900004836008997,
+      "cagr": 6.723495569516239,
+      "max_dd": 0.009948233737610113,
+      "max_dd_duration_periods": 13,
+      "sharpe": 25.60741459589888,
+      "volatility": 0.08017940737545659,
+      "var_95": 0.0016637388110080087,
+      "cvar_95": 0.0032653647536966274,
+      "tail_observations_equivalent": 12.15,
+      "tail_sample_warning": true
+    },
+    "backtests_used": 15,
+    "dataset_sha256": "3b53822e25a70f9eb432dba0ad42cc15c64baf2009616ada56a3afc7405c98f5",
+    "engine_version": "synthetic-momentum/2.0",
+    "uncertainty": {
+      "mean_return_ci_95": [
+        0.004686964807340199,
+        0.006795678323373697
+      ],
+      "block_size": 5,
+      "draws": 400,
+      "seed": 17,
+      "selection_adjusted": false
+    }
+  }
+}

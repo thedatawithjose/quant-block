@@ -1,0 +1,18 @@
+// FRAGMENT - deliver only. NOT applied anywhere. Merge by hand into opencode.jsonc.
+// Builders may not edit governance config or evidence through the edit tool.
+// CAVEAT (see DECISIONS.md D2): this does NOT stop bash (sed -i, echo >, python -c).
+// It is a speed bump; real prevention needs OS-level separation.
+{
+  "agent": {
+    "build": {
+      // Keep the builder in a DIFFERENT family than the validator (validator = deepseek/*).
+      "permission": {
+        "edit": {
+          "*": "allow",
+          ".governance/**": "deny",
+          "evidence/**": "deny"
+        }
+      }
+    }
+  }
+}

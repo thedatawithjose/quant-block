@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+  <title>Base de conocimiento</title>
+  <style>
+    body { margin: 0; display: flex; height: 100vh; font-family: sans-serif; }
+    #left { width: 220px; border-right: 1px solid #ccc; overflow: auto; }
+    #center { flex: 1; padding: 12px; overflow: auto; }
+    #right { width: 320px; border-left: 1px solid #ccc; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    #doc-list { list-style: none; margin: 0; padding: 0; }
+    #doc-list li { padding: 8px 12px; cursor: pointer; }
+    #doc-list li:hover, #doc-list li.sel { background: #e6eefc; }
+    #doc-content, #answer { white-space: pre-wrap; }
+    #doc-meta { color: #555; font-size: 13px; margin-bottom: 8px; }
+    #import { margin: 8px 12px; }
+    #import-msg { margin: 0 12px; font-size: 12px; }
+    #conversation .cite { border-left: 3px solid #7a9be0; padding: 4px 8px; margin: 6px 0; font-size: 13px; }
+    #conversation .ref { font-weight: bold; color: #234; }
+    #answer { overflow: auto; flex: 1; }
+    .turn { border-bottom: 1px solid #ddd; padding: 6px 0; }
+    .turn .q { font-weight: bold; }
+    #question { height: 80px; }
+  </style>
+</head>
+<body>
+  <div id="left"><button id="import">Importar</button><div id="import-msg"></div><div id="index-status" style="margin:4px 12px;font-size:12px"></div><div id="index-failed" style="margin:4px 12px;font-size:12px;color:#b00"></div><ul id="doc-list"></ul></div>
+  <div id="center"><div id="doc-meta"></div><pre id="doc-content">Selecciona un documento.</pre></div>
+  <div id="right">
+    <textarea id="question" placeholder="Escribe tu pregunta"></textarea>
+    <button id="ask">Preguntar</button>
+    <button id="new-conv">Nueva conversacion</button>
+    <div id="answer"><div id="citations"></div><div id="conversation"></div></div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+// FRAGMENT - deliver only. NOT applied anywhere. Merge by hand into opencode.jsonc.
+// The validator must come from a DIFFERENT model family than the builder, so builder and
+// verifier do not share blind spots. Chosen split: builder = Claude (Anthropic, via /buildclaude);
+// validator = deepseek/* (commandcode). Different family AND different provider.
+{
+  "agent": {
+    "vibe-validator": {
+      "description": "Independent adversarial verifier. Tries to falsify builder claims. Read-only.",
+      "mode": "subagent",
+      "model": "commandcode/deepseek/deepseek-v4-flash",
+      // Point this at the real file when merging (path relative to your opencode config).
+      "prompt": "{file:./verifier/reviewer_prompt.md}",
+      "temperature": 0,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "task": "deny"
+      }
+    }
+  }
+}

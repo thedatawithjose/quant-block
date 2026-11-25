@@ -1,0 +1,233 @@
+schema_version: "1.0"
+
+adapter:
+  name: "opencode"
+  version: "0.1.0"
+  maturity: "EXPERIMENTAL"
+
+runtime:
+  name: "OpenCode"
+  version: "1.18.32"
+
+capability_levels:
+  allowed:
+    - "NATIVE"
+    - "EMULATED"
+    - "UNAVAILABLE"
+
+capabilities:
+
+  primary_orchestrator:
+    support: "NATIVE"
+    evidence:
+      - "opencode debug agent gentle-orchestrator"
+      - "gentle-orchestrator mode=primary"
+    limitations: []
+
+  delegated_task_execution:
+    support: "NATIVE"
+    evidence:
+      - "gentle-orchestrator exposes task=true"
+      - "OpenCode catalog exposes native subagents explore and general"
+      - "adapters/opencode/validate_delegation.py observes task delegation with subagent_type=quant-researcher."
+      - "Delegated quant-researcher preserves canonical BLOCKED behavior when no READY Task Packet is supplied."
+    limitations:
+      - "Runtime delegation has been empirically validated for quant-researcher; the remaining Quant specialist invocation paths have not yet been individually exercised."
+      - "Authorized execution with a READY Task Packet has been validated for quant-researcher; remaining specialist paths have not yet been individually exercised."
+
+  specialist_role_instructions:
+    support: "EMULATED"
+    evidence:
+      - "Canonical ROLE.md and SUBAGENT.md contracts exist."
+      - "adapters/opencode/generate_registration.py translates canonical specialists into OpenCode agent entries."
+      - "adapters/opencode/validate_registration.py verifies that OpenCode resolves the generated canonical prompts."
+    limitations:
+      - "Task-specific authority delivery through runtime invocation has not yet been validated."
+
+  isolated_specialist_context:
+    support: "NATIVE"
+    evidence:
+      - "OpenCode provides subagent execution through task."
+    limitations:
+      - "Quant specialist isolation has not yet been empirically validated."
+
+  independent_validator_context:
+    support: "NATIVE"
+    evidence:
+      - "Separate subagent execution contexts are available."
+    limitations:
+      - "ISOLATED_REQUIRED compliance for quant-validator remains untested."
+
+  contextual_skill_loading:
+    support: "NATIVE"
+    evidence:
+      - "gentle-orchestrator exposes skill=true"
+      - ".atl/skill-registry.md resolves exact SKILL.md paths"
+    limitations: []
+
+  project_governance_loading:
+    support: "NATIVE"
+    evidence:
+      - "OpenCode provides filesystem read access inside project workspace."
+    limitations:
+      - "Automatic governance preflight has not yet been implemented."
+
+  tool_restrictions:
+    support: "NATIVE"
+    evidence:
+      - "Resolved OpenCode permission configuration supports allow/ask/deny policies."
+    limitations: []
+
+  filesystem_scope_restrictions:
+    support: "NATIVE"
+    evidence:
+      - "Resolved OpenCode permissions expose external_directory policies."
+    limitations:
+      - "Quant specialist-specific filesystem scopes remain untested."
+
+  verification_command_execution:
+    support: "NATIVE"
+    evidence:
+      - "gentle-orchestrator exposes bash=true"
+    limitations: []
+
+  structured_result_return:
+    support: "EMULATED"
+    evidence:
+      - "Gentle phase contracts define structured output requirements."
+    limitations:
+      - "Quant specialist result-schema enforcement has not yet been implemented."
+
+  human_approval_gates:
+    support: "EMULATED"
+    evidence:
+      - "OpenCode permissions support ask semantics."
+      - "Canonical governance reserves human-only decisions."
+    limitations:
+      - "Quant-specific approval gates have not yet been validated end-to-end."
+
+  persistent_project_memory:
+    support: "EMULATED"
+    evidence:
+      - "Gentle installation exposes Engram integration."
+    limitations:
+      - "Memory is contextual support and is not governance authority."
+
+  deterministic_deployment_generation:
+    support: "EMULATED"
+    evidence:
+      - "adapters/opencode/generate_registration.py"
+      - "adapters/opencode/validate_registration.py"
+      - "Repeated generation from identical canonical inputs is verified byte-identical."
+    limitations:
+      - "Generation currently covers specialist registration artifacts; task-specific runtime packaging remains pending."
+
+governance_mapping:
+
+  orchestrator_only_invocation:
+    supported: false
+    mechanism: null
+
+  isolated_preferred:
+    supported: false
+    mechanism: null
+
+  isolated_required:
+    supported: false
+    mechanism: null
+
+  delegation_forbidden:
+    supported: false
+    mechanism: null
+
+  fail_closed_enforcement:
+    supported: false
+    mechanism: null
+
+  human_authority_preservation:
+    supported: false
+    mechanism: null
+
+specialist_support:
+
+  quant_data_engineer:
+    executable: false
+    isolation: "NOT_TESTED"
+
+  quant_researcher:
+    executable: false
+    isolation: "NOT_TESTED"
+
+  quant_developer:
+    executable: false
+    isolation: "NOT_TESTED"
+
+  quant_validator:
+    executable: false
+    isolation: "NOT_TESTED"
+
+known_limitations:
+  - "Gentle-to-Quant delegation has been empirically validated for quant-researcher only; the remaining specialist invocation paths have not yet been individually exercised."
+  - "Task-specific READY Task Packet authority delivery has been validated for quant-researcher with canonical COMPLETED state and authority-token preservation."
+  - "READY Task Packet authority delivery for the remaining specialists has not yet been individually exercised."
+  - "Full governance, skill, and upstream Handoff delivery remains unvalidated end-to-end."
+  - "Independent Quant Validator isolation has not yet been demonstrated."
+  - "Fail-closed governance enforcement beyond the missing-Task-Packet gate has not yet been validated end-to-end."
+
+validation:
+
+  canonical_role_preservation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  governance_loading:
+    status: "NOT_TESTED"
+    evidence: null
+
+  specialist_isolation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  skill_delivery:
+    status: "NOT_TESTED"
+    evidence: null
+
+  structured_results:
+    status: "NOT_TESTED"
+    evidence: null
+
+  failure_state_preservation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  human_gate_preservation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  deterministic_regeneration:
+    status: "PASS"
+    evidence:
+      - "adapters/opencode/validate_registration.py verifies two independently generated bundles are byte-identical."
+
+allowed_validation_status:
+  - "PASS"
+  - "FAIL"
+  - "INCONCLUSIVE"
+  - "NOT_TESTED"
+  - "BLOCKED"
+
+compatibility:
+
+  overall_status: "NOT_EVALUATED"
+
+  allowed_status:
+    - "SUPPORTED"
+    - "SUPPORTED_WITH_LIMITATIONS"
+    - "CAPABILITY_BLOCKED"
+    - "NOT_EVALUATED"
+
+  blocking_capabilities:
+    - "task_specific_authority_delivery_not_validated_for_remaining_specialists"
+    - "quant_validator_isolation_not_validated"
+
+  notes: "Registration generation, runtime acceptance, agent discovery, prompt resolution, delegation-tool restriction, deterministic regeneration, Gentle-to-quant-researcher delegation, and READY Task Packet authority delivery to quant-researcher are validated. The remaining specialists have not yet been individually exercised. Quant Validator isolation and end-to-end governance, skill, and Handoff enforcement remain pending."

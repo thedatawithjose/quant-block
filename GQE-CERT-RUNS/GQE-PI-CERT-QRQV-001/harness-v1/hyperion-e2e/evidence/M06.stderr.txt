@@ -1,0 +1,6 @@
+test_missing_evidence_review_changes_and_fresh_delivery_same_commit (test_external_flow.ExternalCLI.test_missing_evidence_review_changes_and_fresh_delivery_same_commit) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.795s
+
+OK

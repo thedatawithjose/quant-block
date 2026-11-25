@@ -1,0 +1,24 @@
+# QR result metadata (authoritative child record)
+
+task_id: muis1lit-2-ijn6
+agent: quant-researcher
+mode: task
+label: evaluate ES vs VaR claim
+cwd: /home/datawithjose/Documents/Workspace/chartpy_copy
+model: commandcode/deepseek/deepseek-v4.1-flash
+thinking: high
+status: completed
+turns: 5
+tool_calls: 8
+tokens: 118698
+cost: 0.020823473999999998
+parent_session_id: 01a0daca-b48e-74a5-9e0f-0e0742ba7dd5
+child_session_path: /home/datawithjose/.pi/agent/gentle-agents/sessions/2026-09-26T19-22-55-610Z_01a0df2b-a8f9-74d9-8fb1-65d863fe0ebd.jsonl
+started_at_epoch_ms: 1790450575169
+ended_at_epoch_ms: 1790450690920
+started_at_utc: 2026-09-26T19:22:55Z
+ended_at_utc: 2026-09-26T19:24:50Z
+result_source: task record .task.result (extracted programmatically, verbatim)
+result_bytes: 27857
+
+result_sha256: 1d9b7cee31176881d3b5de2b3efaf0db4de34d00b8be5a9527dab607b1dcfbde   # exact bytes of qr-result.md == .task.result bytes

@@ -1,0 +1,372 @@
+schema_version: "1.0"
+
+adapter:
+  name: "pi"
+  version: "0.1.0"
+  maturity: "VALIDATING"
+
+runtime:
+  name: "Pi"
+  version: "0.87.1"
+
+capability_levels:
+  allowed:
+    - "NATIVE"
+    - "EMULATED"
+    - "UNAVAILABLE"
+
+evidence_levels:
+  allowed:
+    - "VERIFIED"
+    - "DECLARED"
+    - "UNVERIFIED"
+    - "UNSUPPORTED"
+  definitions:
+    VERIFIED: "The mechanism exists and its effect was observed in this runtime, with the observation recorded under evidence."
+    DECLARED: "The mechanism exists and is configured, but its end-to-end effect was not observed."
+    UNVERIFIED: "Not exercised in this runtime; neither established nor refuted."
+    UNSUPPORTED: "The runtime does not provide the mechanism."
+
+capabilities:
+
+  primary_orchestrator:
+    support: "NATIVE"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "The Pi parent session runs the Gentle orchestrator, and canonical specialist wrappers declare invocation: ORCHESTRATOR_ONLY."
+      - "The parent session dispatched a quant-validator specialist through the runtime delegation tool and received a structured result."
+    limitations: []
+
+  delegated_task_execution:
+    support: "NATIVE"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "A quant-validator specialist execution completed and returned a structured numbered report to the parent."
+    limitations:
+      - "Delegation was observed for quant-validator only; the remaining seven specialist invocation paths were not individually exercised."
+
+  specialist_role_instructions:
+    support: "EMULATED"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "adapters/pi/generate_registration.py renders one wrapper per canonical specialist from agents/*/ROLE.md and agents/*/SUBAGENT.md."
+      - "The probe specialist reported exactly its four canonical GQE contract paths, confirming that the wrapper canonical-file instruction is delivered and followed."
+    limitations:
+      - "The runtime consumes a generated wrapper; canonical ROLE.md semantics are not enforced by the runtime itself."
+
+  isolated_specialist_context:
+    support: "NATIVE"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "The probe specialist reported CONTEXT_HISTORY: NONE VISIBLE, so no parent conversation content was visible in the child context."
+    limitations:
+      - "Isolation was observed at process and context scope only; see isolation_semantics."
+      - "Specialists retain read and bash, so state can still be reached through the filesystem."
+
+  independent_validator_context:
+    support: "NATIVE"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "The quant-validator specialist ran in a separate session with no parent history visible."
+      - "The quant-validator wrapper is the only specialist rendered without edit and write, so its evidence-production boundary is read-only."
+    limitations:
+      - "PROCESS SCOPE ONLY. The adapter currently renders every role, including the quant-validator, on Claude through claude-bridge (producers on Sonnet 5.5 or Haiku 5.5, validator on Sonnet 5.5), so the validator shares a model vendor with the roles it reviews. The vendor split is under a TEMPORARY waiver (commandcode subscription lapsed); no model-vendor decorrelation is claimed. No statistical independence is claimed either."
+      - "The validator retains bash, so read-only status is a declared tool boundary and not a sandbox."
+
+  contextual_skill_loading:
+    support: "EMULATED"
+    evidence_level: "DECLARED"
+    evidence:
+      - ".atl/skill-registry.md resolves exact canonical SKILL.md paths for delegator use."
+      - "Generated wrappers embed no skill content, so delivery depends on the parent passing exact paths."
+    limitations:
+      - "End-to-end skill delivery into a specialist context was not exercised by this adapter validation."
+
+  project_governance_loading:
+    support: "EMULATED"
+    evidence_level: "UNVERIFIED"
+    evidence:
+      - "Specialists hold read and bash, so project governance files are reachable when a governed project is the working target."
+    limitations:
+      - "The ecosystem repository declares no .governance directory, so governance loading was not exercised."
+      - "Missing required governance is reported by the canonical contract, not enforced by the Pi runtime."
+
+  tool_restrictions:
+    support: "NATIVE"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "Every generated wrapper declares an explicit tools list, and regeneration is deterministic."
+      - "The probe specialist reported no write and no edit tool."
+    limitations:
+      - "A declared tools list is NOT the effective tool set: the runtime additionally injects subagent_parent_message, which is absent from every wrapper declared list."
+      - "A declared list must therefore not be read as an exhaustive allowlist."
+
+  filesystem_scope_restrictions:
+    support: "UNAVAILABLE"
+    evidence_level: "DECLARED"
+    evidence:
+      - "adapters/pi generates no path-scoped mechanism; every wrapper receives unrestricted read, grep, find, and bash."
+    limitations:
+      - "This records an unprovided mechanism, not a tested runtime limit; whether Pi could enforce filesystem scopes was not established."
+
+  verification_command_execution:
+    support: "NATIVE"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "Every generated wrapper declares bash, and the probe specialist executed read-only shell commands successfully."
+      - "adapters/pi/validate_registration.py executes validation against a regenerated bundle."
+    limitations: []
+
+  structured_result_return:
+    support: "EMULATED"
+    evidence_level: "DECLARED"
+    evidence:
+      - "The probe specialist returned a numbered structured report to the parent."
+      - "Canonical result contracts are defined in agents/SUBAGENT-CONTRACT-SPEC.md section 9."
+    limitations:
+      - "No runtime enforcement of the canonical result vocabulary was observed; well-formedness depends on the specialist following its contract."
+
+  human_approval_gates:
+    support: "EMULATED"
+    evidence_level: "UNVERIFIED"
+    evidence:
+      - "Canonical governance reserves human-only decisions, and the parent harness relays blocking prompts to the user."
+    limitations:
+      - "No runtime-native approval gate is configured for specialists; preservation depends on orchestrator and user-interaction behaviour that was not exercised here."
+
+  persistent_project_memory:
+    support: "EMULATED"
+    evidence_level: "DECLARED"
+    evidence:
+      - ".engram/config.json binds the project identity gentle-quant-ecosystem."
+    limitations:
+      - "Memory is contextual support and is not governance authority."
+      - "Whether specialist child contexts inherit project memory was not tested, so cross-role memory leakage cannot be excluded."
+
+  deterministic_deployment_generation:
+    support: "EMULATED"
+    evidence_level: "VERIFIED"
+    evidence:
+      - "adapters/pi/validate_registration.py confirms two independent generations from identical canonical inputs are byte-identical."
+      - "Generation fails closed when canonical inputs are uncommitted at HEAD or when DCP sources drift from their recorded hashes."
+    limitations:
+      - "Generation covers specialist registration artefacts only; task-specific runtime packaging is out of scope."
+
+isolation_semantics:
+  demonstrated_scope: "PROCESS_AND_CONTEXT"
+  demonstrated:
+    - "A separate child session per specialist execution."
+    - "No parent conversation history visible in the child context, observed directly."
+    - "A read-only tool boundary for quant-validator, observed directly."
+  not_demonstrated:
+    - "Model vendor decorrelation: the validator and the roles it reviews all run on Claude through claude-bridge while the vendor-split check is WAIVED."
+    - "Provider independence."
+    - "Statistical independence of validator conclusions from developer reasoning."
+    - "Absence of cross-role shared persistent memory."
+  statement: "Pi demonstrates process and context isolation. It does NOT currently demonstrate model vendor decorrelation: the validator and the roles it reviews all run on Claude through claude-bridge, and the vendor-split check is under a temporary WAIVER. It does NOT demonstrate provider independence or statistical independence. Independent validation under this adapter means an independent context and tool boundary only, and must not be presented as model-independent or statistical corroboration."
+
+governance_mapping:
+
+  orchestrator_only_invocation:
+    supported: true
+    evidence_level: "VERIFIED"
+    mechanism: "Generated wrappers grant no child-spawning tool. The runtime injects only subagent_parent_message, which addresses the existing parent and cannot create a new specialist invocation."
+
+  isolated_preferred:
+    supported: true
+    evidence_level: "VERIFIED"
+    mechanism: "Each specialist executes in a separate Pi subagent session, and the probe observed no parent history in the child context."
+
+  isolated_required:
+    supported: true
+    evidence_level: "VERIFIED"
+    mechanism: "The same separate-session mechanism, additionally constrained for quant-validator by a read-only tool set. Scope is PROCESS_AND_CONTEXT only."
+
+  delegation_forbidden:
+    supported: true
+    evidence_level: "VERIFIED"
+    mechanism: "No specialist receives a tool that can spawn or invoke another specialist."
+
+  fail_closed_enforcement:
+    supported: true
+    evidence_level: "VERIFIED"
+    mechanism: "adapters/pi/generate_registration.py aborts with a non-zero exit before emitting any wrapper when a canonical input is unresolvable, uncommitted at HEAD, or when DCP hashes drift. adapters/pi/validate_registration.py resolves a required capability set against this manifest and returns CAPABILITY_BLOCKED when a required capability is not satisfied."
+
+  human_authority_preservation:
+    supported: false
+    evidence_level: "UNVERIFIED"
+    mechanism: null
+
+specialist_support:
+
+  field_semantics: "isolation is the canonical declared policy; isolation_evidence is the adapter verdict for that policy; tool_boundary is the rendered write authority."
+
+  ui_ux_engineer:
+    executable: true
+    isolation: "ISOLATED_PREFERRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_WRITE"
+
+  software_engineer:
+    executable: true
+    isolation: "ISOLATED_PREFERRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_WRITE"
+
+  data_engineer:
+    executable: true
+    isolation: "ISOLATED_PREFERRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_WRITE"
+
+  data_scientist:
+    executable: true
+    isolation: "ISOLATED_PREFERRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_WRITE"
+
+  quant_data_engineer:
+    executable: true
+    isolation: "ISOLATED_PREFERRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_WRITE"
+
+  quant_researcher:
+    executable: true
+    isolation: "ISOLATED_PREFERRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_WRITE"
+
+  quant_developer:
+    executable: true
+    isolation: "ISOLATED_PREFERRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_WRITE"
+
+  quant_validator:
+    executable: true
+    isolation: "ISOLATED_REQUIRED"
+    isolation_evidence: "VERIFIED"
+    tool_boundary: "READ_ONLY"
+
+fail_closed:
+
+  status_token: "CAPABILITY_BLOCKED"
+
+  resolution_rule: "A required capability is satisfied only when its support is NATIVE or EMULATED and its evidence level is VERIFIED or DECLARED. Support UNAVAILABLE, or an evidence level of UNSUPPORTED or UNVERIFIED, blocks the requirement. A blocked requirement is never downgraded to a shared or self-review execution."
+
+  required_payload:
+    - "status"
+    - "missing_capability"
+    - "reason"
+    - "affected_governance_rule"
+    - "affected_workflow"
+    - "safe_alternatives"
+
+  governance_anchors:
+    isolated_required: "governance/core/AGENT-RULES.md section 16 (Verificacion adversarial independiente)"
+    independent_validator_context: "agents/SUBAGENT-CONTRACT-SPEC.md section 3 (Context Policy)"
+    isolated_preferred: "agents/SUBAGENT-CONTRACT-SPEC.md section 3 (Context Policy)"
+    delegation_forbidden: "agents/SUBAGENT-CONTRACT-SPEC.md section 4 (Delegation Policy)"
+    orchestrator_only_invocation: "agents/SUBAGENT-CONTRACT-SPEC.md section 2 (Invocation Policy)"
+    tool_restrictions: "agents/SUBAGENT-CONTRACT-SPEC.md section 5 (Authority Policy)"
+    filesystem_scope_restrictions: "adapters/RUNTIME-ADAPTER-SPEC.md section 2 (Required Runtime Capabilities)"
+    human_authority_preservation: "agents/SUBAGENT-CONTRACT-SPEC.md section 10 (Human Authority)"
+
+  safe_alternatives:
+    filesystem_scope_restrictions:
+      - "Constrain the specialist task text to an explicit allowed path set and verify the produced diff against it."
+      - "Execute the work on a runtime adapter that declares filesystem scope enforcement."
+    human_approval_gates:
+      - "Require an explicit human authorization step in the parent session before the gated action."
+    project_governance_loading:
+      - "Pass the resolved .governance artefact paths explicitly in the task text and require the specialist to read them."
+    contextual_skill_loading:
+      - "Pass the exact canonical SKILL.md paths in the task text and require the specialist to read them before acting."
+
+known_limitations:
+  - "Independent validation under Pi is a separate process and context only. The validator runs on the same vendor (Claude through claude-bridge) as the roles it reviews; the vendor-decorrelation check is WAIVED temporarily because the commandcode subscription lapsed. Neither model nor statistical independence is demonstrated; it must not be reported as such."
+  - "The declared tools list in a generated wrapper is not the effective tool set; the runtime injects subagent_parent_message."
+  - "filesystem_scope_restrictions is unprovided; specialists receive unrestricted read and bash."
+  - "Specialist delegation was exercised for quant-validator only; the remaining seven invocation paths were not individually exercised."
+  - "Governance loading was not exercised because the ecosystem repository declares no .governance directory."
+  - "Human approval gate preservation is unverified for specialist execution."
+  - "Cross-role persistent memory inheritance was not tested."
+  - "shell access via the declared bash tool means the delegation prohibition is a tool-boundary fact and not a hardened sandbox."
+
+validation:
+
+  canonical_role_preservation:
+    status: "PASS"
+    evidence:
+      - "adapters/pi/validate_registration.py confirms all eight wrappers resolve their canonical ROLE.md and SUBAGENT.md paths."
+
+  governance_loading:
+    status: "NOT_TESTED"
+    evidence: null
+
+  specialist_isolation:
+    status: "PASS"
+    evidence:
+      - "The quant-validator probe reported CONTEXT_HISTORY: NONE VISIBLE. Scope is process and context only."
+
+  skill_delivery:
+    status: "NOT_TESTED"
+    evidence: null
+
+  structured_results:
+    status: "INCONCLUSIVE"
+    evidence:
+      - "The probe returned a structured report, but canonical status-vocabulary enforcement was not exercised."
+
+  failure_state_preservation:
+    status: "PASS"
+    evidence:
+      - "adapters/pi/validate_registration.py simulates a required-but-unsupported capability and observes CAPABILITY_BLOCKED with a complete payload; no silent degradation path is taken."
+
+  human_gate_preservation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  deterministic_regeneration:
+    status: "PASS"
+    evidence:
+      - "Two independent generations from identical canonical inputs are byte-identical, and the emitted provenance stamp equals the canonical revision."
+
+  model_decorrelation:
+    status: "WAIVED"
+    evidence:
+      - "The validator and every role it reviews run on the same vendor: Claude through claude-bridge."
+      - "Waiver reason: commandcode subscription lapsed (2026-10-31); every role runs on Claude through claude-bridge until a second provider is available."
+      - "adapters/pi/validate_registration.py reports WAIVED, never PASS, for this check while DECORRELATION_WAIVER is set in generate_registration.py; setting it to None restores the enforced FAIL."
+
+  model_decorrelation_effect:
+    status: "NOT_TESTED"
+    evidence: null
+
+allowed_validation_status:
+  - "PASS"
+  - "FAIL"
+  - "INCONCLUSIVE"
+  - "NOT_TESTED"
+  - "BLOCKED"
+  - "WAIVED"
+
+compatibility:
+
+  overall_status: "SUPPORTED_WITH_LIMITATIONS"
+
+  allowed_status:
+    - "SUPPORTED"
+    - "SUPPORTED_WITH_LIMITATIONS"
+    - "CAPABILITY_BLOCKED"
+    - "NOT_EVALUATED"
+
+  blocking_capabilities:
+    - "filesystem_scope_restrictions"
+    - "human_authority_preservation_unverified"
+    - "model_decorrelation_waived"
+    - "model_decorrelation_effect_not_demonstrated"
+    - "governance_loading_not_exercised"
+
+  notes: "Wrapper generation, canonical role preservation, DCP path propagation, provenance determinism, process and context isolation, the read-only quant-validator tool boundary, and fail-closed capability resolution are validated. The adapter is not SUPPORTED because filesystem scope restriction is unprovided, human gate preservation and governance loading are unexercised, model vendor decorrelation between validator and reviewed roles is WAIVED while every role runs on Claude through claude-bridge, and statistical independence remains undemonstrated."

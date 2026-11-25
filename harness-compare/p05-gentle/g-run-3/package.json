@@ -1,0 +1,13 @@
+{
+  "name": "kb-electron-skeleton",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test \"test/*.test.js\""
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}

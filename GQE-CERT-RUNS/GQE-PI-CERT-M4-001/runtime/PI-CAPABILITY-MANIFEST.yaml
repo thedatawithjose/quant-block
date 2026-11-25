@@ -1,0 +1,213 @@
+schema_version: "1.0"
+
+adapter:
+  name: "pi-gqe-adapter"
+  version: "0.1.0-certified-m4"
+  maturity: "VALIDATING"
+
+runtime:
+  name: "Pi"
+  version: "0.87.1"
+
+certification:
+  run_id: "GQE-PI-CERT-M4-001"
+  date_utc: "2026-09-26"
+  canonical_gqe_revision: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+  canonical_gqe_status: "clean (git status --porcelain empty before and after)"
+  evidence_root: "/home/datawithjose/Documents/GQE-CERT-RUNS/GQE-PI-CERT-M4-001"
+
+capability_levels:
+  allowed: ["NATIVE", "EMULATED", "UNAVAILABLE"]
+
+capabilities:
+
+  primary_orchestrator:
+    support: "NATIVE"
+    evidence: "Parent session 01a0df52-5099-75b9-b121-7eba7ec7d71a performed governance preflight, classification, routing, packet creation, handoff validation and the human-gate stop."
+    limitations:
+      - "The orchestrator is the same model as the specialists; orchestration judgment is not independent."
+
+  delegated_task_execution:
+    support: "NATIVE"
+    evidence: "subagent_run produced two independent child tasks: quant-researcher muitozyl-1-0osb and quant-validator muitwelp-2-pqha."
+    limitations: []
+
+  specialist_role_instructions:
+    support: "NATIVE"
+    evidence: "~/.pi/agent/agents/quant-{researcher,validator,developer,data-engineer}.md load the canonical ROLE.md, SUBAGENT.md and SUBAGENT-CONTRACT-SPEC.md; both children read them in full."
+    limitations:
+      - "The wrapper is a thin pointer; role semantics remain in canonical GQE, which is the intended design."
+
+  isolated_specialist_context:
+    support: "NATIVE"
+    evidence: "Distinct child sessions 01a0df55-f2f3-7385-acac-3d22d832a7da (QR) and 01a0df5b-38f4-73f0-80b5-0b02f8708933 (QV), each with its own session file; QV received the task packet transport only."
+    limitations:
+      - "Session isolation is procedural. It does not isolate the underlying model error modes."
+
+  independent_validator_context:
+    support: "NATIVE"
+    evidence: "QV ran in its own child task and session, read only persisted artifacts from disk, recomputed hashes and falsified material claims (terminal FAIL)."
+    limitations:
+      - "Independence is process/session level, not statistical: both specialists are pinned to commandcode/deepseek/deepseek-v4.1-flash (PROJECT-INV-010, NOT_ENFORCED)."
+
+  contextual_skill_loading:
+    support: "EMULATED"
+    evidence: "The orchestrator resolves and injects exact canonical paths into the task packet; the child loads them with the read tool. No canonical project skill was required in this run (required_skills: [])."
+    limitations:
+      - "Pi exposes no runtime skill registry to the orchestrator in this configuration; resolution is an orchestrator-side convention, so an unresolved skill must fail closed (it did not need to here)."
+
+  project_governance_loading:
+    support: "NATIVE"
+    evidence: "Both children read .governance/CONTRACT.md, INVARIANTS.md, ROUTING.yaml and TEAM.yaml from the certification workspace before material work."
+    limitations: []
+
+  tool_restrictions:
+    support: "NATIVE"
+    evidence: "Per-agent allowlists enforced: QR tools read/grep/find (tool_names actually used: find, read); QV tools read/grep/find/bash (used: bash, read). Zero subagent_* tools declared or invoked."
+    limitations:
+      - "Tool allowlists are consulted from the agent definition; they are not a security sandbox."
+
+  filesystem_scope_restrictions:
+    support: "UNAVAILABLE"
+    evidence: "Children can read any path the parent can read; no per-child filesystem confinement is enforced by the runtime."
+    limitations:
+      - "Scope containment relies on the agent allowlist, the task packet and prose instructions plus post-hoc hash verification, not on runtime enforcement."
+      - "This is the largest runtime gap. It was mitigated by: (a) read-only toolsets, (b) a pre-QV frozen hash snapshot, and (c) verification that registered artifacts did not change."
+
+  verification_command_execution:
+    support: "NATIVE"
+    evidence: "QV executed 36 tool calls, including many python3 heredoc computations, and returned exact commands with observed output."
+    limitations: []
+
+  structured_result_return:
+    support: "NATIVE"
+    evidence: "Both results were returned as structured markdown and persisted verbatim from the Pi task record field 'result' (QR 65,929 chars; QV 47,230 chars)."
+    limitations:
+      - "Specialists have no write tool, so the orchestrator persists results. This is contract-faithful (canonical ROLE.md says 'Return:') but makes persistence an orchestrator action, not a specialist action."
+
+  human_approval_gates:
+    support: "EMULATED"
+    evidence: "The orchestrator created gates/HUMAN-GATE.md with status HUMAN_DECISION_REQUIRED and gates/FINAL-DISPOSITION.md with production_status NOT_APPROVED and trade_authorized false, and stopped."
+    limitations:
+      - "Pi provides no runtime primitive that blocks an action pending human approval; the gate is a convention plus a fail-closed evaluator, not a runtime interlock."
+
+  persistent_project_memory:
+    support: "NATIVE"
+    evidence: "gentle-engram MCP tools available in the parent session."
+    limitations:
+      - "Memory is not authoritative project state; authority stayed in versioned artifacts."
+
+  deterministic_deployment_generation:
+    support: "UNAVAILABLE"
+    evidence: "No canonical generator exists for a Pi adapter; the agent wrappers are hand-authored."
+    limitations:
+      - "Deployment artifacts for Pi cannot yet be regenerated deterministically from the capability manifest."
+
+governance_mapping:
+
+  orchestrator_only_invocation:
+    supported: true
+    mechanism: "Pi agent definitions are reachable only through the parent session's subagent_run tool; specialists hold no subagent_* tools."
+
+  isolated_preferred:
+    supported: true
+    mechanism: "Distinct child session per task (verified by child session files)."
+
+  isolated_required:
+    supported: true
+    mechanism: "Distinct child task id and child session id, plus persisted-authority-only transport. Statistical independence remains NOT established."
+
+  delegation_forbidden:
+    supported: true
+    mechanism: "No specialist allowlist contains any subagent_* tool; observed invocations = 0 in both children (evidence/executions.json)."
+
+  fail_closed_enforcement:
+    supported: true
+    mechanism: "evidence/controls/evaluate_enforcement.py resolves each declared control to an executable check, reports unresolved ENFORCED declarations as NOT_SATISFIED, treats UNKNOWN as blocking, and exits 1."
+
+  human_authority_preservation:
+    supported: true
+    mechanism: "The orchestrator reached the gate and stopped; it did not manufacture approval. Runtime enforcement of the stop is EMULATED, not native."
+
+specialist_support:
+
+  quant_data_engineer:
+    executable: true
+    isolation: "ISOLATED_SESSION"
+    executed_this_run: false
+
+  quant_researcher:
+    executable: true
+    isolation: "ISOLATED_SESSION"
+    executed_this_run: true
+
+  quant_developer:
+    executable: true
+    isolation: "ISOLATED_SESSION"
+    executed_this_run: false
+
+  quant_validator:
+    executable: true
+    isolation: "ISOLATED_SESSION"
+    executed_this_run: true
+
+known_limitations:
+  - "No runtime filesystem confinement for child agents (filesystem_scope_restrictions: UNAVAILABLE)."
+  - "No runtime interlock that blocks execution pending human approval (human_approval_gates: EMULATED)."
+  - "Specialists cannot persist their own artifacts; the orchestrator persists returned results verbatim."
+  - "QR and QV share the same provider/model family, so statistical independence of error modes is not established."
+  - "No retrieval capability in either specialist context: documentation/open-web unavailable, so several literature premises were recorded as UNVERIFIED rather than tested."
+  - "Pi exposes no deterministic deployment generator, so adapter wrappers are hand-authored and drift is only caught by hashing."
+
+validation:
+
+  canonical_role_preservation:
+    status: "PASS"
+    evidence: "Both children read the canonical ROLE.md/SUBAGENT.md/SUBAGENT-CONTRACT-SPEC.md; QV separately audited QR role-boundary compliance and found none violated."
+
+  governance_loading:
+    status: "PASS"
+    evidence: "Both packets declared governance status VALID; both children read the governance files; the QR packet recorded the governance reference set."
+
+  specialist_isolation:
+    status: "PASS"
+    evidence: "Distinct child task ids and session ids; frozen pre-QV snapshot verified unchanged after QV (11/11 OK)."
+
+  skill_delivery:
+    status: "NOT_TESTED"
+    evidence: "No canonical skill was required by this task (required_skills: []), so skill delivery was not exercised."
+
+  structured_results:
+    status: "PASS"
+    evidence: "Both terminal states were structured and machine-extractable: QR COMPLETED, QV FAIL; statuses preserved without conversion."
+
+  failure_state_preservation:
+    status: "PASS"
+    evidence: "The QV FAIL was preserved and propagated: control CTRL-CERT-005 reports NOT_SATISFIED and the production transition is blocked."
+
+  human_gate_preservation:
+    status: "PASS"
+    evidence: "gates/HUMAN-GATE.md status HUMAN_DECISION_REQUIRED with an explicit decision request and options; no approval manufactured."
+
+  deterministic_regeneration:
+    status: "UNAVAILABLE"
+    evidence: "No canonical Pi adapter generator exists."
+
+allowed_validation_status: ["PASS", "FAIL", "INCONCLUSIVE", "NOT_TESTED", "BLOCKED"]
+
+compatibility:
+
+  overall_status: "SUPPORTED_WITH_LIMITATIONS"
+
+  allowed_status: ["SUPPORTED", "SUPPORTED_WITH_LIMITATIONS", "CAPABILITY_BLOCKED", "NOT_EVALUATED"]
+
+  blocking_capabilities: []
+
+  notes: >
+    Pi completed the full canonical operational loop through the Human Gate with fail-closed
+    enforcement and no silent degradation of a required canonical capability. It did not
+    return CAPABILITY_BLOCKED: isolation was provided at process/session level, and the
+    remaining gaps (filesystem confinement, approval interlock, statistical independence,
+    deterministic generation, retrieval) are declared limitations, not silent substitutions.
+    Declaration as fully SUPPORTED is withheld until those limitations are either closed or
+    formally accepted by human authority.

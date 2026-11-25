@@ -1,0 +1,18 @@
+# Tarea F18: exportar la conversacion a Markdown
+
+1. `lib/export.js` exporta `conversationToMarkdown(history, opts = {})` y `exportConversation(root, history, opts = {})`. `history` es el array de turnos `{ q, effectiveQuery, a, citations }` de `lib/conversation.js`. `opts.now` es un `Date` o ms (por defecto `new Date()`).
+
+2. `conversationToMarkdown` es pura (no muta la entrada) y devuelve un string con solo `\n` como salto de linea que termina en un unico `\n` (se recortan las lineas en blanco finales, tambien cuando la ultima respuesta esta vacia):
+   - Primera linea: `# Conversación`.
+   - Despues una linea en blanco y `_Exportada: <ISO de opts.now> · <N> turno(s)_` (`1 turno`, `2 turnos`, `0 turnos`).
+   - Sin turnos: despues otra linea en blanco y `_Sin turnos_`.
+   - Por cada turno i (desde 1, en orden): linea en blanco, `## <i>. <q>` donde `q` se aplana a una sola linea (cualquier racha de espacios o saltos de linea pasa a un espacio, recortado); linea en blanco; el texto de la respuesta `a` con `\r\n` y `\r` convertidos a `\n` y los espacios finales recortados, y cada linea que empiece por `#` con una barra invertida delante (`\#`) para que no cree encabezados.
+   - Si el turno tiene citas (`citations` no vacio): linea en blanco, `**Fuentes:**` y una vineta por cita, en orden: `- <doc> · <chunkId> · línea <line>` y, solo si `section` es una cadena no vacia, ` · sección: <section>` al final.
+   - Un turno sin `citations`, o con `q` o `a` que no son cadenas, se tolera: no hay bloque de fuentes y se trata `q`/`a` como cadena vacia.
+   - Invariante: la salida tiene exactamente una linea que empieza por `# ` (el titulo) y exactamente N lineas que empiezan por `## ` (los turnos), sea cual sea el contenido de `q` y `a`.
+
+3. `exportConversation` lanza un `Error` con `code === 'EINVAL'` si `history` no es un array no vacio. Escribe el Markdown en `<root>/data/exports/conversacion-YYYYMMDD-HHMMSS.md` (UTC, a partir de `opts.now`), creando la carpeta si falta. Nunca sobrescribe: si el archivo existe, usa el sufijo `-2`, `-3`... antes de `.md`. La escritura es atomica (archivo temporal y renombrado; no deja temporales). Devuelve `{ file, turns }` con `file` relativo a `root` y con `/` como separador (`data/exports/...`).
+
+4. Cableado: canal IPC `conv:export` en `main.js` (llama a `exportConversation(__dirname, state.conversation)` y devuelve su resultado), metodo `convExport` en `preload.js`, log `conv.export` con `{ file, turns }`. Un boton "Exportar" en la interfaz muestra el archivo creado (con `textContent`). El renderer no toca el sistema de archivos.
+
+Restricciones: sin dependencias nuevas; no cambies el comportamiento de lo existente; no debilites tests.

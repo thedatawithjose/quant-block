@@ -1,0 +1,235 @@
+schema_version: "1.0"
+
+task_packet:
+
+  task_id: "<TASK_ID>"
+  task_version: "1.0"
+
+  project: "<PROJECT_NAME>"
+
+  assigned_role: "<SPECIALIST_ROLE>"
+
+  created_at: "<ISO_8601_UTC>"
+
+  status: "DRAFT"
+
+allowed_status:
+  - "DRAFT"
+  - "READY"
+  - "BLOCKED"
+  - "CANCELLED"
+  - "SUPERSEDED"
+
+allowed_specialist_roles:
+  - "quant-data-engineer"
+  - "quant-researcher"
+  - "quant-developer"
+  - "quant-validator"
+
+objective:
+
+  requested_outcome: "<REQUESTED_OUTCOME>"
+
+  reason: "<WHY_THIS_WORK_IS_REQUIRED>"
+
+  definition_of_completion: []
+
+  intended_downstream_consumer: null
+
+scope:
+
+  in_scope: []
+
+  out_of_scope: []
+
+  prohibited_changes: []
+
+authority:
+
+  role_contract: null
+
+  subagent_contract: null
+
+  canonical_subagent_spec: "agents/SUBAGENT-CONTRACT-SPEC.md"
+
+  task_packet_contract: "agents/TASK-PACKET-CONTRACT-SPEC.md"
+
+  handoff_contract: "agents/HANDOFF-CONTRACT-SPEC.md"
+
+  user_interaction_policy: "agents/USER-INTERACTION-POLICY.md"
+
+  dcp_sources:
+    - "/home/datawithjose/Documents/AI-GOVERNANCE/DCP/dcp_01.md"
+    - "/home/datawithjose/Documents/AI-GOVERNANCE/DCP/dcp_02.md"
+    - "/home/datawithjose/Documents/AI-GOVERNANCE/DCP/dcp_03.md"
+
+governance:
+
+  contract: null
+  invariants: null
+  enforcement: null
+  team: null
+  routing: null
+
+  status: "NOT_EVALUATED"
+
+allowed_governance_status:
+  - "NOT_EVALUATED"
+  - "VALID"
+  - "INCOMPLETE"
+  - "CONTRADICTORY"
+  - "BLOCKED"
+
+required_skills: []
+
+# Example:
+#
+# required_skills:
+#   - name: "quant-harness"
+#     source: "<CANONICAL_SKILL_PATH>"
+#     required: true
+
+authoritative_inputs: []
+
+# Example:
+#
+# authoritative_inputs:
+#   - id: "dataset-primary"
+#     type: "dataset"
+#     classification: "DISCOVERED"
+#     path: "data/example.parquet"
+#     version: null
+#     git_commit: null
+#     hash: null
+#     fingerprint: null
+#     status: "VERIFIED"
+
+allowed_input_classification:
+  - "DISCOVERED"
+  - "USER_DECLARED"
+  - "UPSTREAM_APPROVED"
+  - "DERIVED"
+  - "UNKNOWN"
+
+upstream_handoffs: []
+
+# Example:
+#
+# upstream_handoffs:
+#   - handoff_id: "<HANDOFF_ID>"
+#     version: "1.0"
+#     path: "<HANDOFF_PATH>"
+#     expected_source_role: "quant-researcher"
+#     expected_target_role: "quant-developer"
+#     required_status: "APPROVED_FOR_HANDOFF"
+#     stale: false
+
+invariants:
+
+  applicable: []
+
+  critical: []
+
+  preservation_required: true
+
+  known_conflicts: []
+
+required_outputs: []
+
+# Example:
+#
+# required_outputs:
+#   - id: "implementation"
+#     type: "source_code"
+#     path: null
+#     required: true
+#     intended_consumer: "quant-validator"
+
+verification:
+
+  required_checks: []
+
+  not_applicable_checks: []
+
+  evidence_required: true
+
+# Example:
+#
+# required_checks:
+#   - id: "causality"
+#     type: "test"
+#     expected_result: "PASS"
+#     blocking: true
+
+evidence_requirements:
+
+  machine_verifiable_preferred: true
+
+  required: []
+
+  acceptable_types:
+    - "command_output"
+    - "test_report"
+    - "hash"
+    - "fingerprint"
+    - "artifact"
+    - "diff"
+    - "log"
+    - "validation_result"
+
+human_authority:
+
+  decisions_required: []
+
+  approval_already_granted: []
+
+  inferred_approval_allowed: false
+
+context_policy:
+
+  required: "<FROM_CANONICAL_SUBAGENT_CONTRACT>"
+
+  silent_degradation_allowed: false
+
+delegation_policy:
+
+  required: "<FROM_CANONICAL_SUBAGENT_CONTRACT>"
+
+  silent_expansion_allowed: false
+
+change_control:
+
+  stop_on_material_authority_change: true
+
+  stale_input_action: "BLOCK"
+
+  updated_task_packet_required: true
+
+execution:
+
+  allowed_terminal_states:
+    - "COMPLETED"
+    - "BLOCKED"
+    - "INCONCLUSIVE"
+
+  current_state: null
+
+  started_at: null
+
+  completed_at: null
+
+downstream:
+
+  handoff_required: false
+
+  target_role: null
+
+  required_handoff_template: "templates/handoffs/HANDOFF.template.yaml"
+
+completion_gate:
+
+  ready_for_execution: false
+
+  blocking_reasons: []
+
+  notes: null

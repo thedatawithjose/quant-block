@@ -1,0 +1,169 @@
+Agent command: sh -c echo "simulated error" >&2; exit 1
+Sending task to agent...
+Agent command: echo {"status": "NONEXISTENT", "summary": "Bad status"}
+Sending task to agent...
+Agent command: echo not valid json at all
+Sending task to agent...
+Agent command: echo {"status": "SUCCESS", "summary": "Executed task cleanly", "completed_criteria": ["CLI works"], "evidence": [{"criterion": "CLI works", "kind": "output", "value": "echo output verified"}], "backlog": ["add flags"]}
+Sending task to agent...
+Agent command: printf %s ```json
+{"status": "PARTIAL", "summary": "In progress", "completed_criteria": [], "evidence": [], "backlog": []}
+```
+Sending task to agent...
+Task initialized: CLI Task
+State: DEFINED
+Objective: Verify CLI init
+Done when:
+- C1
+- C2
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+Governance decision: BACKLOG
+Proposal moved to backlog: Optional improvement
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+Governance decision: CHALLENGE
+Proposal CHALLENGE. State: REVIEW
+Task initialized: Status Task
+State: DEFINED
+Objective: Verify status output
+Done when:
+- Criterion 1
+- Criterion 2
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Parsed response status: BLOCKED
+Summary: Encountered BLOCKED
+Submission resulted in BLOCKED. State: REVIEW
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Parsed response status: FAILED
+Summary: Encountered FAILED
+Submission resulted in FAILED. State: REVIEW
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Parsed response status: FAILED
+Summary: Malformed agent response (invalid JSON): Expecting value: line 1 column 1 (char 0)
+Submission resulted in FAILED. State: REVIEW
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Error: Response file not found: /tmp/tmp5rs54maz/nonexistent.json
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- C1
+- C2
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Parsed response status: PARTIAL
+Summary: Completed C1 only
+Submission PARTIAL. Progress recorded. State: EXECUTING
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- Criterion 1
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Parsed response status: SUCCESS
+Summary: Completed successfully
+Validation passed.
+Validation passed. Task completed! State: DONE
+Task initialized: Task
+State: DEFINED
+Objective: Obj
+Done when:
+- Criterion 1
+Governance decision: APPROVE
+Proposal approved. State: EXECUTING
+Parsed response status: SUCCESS
+Summary: Claimed success without evidence
+Validation failed.
+Criteria lacking supporting evidence:
+- Criterion 1
+Validation failed. Task remains in EXECUTING
+Governance decision: BACKLOG
+Governance decision: APPROVE
+
+--- AGENT RESULT ---
+Status: BLOCKED
+Blocked on missing credentials
+--------------------
+
+Governance decision: CHALLENGE
+Governance decision: APPROVE
+
+--- AGENT RESULT ---
+Status: FAILED
+Execution crashed
+--------------------
+
+Governance decision: APPROVE
+
+--- AGENT RESULT ---
+Status: SUCCESS
+Completed everything
+--------------------
+
+Validation passed.
+Governance decision: APPROVE
+
+--- AGENT RESULT ---
+Status: PARTIAL
+Did partial work
+--------------------
+
+Governance decision: APPROVE
+
+--- AGENT RESULT ---
+Status: SUCCESS
+Claimed success without evidence
+--------------------
+
+Validation failed.
+Criteria lacking supporting evidence:
+- Criterion 1
+Validation failed.
+Missing criteria:
+- Criterion B
+Validation failed.
+Criteria lacking supporting evidence:
+- Criterion A
+Validation failed.
+Criteria lacking supporting evidence:
+- Criterion A
+Validation passed.

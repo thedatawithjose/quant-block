@@ -1,0 +1,301 @@
+schema_version: "1.0"
+
+task_packet:
+
+  task_id: "GQE-PI-CERT-M4-QV-001"
+  task_version: "1.0"
+
+  project: "GQE-PI-CERT-M4-001"
+
+  assigned_role: "quant-validator"
+
+  created_at: "2026-09-26T20:15:30Z"
+
+  status: "READY"
+
+allowed_status: ["DRAFT", "READY", "BLOCKED", "CANCELLED", "SUPERSEDED"]
+
+allowed_specialist_roles:
+  - "quant-data-engineer"
+  - "quant-researcher"
+  - "quant-developer"
+  - "quant-validator"
+
+objective:
+
+  requested_outcome: >
+    Independently validate the frozen Quant Researcher methodology artifact
+    authoritative-inputs/qr-result.md by adversarially attempting to falsify its material
+    quantitative claims. Recompute at least one material quantitative claim from scratch,
+    in a way that does not reuse the candidate's own reasoning path. Return a property-level
+    claim status list and a canonical terminal status.
+
+  reason: >
+    Canonical EFFECTIVE_CHALLENGE requires material conclusions to pass a separate role
+    able to veto progression. The certification must show that Pi can run that role in a
+    distinct context, on persisted authority, with executable recomputation.
+
+  definition_of_completion:
+    - "At least one material quantitative claim is independently recomputed with executed command evidence."
+    - "Each tested claim has an explicit status: PASS | FAIL | INCONCLUSIVE | NOT_TESTED | BLOCKED."
+    - "Counterexamples or falsifications are preserved, not smoothed."
+    - "Untested areas are listed explicitly."
+    - "A canonical terminal status is returned."
+    - "Required human decisions and residual risks are listed."
+
+  intended_downstream_consumer: "portfolio_manager (Human Gate)"
+
+scope:
+
+  in_scope:
+    - "Adversarial inspection of authoritative-inputs/qr-result.md."
+    - "Independent recomputation of mathematical and numerical claims using executable commands."
+    - "Falsification attempts on the central methodological claims."
+    - "Assessment of whether the stated evidence supports the claims actually made."
+    - "Enforcement/invariant compliance checks within the validation scope."
+
+  out_of_scope:
+    - "Rewriting or repairing the candidate."
+    - "Changing the research hypothesis or the specification."
+    - "Producing any implementation."
+    - "Approving production or any financial side effect."
+    - "Empirical evaluation against data (no dataset exists)."
+    - "Modifying any file in the workspace: return the result; the orchestrator persists it."
+
+  prohibited_changes:
+    - "authoritative-inputs/qr-result.md"
+    - "authoritative-inputs/HANDOFF-QR-to-QV.yaml"
+    - "authoritative-inputs/TASK-PACKET-QR.yaml"
+    - ".governance/CONTRACT.md"
+    - ".governance/INVARIANTS.md"
+    - ".governance/enforcement.yaml"
+    - ".governance/TEAM.yaml"
+    - ".governance/ROUTING.yaml"
+    - "Any file under /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM"
+
+authority:
+
+  role_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-validator/ROLE.md"
+  subagent_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-validator/SUBAGENT.md"
+  canonical_subagent_spec: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/SUBAGENT-CONTRACT-SPEC.md"
+  task_packet_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/TASK-PACKET-CONTRACT-SPEC.md"
+  handoff_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/HANDOFF-CONTRACT-SPEC.md"
+  operational_loop_spec: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/orchestration/GENTLE-OPERATIONAL-LOOP-SPEC.md"
+
+governance:
+
+  workspace: "/home/datawithjose/Documents/GQE-CERT-RUNS/GQE-PI-CERT-M4-001"
+  contract: ".governance/CONTRACT.md"
+  invariants: ".governance/INVARIANTS.md"
+  enforcement: ".governance/enforcement.yaml"
+  team: ".governance/TEAM.yaml"
+  routing: ".governance/ROUTING.yaml"
+
+  status: "VALID"
+
+allowed_governance_status: ["NOT_EVALUATED", "VALID", "INCOMPLETE", "CONTRADICTORY", "BLOCKED"]
+
+required_skills: []
+
+authoritative_inputs:
+
+  - id: "qr-result"
+    type: "research_specification"
+    classification: "UPSTREAM_APPROVED"
+    path: "authoritative-inputs/qr-result.md"
+    version: "1.0"
+    hash: "d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae"
+    status: "FROZEN"
+
+  - id: "handoff-qr-to-qv"
+    type: "handoff"
+    classification: "UPSTREAM_APPROVED"
+    path: "authoritative-inputs/HANDOFF-QR-to-QV.yaml"
+    version: "1.0"
+    status: "APPROVED_FOR_HANDOFF"
+
+  - id: "task-packet-qr"
+    type: "task_packet"
+    classification: "DISCOVERED"
+    path: "authoritative-inputs/TASK-PACKET-QR.yaml"
+    version: "1.0"
+    hash: "d27b0a7e8c08081be7943813496af357d63f17b48a82dcdd5795365ff40ee3c2"
+    status: "READY_CONSUMED"
+
+  - id: "pre-qv-snapshot"
+    type: "evidence"
+    classification: "DERIVED"
+    path: "evidence/pre-qv-snapshot.sha256"
+    status: "FROZEN"
+
+  - id: "canonical-validator-role"
+    type: "specification"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-validator/ROLE.md"
+    git_commit: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+    status: "VERIFIED"
+
+  - id: "canonical-agent-rules"
+    type: "specification"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/governance/core/AGENT-RULES.md"
+    git_commit: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+    status: "VERIFIED"
+
+  - id: "dataset-primary"
+    type: "dataset"
+    classification: "UNKNOWN"
+    path: null
+    status: "NOT_PROVIDED"
+
+allowed_input_classification: ["DISCOVERED", "USER_DECLARED", "UPSTREAM_APPROVED", "DERIVED", "UNKNOWN"]
+
+upstream_handoffs:
+
+  - handoff_id: "GQE-PI-CERT-M4-HO-001"
+    version: "1.0"
+    path: "authoritative-inputs/HANDOFF-QR-to-QV.yaml"
+    expected_source_role: "quant-researcher"
+    expected_target_role: "quant-validator"
+    required_status: "APPROVED_FOR_HANDOFF"
+    stale: false
+
+invariants:
+
+  applicable:
+    - "PROJECT-INV-001"
+    - "PROJECT-INV-002"
+    - "PROJECT-INV-004"
+    - "PROJECT-INV-005"
+    - "PROJECT-INV-006"
+    - "PROJECT-INV-007"
+    - "PROJECT-INV-010"
+
+  critical:
+    - "PROJECT-INV-002"
+    - "PROJECT-INV-004"
+    - "PROJECT-INV-005"
+    - "PROJECT-INV-006"
+
+  preservation_required: true
+
+  known_conflicts:
+    - "PROJECT-INV-010 is NOT_ENFORCED: statistical independence of QR and QV error modes cannot be established. Record it; do not claim independence."
+
+required_outputs:
+
+  - id: "validation-result"
+    type: "validation_report"
+    path: "authoritative-inputs/qv-result.md"
+    required: true
+    intended_consumer: "portfolio_manager"
+
+verification:
+
+  required_checks:
+
+    - id: "independent-recomputation"
+      type: "command"
+      expected_result: "at least one material quantitative claim recomputed with executed evidence"
+      blocking: true
+
+    - id: "T1-two-point-counterexample"
+      type: "command"
+      expected_result: "identical VaR (0), ES 1 vs 10"
+      blocking: false
+
+    - id: "T3-E1-table-recomputation"
+      type: "command"
+      expected_result: "d = 1.2541 (N, alpha=0.95), 1.1457 (N, 0.99), ~1.4343 (t5, 0.95), ~1.3226 (t5, 0.99), ~1.6462 (t3, 0.95), ~1.5419 (t3, 0.99)"
+      blocking: false
+
+    - id: "T2-integral-vs-closed-form"
+      type: "command"
+      expected_result: "agree to <= 1e-6"
+      blocking: false
+
+    - id: "T9-normality-audit"
+      type: "static_analysis"
+      expected_result: "no step assumes normally distributed returns; c(alpha) used only as a reporting reference"
+      blocking: true
+
+    - id: "T8-sqrt-h-prohibition"
+      type: "command"
+      expected_result: "no sqrt(h) scaling applied under fat tails"
+      blocking: false
+
+    - id: "T16-sanitary-oracles"
+      type: "command"
+      expected_result: "ES >= VaR, monotone in alpha, d = 1/(1-xi) under Pareto, scale invariance when mean is zero"
+      blocking: false
+
+  not_applicable_checks:
+    - id: "empirical-evaluation"
+      reason: "No dataset in scope; research methodology only."
+
+  evidence_required: true
+
+evidence_requirements:
+
+  machine_verifiable_preferred: true
+
+  required:
+    - "exact command or method for every executed check"
+    - "expected vs observed result"
+    - "limitations"
+    - "evidence path or inline command output"
+
+  acceptable_types: ["command_output", "test_report", "hash", "fingerprint", "artifact", "diff", "log", "validation_result"]
+
+human_authority:
+
+  decisions_required:
+    - "accept_or_reject_residual_risk"
+    - "approve_production_release"
+    - "decide_the_final_production_disposition"
+
+  approval_already_granted:
+    - "definition of this certification run and its acceptance criteria"
+
+  inferred_approval_allowed: false
+
+context_policy:
+
+  required: "ISOLATED_REQUIRED"
+
+  silent_degradation_allowed: false
+
+delegation_policy:
+
+  required: "FORBIDDEN"
+
+  silent_expansion_allowed: false
+
+change_control:
+
+  stop_on_material_authority_change: true
+  stale_input_action: "BLOCK"
+  updated_task_packet_required: true
+
+execution:
+
+  allowed_terminal_states: ["PASS", "FAIL", "INCONCLUSIVE", "NOT_TESTED", "BLOCKED"]
+
+  current_state: null
+  started_at: null
+  completed_at: null
+
+downstream:
+
+  handoff_required: false
+  target_role: "portfolio_manager"
+  required_handoff_template: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/handoffs/HANDOFF.template.yaml"
+
+completion_gate:
+
+  ready_for_execution: true
+  blocking_reasons: []
+  notes: >
+    Ready. QV receives the frozen persisted authority with hashes; it must read from disk,
+    not regenerate the research. Validation scope is bounded to what can actually be
+    executed; everything else must be reported NOT_TESTED rather than PASS.

@@ -1,0 +1,48 @@
+test_legacy_init_can_still_replace_non_json_file (test_external_flow.ExternalCLI.test_legacy_init_can_still_replace_non_json_file) ... ok
+test_empty_command_raises_value_error (test_hyperion.TestCLIAgent.test_empty_command_raises_value_error) ... ok
+test_failed_execution_raises_runtime_error (test_hyperion.TestCLIAgent.test_failed_execution_raises_runtime_error) ... ok
+test_invalid_status_returns_failed_status (test_hyperion.TestCLIAgent.test_invalid_status_returns_failed_status) ... ok
+test_malformed_json_returns_failed_status (test_hyperion.TestCLIAgent.test_malformed_json_returns_failed_status) ... ok
+test_prompt_building (test_hyperion.TestCLIAgent.test_prompt_building) ... ok
+test_successful_execution_parses_json (test_hyperion.TestCLIAgent.test_successful_execution_parses_json) ... ok
+test_successful_execution_with_markdown_fences (test_hyperion.TestCLIAgent.test_successful_execution_with_markdown_fences) ... ok
+test_cli_init_creates_defined_task (test_hyperion.TestCLIBridge.test_cli_init_creates_defined_task) ... ok
+test_cli_propose_approved_transitions_to_executing (test_hyperion.TestCLIBridge.test_cli_propose_approved_transitions_to_executing) ... ok
+test_cli_propose_backlog_preserves_state (test_hyperion.TestCLIBridge.test_cli_propose_backlog_preserves_state) ... ok
+test_cli_propose_challenged_transitions_to_review (test_hyperion.TestCLIBridge.test_cli_propose_challenged_transitions_to_review) ... ok
+test_cli_status_reports_persisted_state (test_hyperion.TestCLIBridge.test_cli_status_reports_persisted_state) ... ok
+test_cli_submit_blocked_or_failed_routes_to_review (test_hyperion.TestCLIBridge.test_cli_submit_blocked_or_failed_routes_to_review) ... ok
+test_cli_submit_malformed_json_moves_to_review (test_hyperion.TestCLIBridge.test_cli_submit_malformed_json_moves_to_review) ... ok
+test_cli_submit_missing_file_moves_to_review (test_hyperion.TestCLIBridge.test_cli_submit_missing_file_moves_to_review) ... ok
+test_cli_submit_partial_preserves_executing_state (test_hyperion.TestCLIBridge.test_cli_submit_partial_preserves_executing_state) ... ok
+test_cli_submit_success_with_valid_evidence_completes_task (test_hyperion.TestCLIBridge.test_cli_submit_success_with_valid_evidence_completes_task) ... ok
+test_cli_submit_success_without_evidence_fails_validation (test_hyperion.TestCLIBridge.test_cli_submit_success_without_evidence_fails_validation) ... ok
+test_empty_problem_returns_reject (test_hyperion.TestGovernance.test_empty_problem_returns_reject) ... ok
+test_not_necessary_for_objective_returns_backlog (test_hyperion.TestGovernance.test_not_necessary_for_objective_returns_backlog) ... ok
+test_simpler_alternative_with_justification_returns_approve (test_hyperion.TestGovernance.test_simpler_alternative_with_justification_returns_approve) ... ok
+test_simpler_alternative_without_justification_returns_challenge (test_hyperion.TestGovernance.test_simpler_alternative_without_justification_returns_challenge) ... ok
+test_valid_standard_proposal_returns_approve (test_hyperion.TestGovernance.test_valid_standard_proposal_returns_approve) ... ok
+test_backlog_decision_appends_to_backlog_and_stops (test_hyperion.TestOrchestrator.test_backlog_decision_appends_to_backlog_and_stops) ... ok
+test_blocked_status_routes_to_review (test_hyperion.TestOrchestrator.test_blocked_status_routes_to_review) ... ok
+test_challenge_or_reject_decision_transitions_to_review (test_hyperion.TestOrchestrator.test_challenge_or_reject_decision_transitions_to_review) ... ok
+test_failed_status_routes_to_review (test_hyperion.TestOrchestrator.test_failed_status_routes_to_review) ... ok
+test_full_successful_flow (test_hyperion.TestOrchestrator.test_full_successful_flow) ... ok
+test_partial_status_routes_to_executing (test_hyperion.TestOrchestrator.test_partial_status_routes_to_executing) ... ok
+test_success_status_with_missing_evidence_fails_validation (test_hyperion.TestOrchestrator.test_success_status_with_missing_evidence_fails_validation) ... ok
+test_failed_write_on_new_file_cleans_up_temp (test_hyperion.TestPersistence.test_failed_write_on_new_file_cleans_up_temp) ... ok
+test_failed_write_preserves_existing_task_and_cleans_up_temp (test_hyperion.TestPersistence.test_failed_write_preserves_existing_task_and_cleans_up_temp) ... ok
+test_load_nonexistent_file_raises_filenotfound (test_hyperion.TestPersistence.test_load_nonexistent_file_raises_filenotfound) ... ok
+test_save_and_load_task_roundtrip (test_hyperion.TestPersistence.test_save_and_load_task_roundtrip) ... ok
+test_initial_state (test_hyperion.TestTaskStateTransitions.test_initial_state) ... ok
+test_invalid_transitions_raise_value_error (test_hyperion.TestTaskStateTransitions.test_invalid_transitions_raise_value_error) ... ok
+test_valid_review_transitions (test_hyperion.TestTaskStateTransitions.test_valid_review_transitions) ... ok
+test_valid_transitions (test_hyperion.TestTaskStateTransitions.test_valid_transitions) ... ok
+test_validation_fails_when_criteria_missing (test_hyperion.TestValidator.test_validation_fails_when_criteria_missing) ... ok
+test_validation_fails_when_criterion_lacks_evidence (test_hyperion.TestValidator.test_validation_fails_when_criterion_lacks_evidence) ... ok
+test_validation_fails_when_evidence_has_empty_kind_or_value (test_hyperion.TestValidator.test_validation_fails_when_evidence_has_empty_kind_or_value) ... ok
+test_validation_passes_when_all_criteria_met_with_evidence (test_hyperion.TestValidator.test_validation_passes_when_all_criteria_met_with_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.111s
+
+OK

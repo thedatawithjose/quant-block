@@ -1,0 +1,60 @@
+# CLOSURE VERIFICATION — GQE-PI-CERT-M4-001
+verified_at_utc=2026-09-26T20:48:32Z
+
+[1] canonical GQE repository unchanged
+    HEAD=ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b
+    expected=ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b
+    dirty_lines=0
+
+[2] chartpy unchanged relative to the baseline captured at the start of this disposition task
+    git_status_fingerprint_now=a7c3a6a54ccf54251f0970d001e4cb977b04a8d1ab6661fa5eb8b3ef4bee0543
+    git_status_fingerprint_before=a7c3a6a54ccf54251f0970d001e4cb977b04a8d1ab6661fa5eb8b3ef4bee0543
+    tracked_head_now=bb09ba9bfdc9dba5cf62d81e443bb61239b2e6bb
+    tracked_head_before=bb09ba9bfdc9dba5cf62d81e443bb61239b2e6bb
+    no write of any kind was performed under chartpy during this task
+
+[3] QR artifact byte-identical
+    d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae  authoritative-inputs/qr-result.md
+    expected d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae
+
+[4] Handoff byte-identical
+    275402b1ee901e8c372494707246599f13f350e66b8b02ddebe0539a1fd7880e  authoritative-inputs/HANDOFF-QR-to-QV.yaml
+    expected 275402b1ee901e8c372494707246599f13f350e66b8b02ddebe0539a1fd7880e
+
+[5] QV artifact byte-identical and still FAIL
+    35b861a305c39c9a8133f6f721ac11ce3e1cba41b1238bee193f8ca1dda6e8d8  authoritative-inputs/qv-result.md
+    expected 35b861a305c39c9a8133f6f721ac11ce3e1cba41b1238bee193f8ca1dda6e8d8
+    qv_terminal_status_line=`FAIL`
+
+[6] no new specialist task executed
+    specialist task records created after the original QR/QV runs:
+    NONE
+    QR count in ledger=1
+    QV count in ledger=1
+    QD count in ledger=0
+    DE count in ledger=0
+
+[7] no automatic retry occurred
+    ledger retries: QR=0 QV=0
+
+[8] trade_authorized
+    trade_authorized: false
+    trade_authorized: false
+
+[9] production not authorized
+    production_disposition: REJECTED_FOR_PRODUCTION
+    production_status: NOT_APPROVED
+
+[10] certification status
+    pi_runtime_support_status: SUPPORTED_WITH_LIMITATIONS
+    | Pi runtime support status | `SUPPORTED_WITH_LIMITATIONS` |
+    manifest:   overall_status: "SUPPORTED_WITH_LIMITATIONS"
+
+[11] run status
+    certification_run_disposition: CLOSED
+    run_status: CLOSED
+
+[12] internal manifest integrity
+    full manifest: ALL OK
+    control manifest: ALL OK
+    frozen pre-QV authority: ALL OK (QR/handoff/packets/governance untouched)

@@ -1,0 +1,54 @@
+test_agent_price_rejected (test_harness.HarnessTests.test_agent_price_rejected) ... ok
+test_agent_protocol_offline (test_harness.HarnessTests.test_agent_protocol_offline) ... ok
+test_audit_append_only_and_tamper_detection (test_harness.HarnessTests.test_audit_append_only_and_tamper_detection) ... ok
+test_audit_failure_blocks_execution (test_harness.HarnessTests.test_audit_failure_blocks_execution) ... ok
+test_bad_snapshots (test_harness.HarnessTests.test_bad_snapshots) ... ok
+test_batch_budget_preflight (test_harness.HarnessTests.test_batch_budget_preflight) ... ok
+test_cannot_choose_holdout_window_or_costs (test_harness.HarnessTests.test_cannot_choose_holdout_window_or_costs) ... ok
+test_concurrent_holdout (test_harness.HarnessTests.test_concurrent_holdout) ... ok
+test_concurrent_reservations (test_harness.HarnessTests.test_concurrent_reservations) ... ok
+test_configuration_change_rejected (test_harness.HarnessTests.test_configuration_change_rejected) ... ok
+test_cost_stress_reruns_engine (test_harness.HarnessTests.test_cost_stress_reruns_engine) ... ok
+test_daily_loss_latches (test_harness.HarnessTests.test_daily_loss_latches) ... ok
+test_empty_allowlist_denies (test_harness.HarnessTests.test_empty_allowlist_denies) ... ok
+test_exclusive_limits_and_quantity (test_harness.HarnessTests.test_exclusive_limits_and_quantity) ... ok
+test_failed_attempt_consumes_persistent_budget (test_harness.HarnessTests.test_failed_attempt_consumes_persistent_budget) ... ok
+test_failed_holdout_consumed (test_harness.HarnessTests.test_failed_holdout_consumed) ... ok
+test_holdout_once_and_freeze_after_restart (test_harness.HarnessTests.test_holdout_once_and_freeze_after_restart) ... ok
+test_holdout_requires_researched_candidate (test_harness.HarnessTests.test_holdout_requires_researched_candidate) ... ok
+test_idempotency_restart_conflict (test_harness.HarnessTests.test_idempotency_restart_conflict) ... ok
+test_invalid_modes (test_harness.HarnessTests.test_invalid_modes) ... ok
+test_live_approval_copy (test_harness.HarnessTests.test_live_approval_copy) ... ok
+test_live_approval_literal_true (test_harness.HarnessTests.test_live_approval_literal_true) ... ok
+test_live_price_rechecked (test_harness.HarnessTests.test_live_price_rechecked) ... ok
+test_llm_budget_persists (test_harness.HarnessTests.test_llm_budget_persists) ... ok
+test_operator_kill_switch (test_harness.HarnessTests.test_operator_kill_switch) ... ok
+test_opposite_pending_orders_do_not_net (test_harness.HarnessTests.test_opposite_pending_orders_do_not_net) ... ok
+test_overlapping_folds_rejected (test_harness.HarnessTests.test_overlapping_folds_rejected) ... ok
+test_parameter_validation (test_harness.HarnessTests.test_parameter_validation) ... ok
+test_persistent_hourly_limit (test_harness.HarnessTests.test_persistent_hourly_limit) ... ok
+test_provenance_bar_and_metric_validation (test_harness.HarnessTests.test_provenance_bar_and_metric_validation) ... ok
+test_research_cannot_execute (test_harness.HarnessTests.test_research_cannot_execute) ... ok
+test_stale_reconciliation_cannot_release (test_harness.HarnessTests.test_stale_reconciliation_cannot_release) ... ok
+test_temporal_boundaries (test_harness.HarnessTests.test_temporal_boundaries) ... ok
+test_timezone_normalization (test_harness.HarnessTests.test_timezone_normalization) ... ok
+test_tool_call_budget (test_harness.HarnessTests.test_tool_call_budget) ... ok
+test_unknown_no_retry_and_keeps_reservation (test_harness.HarnessTests.test_unknown_no_retry_and_keeps_reservation) ... ok
+test_valid_reconciliation_counts_fills (test_harness.HarnessTests.test_valid_reconciliation_counts_fills) ... ok
+test_walk_forward_selection_and_gap (test_harness.HarnessTests.test_walk_forward_selection_and_gap) ... ok
+test_bootstrap_reproducible (test_harness.QuantTests.test_bootstrap_reproducible) ... ok
+test_causality_current_leak_detected (test_harness.QuantTests.test_causality_current_leak_detected) ... ok
+test_causality_future_leak_detected (test_harness.QuantTests.test_causality_future_leak_detected) ... ok
+test_causality_passes (test_harness.QuantTests.test_causality_passes) ... ok
+test_contract_multiplier_fx (test_harness.QuantTests.test_contract_multiplier_fx) ... ok
+test_demo_end_to_end_and_restart (test_harness.QuantTests.test_demo_end_to_end_and_restart) ... ok
+test_fingerprint_cross_process (test_harness.QuantTests.test_fingerprint_cross_process) ... ok
+test_fractional_tail_es (test_harness.QuantTests.test_fractional_tail_es) ... ok
+test_gross_and_leverage (test_harness.QuantTests.test_gross_and_leverage) ... ok
+test_metrics_oracle (test_harness.QuantTests.test_metrics_oracle) ... ok
+test_undefined_sharpe (test_harness.QuantTests.test_undefined_sharpe) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 0.522s
+
+OK

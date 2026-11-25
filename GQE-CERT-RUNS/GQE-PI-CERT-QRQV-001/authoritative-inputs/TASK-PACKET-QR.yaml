@@ -1,0 +1,347 @@
+schema_version: "1.0"
+
+# Task Packet emitted by the Gentle Quant Orchestrator (Pi runtime) for the
+# bounded certification run GQE-PI-CERT-QRQV-001.
+# Conforms to: /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/TASK-PACKET-CONTRACT-SPEC.md
+# Emitted from: /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/tasks/TASK-PACKET.template.yaml
+
+task_packet:
+
+  task_id: "GQE-PI-CERT-QR-001"
+  task_version: "1.0"
+
+  project: "GENTLE-QUANT-ECOSYSTEM-certification"
+
+  assigned_role: "quant-researcher"
+
+  created_at: "2026-09-25T23:02:46Z"
+
+  status: "READY"
+
+allowed_status:
+  - "DRAFT"
+  - "READY"
+  - "BLOCKED"
+  - "CANCELLED"
+  - "SUPERSEDED"
+
+allowed_specialist_roles:
+  - "quant-data-engineer"
+  - "quant-researcher"
+  - "quant-developer"
+  - "quant-validator"
+
+objective:
+
+  requested_outcome: >-
+    Produce a concise, persisted quantitative research result that evaluates the
+    claim: "Expected Shortfall at a given confidence level can never be smaller
+    than VaR at the same confidence level when losses are represented
+    consistently." State assumptions and the loss/sign convention explicitly,
+    give the mathematical conditions under which the claim holds, and identify
+    any unresolved edge case where it could fail.
+
+  reason: >-
+    Certification (not production research): prove that Pi can hand QGE authority
+    from an orchestrator-issued READY Task Packet to a quant-researcher child, and
+    that its result can be frozen and transferred through a canonical Handoff to
+    an independent quant-validator.
+
+  definition_of_completion:
+    - "Terminal state reported as exactly one of COMPLETED | BLOCKED | INCONCLUSIVE."
+    - "Loss/sign convention and every material assumption stated explicitly."
+    - "Explicit mathematical definition of VaR and Expected Shortfall under the declared convention."
+    - "Explicit statement of the conditions under which ES >= VaR holds, with a derivation sketch."
+    - "At least one identified edge case / definitional boundary where a naive or inconsistent convention can break the inequality, or an explicit statement that none was found under the declared convention."
+    - "Expected numerical behavior described with at least one concrete worked example."
+    - "Limitations, unresolved risks, and handoff status reported."
+    - "No delegation performed."
+
+  intended_downstream_consumer: "quant-validator"
+
+scope:
+
+  in_scope:
+    - "Conceptual and mathematical analysis of the risk-measure claim."
+    - "Defining VaR and Expected Shortfall precisely, including tail definitions and quantile conventions."
+    - "Stating the loss/sign convention and confidence-level convention used."
+    - "Deriving (or refuting) ES >= VaR from first principles under the declared convention."
+    - "Enumerating definitional conditions and edge cases (atoms/discrete loss distributions, non-continuous CDFs, quantile interpolation, inconsistent confidence levels)."
+    - "Producing expected numerical examples as unexecuted expectations for later independent verification."
+
+  out_of_scope:
+    - "Writing, running, or modifying code, tests, or scripts (the researcher has no execution tool in this certification)."
+    - "Independent validation, certification, or production approval of any kind."
+    - "Data ingestion, dataset work, backtesting, strategy evaluation."
+    - "Any implementation or production change."
+    - "Any file modification in the GQE repository."
+
+  prohibited_changes:
+    - "Any file under /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/."
+    - "Any canonical GQE contract, template, role, or adapter file."
+    - "The wording of the claim under evaluation."
+    - "Any project invariant or governance rule."
+
+authority:
+
+  role_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/ROLE.md"
+
+  subagent_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/SUBAGENT.md"
+
+  canonical_subagent_spec: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/SUBAGENT-CONTRACT-SPEC.md"
+
+  task_packet_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/TASK-PACKET-CONTRACT-SPEC.md"
+
+  handoff_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/HANDOFF-CONTRACT-SPEC.md"
+
+governance:
+
+  contract: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/CONTRACT.md"
+  invariants: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/INVARIANTS.md"
+  enforcement: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/enforcement.yaml"
+  team: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/TEAM.yaml"
+  routing: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/ROUTING.yaml"
+
+  ecosystem_governance:
+    agent_rules: "/home/datawithjose/Documents/AI-GOVERNANCE/AGENT-RULES.md"
+    start_here: "/home/datawithjose/Documents/AI-GOVERNANCE/START-HERE.md"
+    dcp_01: "/home/datawithjose/Documents/AI-GOVERNANCE/DCP/dcp_01.md"
+    dcp_02: "/home/datawithjose/Documents/AI-GOVERNANCE/DCP/dcp_02.md"
+    dcp_03: "/home/datawithjose/Documents/AI-GOVERNANCE/DCP/dcp_03.md"
+
+  status: "VALID"
+
+  notes: >-
+    The host workspace (chartpy_copy) governance is human-approved contract v2 and is
+    complete. The certification project itself carries no separate .governance/
+    workspace; the applicable ecosystem rules are the canonical AI-GOVERNANCE set
+    (AGENT-RULES.md, START-HERE.md, DCP I-III), which is also mirrored byte-identical
+    under GQE governance/core/. Task-relevant ecosystem rules: USER_CLAIM_IS_NOT_EVIDENCE,
+    PREMISE_AUDIT_FIRST, DETERMINISTIC_MATH, EFFECTIVE_CHALLENGE, VERSION_EVERYTHING,
+    TWO independent reads are not independent verification.
+
+allowed_governance_status:
+  - "NOT_EVALUATED"
+  - "VALID"
+  - "INCOMPLETE"
+  - "CONTRADICTORY"
+  - "BLOCKED"
+
+required_skills:
+  - name: "quant-harness"
+    source: "/home/datawithjose/.config/opencode/skills/quant-harness/SKILL.md"
+    required: true
+    reason: "Risk-metric evaluation falls under the harness research/validation scope; RESEARCH_ONLY controls apply and no synthetic result may be presented as proof."
+
+authoritative_inputs:
+  - id: "claim-under-evaluation"
+    type: "claim"
+    classification: "USER_DECLARED"
+    path: null
+    version: "1.0"
+    git_commit: null
+    hash: null
+    fingerprint: null
+    status: "UNVERIFIED"
+    content: >-
+      Expected Shortfall at a given confidence level can never be smaller than VaR
+      at the same confidence level when losses are represented consistently.
+
+  - id: "canonical-contracts"
+    type: "specification"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/"
+    version: null
+    git_commit: "ff16b6b"
+    hash: null
+    fingerprint: null
+    status: "VERIFIED"
+    notes: "Per-file SHA-256 recorded in odd/certification/gqe-pi-qr-qv/canonical-input-hashes.txt"
+
+  - id: "runtime-verification-context"
+    type: "evidence"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/canonical-input-hashes.txt"
+    version: "1.0"
+    git_commit: null
+    hash: null
+    fingerprint: null
+    status: "VERIFIED"
+
+allowed_input_classification:
+  - "DISCOVERED"
+  - "USER_DECLARED"
+  - "UPSTREAM_APPROVED"
+  - "DERIVED"
+  - "UNKNOWN"
+
+upstream_handoffs: []
+
+invariants:
+
+  applicable:
+    - "USER_CLAIM_IS_NOT_EVIDENCE (P0): the claim is a hypothesis, not evidence."
+    - "PREMISE_AUDIT_FIRST (P0): declare premises before substantive analysis."
+    - "DETERMINISTIC_MATH (P1): material calculations are code-verifiable; unexecuted examples must be labelled as such."
+    - "EFFECTIVE_CHALLENGE (P1): only a separate role may independently verify; the researcher must not self-certify."
+    - "VERSION_EVERYTHING (P1): record run identity and artifact versions."
+    - "PROJECT-INV-007: no live financial side effects without human authorization (no side effects authorized here)."
+    - "PROJECT-INV-012: governance and critical-invariant changes require human approval (none are in scope)."
+
+  critical:
+    - "USER_CLAIM_IS_NOT_EVIDENCE"
+    - "EFFECTIVE_CHALLENGE"
+
+  preservation_required: true
+
+  known_conflicts: []
+
+required_outputs:
+  - id: "research-result"
+    type: "structured_result"
+    path: null
+    required: true
+    intended_consumer: "quant-validator"
+    notes: >-
+      The researcher has no write/edit/bash tool in this certification. The
+      orchestrator persists the returned result verbatim as
+      odd/certification/gqe-pi-qr-qv/qr-result.md; persistence is not self-delegation.
+
+  - id: "handoff-input"
+    type: "handoff_seed"
+    path: null
+    required: true
+    intended_consumer: "quant-validator"
+    notes: "The structured result feeds the canonical Handoff GQE-PI-CERT-HO-001."
+
+verification:
+
+  required_checks:
+    - id: "definitional-derivation"
+      type: "first_principles_derivation"
+      expected_result: "EXPLICIT"
+      blocking: true
+      notes: "Derive or refute ES >= VaR from the declared definitions."
+
+    - id: "definitional-consistency"
+      type: "boundary_analysis"
+      expected_result: "EXPLICIT"
+      blocking: true
+      notes: "State whether the conclusion depends on a specific quantile/tail convention; enumerate the boundary cases."
+
+    - id: "assumption-inventory"
+      type: "declaration"
+      expected_result: "EXPLICIT"
+      blocking: true
+      notes: "Loss/sign convention, confidence-level convention, distributional assumptions, estimation vs population."
+
+    - id: "numerical-example"
+      type: "worked_example"
+      expected_result: "EXPLICIT"
+      blocking: false
+      notes: "Unexecuted expectation only; must be labelled as not executed (DETERMINISTIC_MATH)."
+
+    - id: "independent-verification"
+      type: "delegated"
+      expected_result: "NOT_TESTED"
+      blocking: true
+      notes: "Explicitly out of the researcher's authority; assigned to quant-validator via Handoff."
+
+  not_applicable_checks:
+    - id: "code-execution"
+      type: "test"
+      reason: "The researcher has no execution tool in this certification; executable recomputation is assigned to quant-validator."
+
+    - id: "dataset-fingerprint"
+      type: "fingerprint"
+      reason: "No dataset is involved."
+
+    - id: "causality-and-leakage"
+      type: "test"
+      reason: "No time series, backtest, or historical decision is involved."
+
+  evidence_required: true
+
+evidence_requirements:
+
+  machine_verifiable_preferred: true
+
+  required:
+    - "Explicit terminal state token."
+    - "Explicit loss/sign convention and assumption inventory."
+    - "Explicit definitions of VaR and Expected Shortfall."
+    - "Derivation sketch supporting or refuting the claim under those definitions."
+    - "Labelled unexecuted numerical example."
+    - "Explicit statement that no independent validation was performed and no code was executed."
+
+  acceptable_types:
+    - "structured_result"
+    - "artifact"
+    - "hash"
+    - "log"
+    - "validation_result"
+
+human_authority:
+
+  decisions_required: []
+
+  approval_already_granted:
+    - "Bounded certification run authorization (user prompt, 2026-09-25)."
+
+  inferred_approval_allowed: false
+
+context_policy:
+
+  required: "ISOLATED_PREFERRED"
+
+  silent_degradation_allowed: false
+
+  runtime_mechanism: "Pi subagent child process with an independent transcript (gentle-agents task record + session trace)."
+
+delegation_policy:
+
+  required: "FORBIDDEN"
+
+  silent_expansion_allowed: false
+
+  runtime_mechanism: "Pi specialist wrapper frontmatter exposes only read, grep, find; no subagent_* tool is available to the child."
+
+change_control:
+
+  stop_on_material_authority_change: true
+
+  stale_input_action: "BLOCK"
+
+  updated_task_packet_required: true
+
+execution:
+
+  allowed_terminal_states:
+    - "COMPLETED"
+    - "BLOCKED"
+    - "INCONCLUSIVE"
+
+  current_state: null
+
+  started_at: null
+
+  completed_at: null
+
+downstream:
+
+  handoff_required: true
+
+  target_role: "quant-validator"
+
+  required_handoff_template: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/handoffs/HANDOFF.template.yaml"
+
+completion_gate:
+
+  ready_for_execution: true
+
+  blocking_reasons: []
+
+  notes: >-
+    All minimum-valid-task-packet fields are present (contract section 22).
+    Governance evaluated VALID. Required skill path resolves. Runtime capability for a
+    single isolated child with no delegation tools verified in this session.

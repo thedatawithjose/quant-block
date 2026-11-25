@@ -1,0 +1,1 @@
+- [C1] Load test shows p95 latency under 200ms. (evidence: evidence/loadtest.txt)

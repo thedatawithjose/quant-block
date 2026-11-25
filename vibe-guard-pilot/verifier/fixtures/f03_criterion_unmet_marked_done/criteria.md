@@ -1,0 +1,1 @@
+- [C1] README documents the rate limit. (evidence: evidence/claims.md) (must-contain: artifact/README.md :: rate limit)

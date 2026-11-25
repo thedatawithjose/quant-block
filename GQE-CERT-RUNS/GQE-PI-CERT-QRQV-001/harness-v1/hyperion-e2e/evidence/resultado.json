@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "timestamp_utc": "2026-11-18T22:26:50.080277+00:00",
+  "python": "3.12.14",
+  "source_root": "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e",
+  "scope": "E2E local de confianza; Pi, Quant y aislamiento NO certificados.",
+  "modules": {
+    "M00": {
+      "passed": true,
+      "files": 8,
+      "mismatches": [],
+      "limit": "Integridad accidental; el manifiesto no es una firma externa."
+    },
+    "M01": {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_external_flow.ExternalCLI.test_frozen_contract_is_canonical_and_cannot_be_replaced",
+        "test_external_flow.ExternalCLI.test_invalid_contract_inputs_no_reuse_or_writes",
+        "test_external_flow.ExternalCLI.test_state_and_acceptance_must_be_outside_canonical_repo",
+        "test_external_flow.ExternalCLI.test_exact_authorized_paths_only",
+        "test_external_flow.ExternalCLI.test_frozen_acceptance_bytes_checked_and_original_not_reused"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "tests": 5,
+      "title": "Contrato"
+    },
+    "M02": {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_external_flow.ExternalCLI.test_unknown_malformed_refs_and_blank_executor_rejected",
+        "test_external_flow.ExternalCLI.test_snapshot_not_dirty_worktree_or_moving_ref"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "tests": 2,
+      "title": "Repositorio y candidato"
+    },
+    "M03": {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_external_flow.ExternalCLI.test_scope_precedes_passing_acceptance_and_approval",
+        "test_external_flow.ExternalCLI.test_deleted_and_renamed_old_and_new_paths_are_checked",
+        "test_external_flow.ExternalCLI.test_deleted_unauthorized_path_is_blocked"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "tests": 3,
+      "title": "Alcance del diff"
+    },
+    "M04": {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_external_flow.ExternalCLI.test_base_fails_expected_assertion_and_corrected_candidate_passes",
+        "test_external_flow.ExternalCLI.test_acceptance_timeout_is_bound_failure"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "tests": 2,
+      "title": "Aceptacion"
+    },
+    "M05": {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_external_flow.ExternalCLI.test_blank_and_self_review_and_unknown_delivery_rejected_without_writes"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "tests": 1,
+      "title": "Revision"
+    },
+    "M06": {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_external_flow.ExternalCLI.test_missing_evidence_review_changes_and_fresh_delivery_same_commit"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "tests": 1,
+      "title": "Cierre e invalidacion"
+    },
+    "M07": {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_external_flow.ExternalCLI.test_legacy_init_can_still_replace_non_json_file",
+        "test_hyperion"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "tests": 43,
+      "title": "Compatibilidad legacy"
+    },
+    "M08": {
+      "passed": true,
+      "commands": [
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "-B",
+            "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/examples/local_flow.py"
+          ],
+          "exit_code": 0,
+          "passed": true,
+          "tests": 0
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "-B",
+            "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/paso_a_paso.py",
+            "--directorio",
+            "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio",
+            "--todo"
+          ],
+          "exit_code": 0,
+          "passed": true,
+          "tests": 0
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "-B",
+            "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/paso_a_paso.py",
+            "--directorio",
+            "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio",
+            "--paso",
+            "1"
+          ],
+          "exit_code": 1,
+          "passed": true,
+          "tests": 0
+        },
+        {
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "-B",
+            "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/paso_a_paso.py",
+            "--directorio",
+            "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio",
+            "--paso",
+            "10"
+          ],
+          "exit_code": 1,
+          "passed": true,
+          "tests": 0
+        }
+      ],
+      "simulation": true,
+      "manual_review_performed": false
+    }
+  },
+  "automated_tests_run": 57,
+  "passed": true
+}

@@ -1,0 +1,1 @@
+- [C1] The CSV parser handles empty input without raising.

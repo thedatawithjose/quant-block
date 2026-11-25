@@ -1,0 +1,23 @@
+[
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/__pycache__/demo.cpython-313.pyc",
+    "sha256": "f828019ec3f0c20fccd6b9548d7534cd5b1c1f4c6fe1daae773d394c0d922fd6",
+    "bytes": 9649,
+    "source_retained": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/demo.py",
+    "reason": "Untracked CPython 3.13 import bytecode cache, rebuildable from retained source by matching interpreter; no execution state/evidence."
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/__pycache__/quant_agent_harness.cpython-313.pyc",
+    "sha256": "815072ca92f8f7977d71d45af22e8089e84f6cb2de7b985342631f79444b7e0f",
+    "bytes": 69263,
+    "source_retained": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/quant_agent_harness.py",
+    "reason": "Untracked CPython 3.13 import bytecode cache, rebuildable from retained source by matching interpreter; no execution state/evidence."
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/__pycache__/causality_checks.cpython-313.pyc",
+    "sha256": "627b0b8a216c63fc3b90a5b33c15b42d0e1fbabf70e6753c0fd727ce568eeb67",
+    "bytes": 2262,
+    "source_retained": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/causality_checks.py",
+    "reason": "Untracked CPython 3.13 import bytecode cache, rebuildable from retained source by matching interpreter; no execution state/evidence."
+  }
+]

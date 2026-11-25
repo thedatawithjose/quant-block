@@ -1,0 +1,141 @@
+{
+  "step": 1,
+  "title": "Contrato congelado",
+  "passed": true,
+  "simulation": true,
+  "result": {
+    "contract": {
+      "schema_version": 1,
+      "task_id": "lab-slug",
+      "task_version": "1",
+      "repository": {
+        "root": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "git_common_dir": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git"
+      },
+      "base_commit": "a337ab4ef9164f7630dedbf624b76c770980da05",
+      "objective": "Corregir espacios y preservar Hello World",
+      "authorized_paths": [
+        "src/notes/slug.py",
+        "tests/test_slug.py"
+      ],
+      "acceptance": {
+        "id": "slug-v1",
+        "sha256": "b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5",
+        "path": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json.d/acceptance.py"
+      },
+      "review_required": true
+    },
+    "contract_hash": "e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e",
+    "state": "PENDING_VALIDATION",
+    "delivery": null,
+    "acceptance": null,
+    "review": null
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "init",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "config",
+        "user.name",
+        "Hyperion laboratorio"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "config",
+        "user.email",
+        "lab@example.invalid"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "add",
+        "-A"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "commit",
+        "-qm",
+        "base defectuosa"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "a337ab4ef9164f7630dedbf624b76c770980da05\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/hyperion.py",
+        "--task-file",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json",
+        "freeze",
+        "--repo",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "--base",
+        "a337ab4ef9164f7630dedbf624b76c770980da05",
+        "--task-id",
+        "lab-slug",
+        "--task-version",
+        "1",
+        "--objective",
+        "Corregir espacios y preservar Hello World",
+        "--allow",
+        "src/notes/slug.py",
+        "tests/test_slug.py",
+        "--acceptance",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/acceptance.py",
+        "--acceptance-id",
+        "slug-v1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"contract\": {\"schema_version\": 1, \"task_id\": \"lab-slug\", \"task_version\": \"1\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"objective\": \"Corregir espacios y preservar Hello World\", \"authorized_paths\": [\"src/notes/slug.py\", \"tests/test_slug.py\"], \"acceptance\": {\"id\": \"slug-v1\", \"sha256\": \"b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5\", \"path\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json.d/acceptance.py\"}, \"review_required\": true}, \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"state\": \"PENDING_VALIDATION\", \"delivery\": null, \"acceptance\": null, \"review\": null}\n",
+      "stderr": ""
+    }
+  ]
+}

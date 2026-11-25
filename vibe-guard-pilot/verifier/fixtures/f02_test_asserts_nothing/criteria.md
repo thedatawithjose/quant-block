@@ -1,0 +1,1 @@
+- [C1] Unit tests cover slugify. (evidence: evidence/test-run.txt)

@@ -1,0 +1,190 @@
+schema_version: "1.0"
+
+handoff:
+  handoff_id: "<HANDOFF_ID>"
+  handoff_version: "1.0"
+  task_id: "<TASK_ID>"
+
+  project: "<PROJECT_NAME>"
+
+  source_role: "<SOURCE_ROLE>"
+  target_role: "<TARGET_ROLE>"
+
+  created_at: "<ISO_8601_UTC>"
+
+  status: "DRAFT"
+
+allowed_status:
+  - "DRAFT"
+  - "READY_FOR_REVIEW"
+  - "APPROVED_FOR_HANDOFF"
+  - "BLOCKED"
+  - "REJECTED"
+
+authority:
+
+  governance:
+    contract: null
+    invariants: null
+    enforcement: null
+    team: null
+    routing: null
+
+  upstream_handoffs: []
+
+  human_authority:
+    required: false
+    decisions: []
+
+task:
+
+  requested_work: "<WHAT_WAS_REQUESTED>"
+
+  completed_work: []
+
+  excluded_work: []
+
+scope:
+
+  allowed_downstream_interpretation: []
+
+  prohibited_downstream_reinterpretation: []
+
+authoritative_inputs: []
+
+# Example:
+#
+# authoritative_inputs:
+#   - id: "dataset-primary"
+#     type: "dataset"
+#     path: "data/example.parquet"
+#     version: null
+#     git_commit: null
+#     hash: null
+#     fingerprint: null
+#     status: "VERIFIED"
+
+facts:
+
+  discovered: []
+
+  user_declared_requirements: []
+
+derived_conclusions: []
+
+assumptions: []
+
+unknowns: []
+
+decisions:
+
+  made: []
+
+  not_authorized: []
+
+outputs: []
+
+# Example:
+#
+# outputs:
+#   - id: "research-spec"
+#     type: "specification"
+#     path: "research/spec.md"
+#     version: "1.0"
+#     hash: null
+#     fingerprint: null
+#     status: "READY_FOR_REVIEW"
+#     intended_consumer: "quant-developer"
+
+verification:
+
+  required_checks: []
+
+  executed_checks: []
+
+  not_executed: []
+
+  evidence: []
+
+# Example executed check:
+#
+# executed_checks:
+#   - id: "causality-test"
+#     method: "pytest"
+#     command: "pytest tests/test_causality.py"
+#     expected: "PASS"
+#     observed: "PASS"
+#     evidence_path: ".governance/evidence/causality.txt"
+
+invariants:
+
+  applicable: []
+
+  checked: []
+
+  not_checked: []
+
+  failures: []
+
+  enforcement_status: "NOT_EVALUATED"
+
+allowed_enforcement_status:
+  - "NOT_EVALUATED"
+  - "NOT_ENFORCED"
+  - "TEST_REQUIRED"
+  - "MANUAL_GATE"
+  - "ENFORCED"
+
+limitations:
+
+  known: []
+
+  unresolved_defects: []
+
+  uncertainty: []
+
+  residual_risk: []
+
+  unsupported_claims: []
+
+  unverified_behavior: []
+
+downstream:
+
+  required_work: []
+
+  required_outputs: []
+
+  required_tests: []
+
+  required_skills: []
+
+  required_governance: []
+
+  required_independent_verification: []
+
+  prohibited_changes: []
+
+change_protection:
+
+  upstream_artifacts_materially_changed: false
+
+  stale: false
+
+  supersedes_handoff: null
+
+  superseded_by: null
+
+  affected_downstream_artifacts: []
+
+evidence: []
+
+human_decisions_required: []
+
+completion:
+
+  ready_for_handoff: false
+
+  blocking_reasons: []
+
+  notes: null

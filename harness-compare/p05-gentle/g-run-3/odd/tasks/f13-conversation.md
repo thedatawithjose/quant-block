@@ -1,0 +1,22 @@
+# F13 conversation (arm 3: planner->generator->evaluator->fix)
+
+## Specs
+S1 spec: TASK-F13.md (verbatim authoritative); contract: sprint-contract.md
+
+## Tasks
+- T1 planner (software-engineer) -> sprint-contract.md
+- T2 generator (gentle-ai-worker)
+- T3 evaluator (gentle-ai-verify) -> evaluation.md
+- T4 fixer (jd-fix-agent)
+
+## Log
+L1:
+Mejora de funcion para esta app Electron: conversacion multi-turno en el panel de preguntas y respuestas (F13).
+
+Comportamiento requerido:
+1. Historial: el panel muestra la conversacion como lista de turnos (pregunta, respuesta, citas), en orden. Se persiste en data/state.json y se restaura al reiniciar. Maximo 20 turnos (se descartan los mas antiguos). Un boton "Nueva conversacion" lo vacia.
+2. Preguntas de seguimiento: si la pregunta nueva tiene 2 o menos palabras significativas (palabras de mas de 2 letras que no sean "que", "los", "las", "una", "del", "con", "por", "para", "como", "cual", "donde"), la consulta efectiva es la consulta efectiva del turno anterior mas esas palabras. Si no hay turno anterior, la consulta efectiva es la propia pregunta. Si tiene 3 o mas palabras significativas, es la propia pregunta.
+3. API obligatoria (para poder probarla): `lib/conversation.js` exporta `askInConversation(history, question, index)` que devuelve `{ history, turn }` sin mutar `history`. `history` es un array de turnos `{ q, effectiveQuery, a, citations }`; `turn` es el ultimo. `index` es el indice del indexador (`indexer.get()`); la respuesta y las citas se obtienen con `answerWithCitations(index, effectiveQuery)` de `lib/cite.js`. Tambien exporta `MAX_TURNS = 20`. La persistencia usa la clave `conversation` de data/state.json: `loadState(root).conversation` devuelve el array de turnos (`[]` si falta o es invalido) y `saveState` la conserva.
+4. Cableado: canales IPC `conv:get`, `conv:ask`, `conv:clear` con puente en preload; el renderer no toca el sistema de archivos. Logs estructurados `conv.ask` y `conv.clear` con el logger existente.
+
+Restricciones: sin dependencias nuevas, Q&A local sin API externa, respeta las reglas de arquitectura del repo. Al terminar, dime como verificarlo y que queda pendiente.

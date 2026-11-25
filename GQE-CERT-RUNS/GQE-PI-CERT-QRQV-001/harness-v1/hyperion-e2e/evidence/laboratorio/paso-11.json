@@ -1,0 +1,178 @@
+{
+  "step": 11,
+  "title": "Cambio fuera de alcance bloqueado",
+  "passed": true,
+  "simulation": true,
+  "result": {
+    "contract": {
+      "schema_version": 1,
+      "task_id": "lab-slug",
+      "task_version": "1",
+      "repository": {
+        "root": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "git_common_dir": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git"
+      },
+      "base_commit": "a337ab4ef9164f7630dedbf624b76c770980da05",
+      "objective": "Corregir espacios y preservar Hello World",
+      "authorized_paths": [
+        "src/notes/slug.py",
+        "tests/test_slug.py"
+      ],
+      "acceptance": {
+        "id": "slug-v1",
+        "sha256": "b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5",
+        "path": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json.d/acceptance.py"
+      },
+      "review_required": true
+    },
+    "contract_hash": "e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e",
+    "state": "BLOCKED_SCOPE",
+    "delivery": {
+      "delivery_id": "f5dd24118c9f4a39b1e7c969b71cc336",
+      "contract_hash": "e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e",
+      "repository": {
+        "root": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "git_common_dir": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git"
+      },
+      "base_commit": "a337ab4ef9164f7630dedbf624b76c770980da05",
+      "commit": "0865b2e2ec413d9b3071494fed078b90bac0dbd3",
+      "tree": "b0cf56f30d8a7d5fccabce34975eb004491473be",
+      "executor": "ejecutor-simulado",
+      "changed_paths": [
+        "README.md",
+        "src/notes/slug.py"
+      ],
+      "unauthorized_paths": [
+        "README.md"
+      ]
+    },
+    "acceptance": {
+      "delivery_id": "f5dd24118c9f4a39b1e7c969b71cc336",
+      "contract_hash": "e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e",
+      "repository": {
+        "root": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "git_common_dir": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git"
+      },
+      "base_commit": "a337ab4ef9164f7630dedbf624b76c770980da05",
+      "commit": "0865b2e2ec413d9b3071494fed078b90bac0dbd3",
+      "tree": "b0cf56f30d8a7d5fccabce34975eb004491473be",
+      "kind": "acceptance",
+      "evidence_id": "dd41ab5ae8de4cb38bebb3923fb191a1",
+      "acceptance_id": "slug-v1",
+      "acceptance_sha256": "b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5",
+      "timeout": 2.0,
+      "exit_code": 0,
+      "stdout": "both slug assertions passed\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    "review": {
+      "delivery_id": "f5dd24118c9f4a39b1e7c969b71cc336",
+      "contract_hash": "e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e",
+      "repository": {
+        "root": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "git_common_dir": "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git"
+      },
+      "base_commit": "a337ab4ef9164f7630dedbf624b76c770980da05",
+      "commit": "0865b2e2ec413d9b3071494fed078b90bac0dbd3",
+      "tree": "b0cf56f30d8a7d5fccabce34975eb004491473be",
+      "kind": "review",
+      "evidence_id": "6b0cbe0c383f432d8a0e7876a206b00b",
+      "reviewer": "revisor-simulado",
+      "decision": "approve",
+      "rationale": "SIMULACION automatica: prueba del gate; no es revision humana real."
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "add",
+        "-A"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "commit",
+        "-qm",
+        "cambio fuera de alcance"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "0865b2e2ec413d9b3071494fed078b90bac0dbd3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/hyperion.py",
+        "--task-file",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json",
+        "deliver",
+        "--commit",
+        "0865b2e2ec413d9b3071494fed078b90bac0dbd3",
+        "--executor",
+        "ejecutor-simulado"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"contract\": {\"schema_version\": 1, \"task_id\": \"lab-slug\", \"task_version\": \"1\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"objective\": \"Corregir espacios y preservar Hello World\", \"authorized_paths\": [\"src/notes/slug.py\", \"tests/test_slug.py\"], \"acceptance\": {\"id\": \"slug-v1\", \"sha256\": \"b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5\", \"path\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json.d/acceptance.py\"}, \"review_required\": true}, \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"state\": \"BLOCKED_SCOPE\", \"delivery\": {\"delivery_id\": \"f5dd24118c9f4a39b1e7c969b71cc336\", \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"commit\": \"0865b2e2ec413d9b3071494fed078b90bac0dbd3\", \"tree\": \"b0cf56f30d8a7d5fccabce34975eb004491473be\", \"executor\": \"ejecutor-simulado\", \"changed_paths\": [\"README.md\", \"src/notes/slug.py\"], \"unauthorized_paths\": [\"README.md\"]}, \"acceptance\": null, \"review\": null}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/hyperion.py",
+        "--task-file",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json",
+        "validate",
+        "--timeout",
+        "2"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"contract\": {\"schema_version\": 1, \"task_id\": \"lab-slug\", \"task_version\": \"1\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"objective\": \"Corregir espacios y preservar Hello World\", \"authorized_paths\": [\"src/notes/slug.py\", \"tests/test_slug.py\"], \"acceptance\": {\"id\": \"slug-v1\", \"sha256\": \"b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5\", \"path\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json.d/acceptance.py\"}, \"review_required\": true}, \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"state\": \"BLOCKED_SCOPE\", \"delivery\": {\"delivery_id\": \"f5dd24118c9f4a39b1e7c969b71cc336\", \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"commit\": \"0865b2e2ec413d9b3071494fed078b90bac0dbd3\", \"tree\": \"b0cf56f30d8a7d5fccabce34975eb004491473be\", \"executor\": \"ejecutor-simulado\", \"changed_paths\": [\"README.md\", \"src/notes/slug.py\"], \"unauthorized_paths\": [\"README.md\"]}, \"acceptance\": {\"delivery_id\": \"f5dd24118c9f4a39b1e7c969b71cc336\", \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"commit\": \"0865b2e2ec413d9b3071494fed078b90bac0dbd3\", \"tree\": \"b0cf56f30d8a7d5fccabce34975eb004491473be\", \"kind\": \"acceptance\", \"evidence_id\": \"dd41ab5ae8de4cb38bebb3923fb191a1\", \"acceptance_id\": \"slug-v1\", \"acceptance_sha256\": \"b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5\", \"timeout\": 2.0, \"exit_code\": 0, \"stdout\": \"both slug assertions passed\\n\", \"stderr\": \"\", \"timed_out\": false}, \"review\": null}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/d34b1d292e0a/verification-extracted/hyperion-e2e/hyperion.py",
+        "--task-file",
+        "/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json",
+        "review",
+        "--delivery-id",
+        "f5dd24118c9f4a39b1e7c969b71cc336",
+        "--reviewer",
+        "revisor-simulado",
+        "--decision",
+        "approve",
+        "--rationale",
+        "SIMULACION automatica: prueba del gate; no es revision humana real."
+      ],
+      "exit_code": 0,
+      "stdout": "{\"contract\": {\"schema_version\": 1, \"task_id\": \"lab-slug\", \"task_version\": \"1\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"objective\": \"Corregir espacios y preservar Hello World\", \"authorized_paths\": [\"src/notes/slug.py\", \"tests/test_slug.py\"], \"acceptance\": {\"id\": \"slug-v1\", \"sha256\": \"b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5\", \"path\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/task.json.d/acceptance.py\"}, \"review_required\": true}, \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"state\": \"BLOCKED_SCOPE\", \"delivery\": {\"delivery_id\": \"f5dd24118c9f4a39b1e7c969b71cc336\", \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"commit\": \"0865b2e2ec413d9b3071494fed078b90bac0dbd3\", \"tree\": \"b0cf56f30d8a7d5fccabce34975eb004491473be\", \"executor\": \"ejecutor-simulado\", \"changed_paths\": [\"README.md\", \"src/notes/slug.py\"], \"unauthorized_paths\": [\"README.md\"]}, \"acceptance\": {\"delivery_id\": \"f5dd24118c9f4a39b1e7c969b71cc336\", \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"commit\": \"0865b2e2ec413d9b3071494fed078b90bac0dbd3\", \"tree\": \"b0cf56f30d8a7d5fccabce34975eb004491473be\", \"kind\": \"acceptance\", \"evidence_id\": \"dd41ab5ae8de4cb38bebb3923fb191a1\", \"acceptance_id\": \"slug-v1\", \"acceptance_sha256\": \"b56e2105deaae5cb1633f44b9ee1f0f46f68e8dc61151e884054314e7e5c80d5\", \"timeout\": 2.0, \"exit_code\": 0, \"stdout\": \"both slug assertions passed\\n\", \"stderr\": \"\", \"timed_out\": false}, \"review\": {\"delivery_id\": \"f5dd24118c9f4a39b1e7c969b71cc336\", \"contract_hash\": \"e68819c1e4d1d6f52274c5ad0fd79dd3395f13646316968534f3b1299154cf7e\", \"repository\": {\"root\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo\", \"git_common_dir\": \"/workspace/scratch/d34b1d292e0a/verification-results/laboratorio/repo/.git\"}, \"base_commit\": \"a337ab4ef9164f7630dedbf624b76c770980da05\", \"commit\": \"0865b2e2ec413d9b3071494fed078b90bac0dbd3\", \"tree\": \"b0cf56f30d8a7d5fccabce34975eb004491473be\", \"kind\": \"review\", \"evidence_id\": \"6b0cbe0c383f432d8a0e7876a206b00b\", \"reviewer\": \"revisor-simulado\", \"decision\": \"approve\", \"rationale\": \"SIMULACION automatica: prueba del gate; no es revision humana real.\"}}\n",
+      "stderr": ""
+    }
+  ]
+}

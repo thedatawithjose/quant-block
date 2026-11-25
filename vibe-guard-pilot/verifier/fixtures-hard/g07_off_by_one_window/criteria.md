@@ -1,0 +1,1 @@
+- [C1] paginate never returns more than `limit` items.

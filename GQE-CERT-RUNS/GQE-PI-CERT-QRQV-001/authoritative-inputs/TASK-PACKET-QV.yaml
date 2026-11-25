@@ -1,0 +1,331 @@
+schema_version: "1.0"
+
+# Task Packet emitted by the Gentle Quant Orchestrator (Pi runtime) for the
+# bounded certification run GQE-PI-CERT-QRQV-001 (validator leg).
+# Conforms to: /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/TASK-PACKET-CONTRACT-SPEC.md
+# Emitted from: /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/tasks/TASK-PACKET.template.yaml
+
+task_packet:
+
+  task_id: "GQE-PI-CERT-QV-001"
+  task_version: "1.0"
+
+  project: "GENTLE-QUANT-ECOSYSTEM-certification"
+
+  assigned_role: "quant-validator"
+
+  created_at: "2026-09-26T19:25:05Z"
+
+  status: "READY"
+
+allowed_status:
+  - "DRAFT"
+  - "READY"
+  - "BLOCKED"
+  - "CANCELLED"
+  - "SUPERSEDED"
+
+allowed_specialist_roles:
+  - "quant-data-engineer"
+  - "quant-researcher"
+  - "quant-developer"
+  - "quant-validator"
+
+objective:
+
+  requested_outcome: >-
+    Independently validate the mathematical claim in Handoff GQE-PI-CERT-HO-001 by
+    attempting to falsify it. Re-derive the ordering property from the definitions and
+    verify the candidate's worked numerical examples by execution. Return exactly one
+    terminal validation state: PASS | FAIL | INCONCLUSIVE | BLOCKED.
+
+  reason: >-
+    Certification (not production validation): prove that Pi preserves GQE authority
+    across a canonical Handoff and can execute an independent validator in a context
+    distinct from the researcher, recomputing rather than agreeing.
+
+  definition_of_completion:
+    - "Exactly one terminal validation state reported."
+    - "Independent re-derivation attempt reported, with the method used."
+    - "At least one executable numerical check actually run, with the exact command and observed output."
+    - "Explicit statement of whether the candidate's Examples A-D recompute correctly."
+    - "Explicit statement of whether any population-level counterexample exists under the declared consistent conventions."
+    - "Explicit independence statement: what is independent here and what is not (shared provider/model, shared authority inputs)."
+    - "Counterexamples, inconclusive areas and untested areas preserved separately; no collapse into PASS."
+    - "No delegation performed."
+
+  intended_downstream_consumer: "quant-orchestrator"
+
+scope:
+
+  in_scope:
+    - "Adversarial review of the claim and of the candidate research result."
+    - "Independent re-derivation from the definitions declared in the candidate artifact."
+    - "Executable numerical verification (python3 via bash) of the worked examples and of the atom-aware ES identity."
+    - "Search for a population-level counterexample under the declared conventions."
+    - "Assessing the definitional ambiguity flagged by the candidate and what it implies for the verdict."
+    - "Per-property PASS/FAIL/INCONCLUSIVE/NOT_TESTED determination."
+
+  out_of_scope:
+    - "Modifying the candidate research result, the handoff, the packets, or any GQE canonical file."
+    - "Rerunning or repairing quant-researcher work."
+    - "Production approval or any claim of production readiness."
+    - "Data work, backtesting, implementation."
+    - "Delegating to any other specialist."
+
+  prohibited_changes:
+    - "Any file under /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/."
+    - "qr-result.md, qr-result.meta.txt, HANDOFF-QR-to-QV.yaml, TASK-PACKET-QR.yaml, TASK-PACKET-QV.yaml."
+    - "The wording of the claim under evaluation."
+
+authority:
+
+  role_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-validator/ROLE.md"
+
+  subagent_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-validator/SUBAGENT.md"
+
+  canonical_subagent_spec: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/SUBAGENT-CONTRACT-SPEC.md"
+
+  task_packet_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/TASK-PACKET-CONTRACT-SPEC.md"
+
+  handoff_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/HANDOFF-CONTRACT-SPEC.md"
+
+governance:
+
+  contract: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/CONTRACT.md"
+  invariants: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/INVARIANTS.md"
+  enforcement: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/enforcement.yaml"
+  team: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/TEAM.yaml"
+  routing: "/home/datawithjose/Documents/Workspace/chartpy_copy/.governance/ROUTING.yaml"
+
+  ecosystem_governance:
+    agent_rules: "/home/datawithjose/Documents/AI-GOVERNANCE/AGENT-RULES.md"
+    start_here: "/home/datawithjose/Documents/AI-GOVERNANCE/START-HERE.md"
+
+  status: "VALID"
+
+allowed_governance_status:
+  - "NOT_EVALUATED"
+  - "VALID"
+  - "INCOMPLETE"
+  - "CONTRADICTORY"
+  - "BLOCKED"
+
+required_skills:
+  - name: "quant-harness"
+    source: "/home/datawithjose/.config/opencode/skills/quant-harness/SKILL.md"
+    required: true
+    reason: "RESEARCH_ONLY controls; synthetic or executed results must not be presented as proof of anything beyond the tested property."
+
+authoritative_inputs:
+  - id: "canonical-handoff"
+    type: "handoff"
+    classification: "UPSTREAM_APPROVED"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/HANDOFF-QR-to-QV.yaml"
+    version: "1.0"
+    hash: "sha256:ee4b82f9b5a43569ce81ce25c197a989aa714520072e7a1df95a62ab8fe82802"
+    status: "APPROVED_FOR_HANDOFF"
+
+  - id: "qr-research-result"
+    type: "research_result"
+    classification: "UPSTREAM_APPROVED"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-result.md"
+    version: "1.0"
+    hash: "sha256:1d9b7cee31176881d3b5de2b3efaf0db4de34d00b8be5a9527dab607b1dcfbde"
+    status: "PERSISTED"
+
+  - id: "claim-under-evaluation"
+    type: "claim"
+    classification: "USER_DECLARED"
+    path: null
+    version: "1.0"
+    hash: null
+    status: "UNVERIFIED"
+    content: >-
+      Expected Shortfall at a given confidence level can never be smaller than VaR at
+      the same confidence level when losses are represented consistently.
+
+  - id: "qr-child-record-metadata"
+    type: "runtime_record"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-result.meta.txt"
+    version: "1.0"
+    hash: null
+    status: "VERIFIED"
+
+  - id: "canonical-input-hashes"
+    type: "evidence"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/canonical-input-hashes.txt"
+    version: "1.0"
+    hash: null
+    status: "VERIFIED"
+
+allowed_input_classification:
+  - "DISCOVERED"
+  - "USER_DECLARED"
+  - "UPSTREAM_APPROVED"
+  - "DERIVED"
+  - "UNKNOWN"
+
+upstream_handoffs:
+  - handoff_id: "GQE-PI-CERT-HO-001"
+    version: "1.0"
+    path: "/home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/HANDOFF-QR-to-QV.yaml"
+    expected_source_role: "quant-researcher"
+    expected_target_role: "quant-validator"
+    required_status: "APPROVED_FOR_HANDOFF"
+    stale: false
+
+invariants:
+
+  applicable:
+    - "EFFECTIVE_CHALLENGE (P1): the validator must attempt to falsify, must not optimise agreement, and its veto cannot be erased by the producer."
+    - "DETERMINISTIC_MATH (P1): material calculations must be executed in verifiable code; the validator has bash and must execute."
+    - "USER_CLAIM_IS_NOT_EVIDENCE (P0)."
+    - "ABSTENTION_IS_SUCCESS (P0): INCONCLUSIVE is a legitimate terminal state; never fabricate a PASS."
+    - "CONTRADICTION_BLOCKS_EXECUTION (P0): an unresolved material contradiction blocks a PASS."
+    - "VERSION_EVERYTHING (P1): record run identity, candidate identity and evidence."
+    - "PROJECT-INV-007: no live financial side effects."
+
+  critical:
+    - "EFFECTIVE_CHALLENGE"
+    - "ABSTENTION_IS_SUCCESS"
+
+  preservation_required: true
+
+  known_conflicts: []
+
+required_outputs:
+  - id: "validation-result"
+    type: "structured_result"
+    path: null
+    required: true
+    intended_consumer: "quant-orchestrator"
+    notes: >-
+      The validator has no write/edit tool. The orchestrator persists the returned result
+      verbatim as odd/certification/gqe-pi-qr-qv/qv-result.md. Scratch files, if any, go
+      to /tmp only and must not be written inside any repository.
+
+verification:
+
+  required_checks:
+    - id: "independent-rederivation"
+      type: "derivation"
+      expected_result: "EXPLICIT"
+      blocking: true
+
+    - id: "executable-numerical-recomputation"
+      type: "numerical_oracle"
+      expected_result: "EXECUTED"
+      blocking: true
+      notes: "Examples A-D must be recomputed by executed code; the exact command and observed output are required as evidence."
+
+    - id: "atom-vs-conditional-tail-cross-check"
+      type: "numerical_oracle"
+      expected_result: "EXECUTED"
+      blocking: true
+
+    - id: "counterexample-search"
+      type: "falsification"
+      expected_result: "EXPLICIT"
+      blocking: true
+
+  not_applicable_checks:
+    - id: "temporal-causality"
+      type: "test"
+      reason: "No time series or historical decision is involved."
+    - id: "dataset-fingerprint"
+      type: "fingerprint"
+      reason: "No dataset is involved."
+    - id: "platform-parity"
+      type: "test"
+      reason: "No cross-platform port is involved."
+
+  evidence_required: true
+
+evidence_requirements:
+
+  machine_verifiable_preferred: true
+
+  required:
+    - "Exact command(s) executed for the numerical checks."
+    - "Observed output of those commands."
+    - "Terminal validation state token."
+    - "Per-property results, kept separate (PASS/FAIL/INCONCLUSIVE/NOT_TESTED)."
+    - "Independence statement and its limits."
+
+  acceptable_types:
+    - "command_output"
+    - "structured_result"
+    - "artifact"
+    - "hash"
+    - "log"
+    - "validation_result"
+
+human_authority:
+
+  decisions_required: []
+
+  approval_already_granted:
+    - "Bounded certification run authorization (user prompt, 2026-09-25/26)."
+
+  inferred_approval_allowed: false
+
+context_policy:
+
+  required: "ISOLATED_REQUIRED"
+
+  silent_degradation_allowed: false
+
+  runtime_mechanism: "Pi subagent child process with an independent transcript; must be a different child task/session from the QR child."
+
+delegation_policy:
+
+  required: "FORBIDDEN"
+
+  silent_expansion_allowed: false
+
+  runtime_mechanism: "Pi specialist wrapper frontmatter exposes only read, grep, find, bash; no subagent_* tool is available to the child."
+
+change_control:
+
+  stop_on_material_authority_change: true
+
+  stale_input_action: "BLOCK"
+
+  updated_task_packet_required: true
+
+execution:
+
+  allowed_terminal_states:
+    - "PASS"
+    - "FAIL"
+    - "INCONCLUSIVE"
+    - "BLOCKED"
+    - "NOT_TESTED"
+
+  current_state: null
+
+  started_at: null
+
+  completed_at: null
+
+downstream:
+
+  handoff_required: false
+
+  target_role: null
+
+  required_handoff_template: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/handoffs/HANDOFF.template.yaml"
+
+completion_gate:
+
+  ready_for_execution: true
+
+  blocking_reasons: []
+
+  notes: >-
+    All minimum-valid-task-packet fields present. Governance VALID. Upstream handoff
+    GQE-PI-CERT-HO-001 is APPROVED_FOR_HANDOFF and not stale. The runtime provides
+    ISOLATED_REQUIRED through a separate child process with its own transcript.

@@ -1,0 +1,128 @@
+schema_version: "2.0"
+
+project:
+  name: "<PROJECT_NAME>"
+  context: "<PROJECT_CONTEXT>"
+
+routing_policy:
+  orchestrator: "Gentle-AI"
+  global_task_classification: "inherited"
+  global_policy: "orchestration/GLOBAL-TASK-ROUTING.md"
+
+  principles:
+    - "Select specialists by the nature of the work, not repository type."
+    - "Use the smallest sufficient specialist team."
+    - "Project context refines routing; it does not replace global task classes."
+    - "A source-code change alone does not require Quant routing."
+    - "Quant routing applies only to work that can alter a protected semantic surface or a project-required gate."
+    - "Pass authoritative artifacts and evidence between specialists when a handoff is required."
+    - "Only BLOCKER findings interrupt the active delivery path; record other findings as BACKLOG or HARDENING."
+
+protected_semantic_surfaces:
+  # Declare only surfaces whose change requires Quant escalation in this project.
+  - id: "<SURFACE_ID>"
+    description: "<e.g. fill and execution timing semantics>"
+    quant_route: "QUANT_IMPLEMENTATION"
+    independent_validation_required: true
+    human_gate_required: false
+
+project_invariants: []
+
+forbidden_operations: []
+
+human_gates: []
+
+overrides:
+  # Narrow, evidence-based refinements only. Do not override by repository type.
+  - when: "<specific project condition>"
+    add_specialist: null
+    require_before_work: []
+    reason: "<why the global route needs refinement>"
+
+workflow_patterns:
+  research_to_production:
+    sequence:
+      - stage: "research"
+        owner: "quant_researcher"
+        output: "approved_quant_spec"
+      - stage: "implementation"
+        owner: "quant_developer"
+        input: "approved_quant_spec"
+        output: "implementation_candidate"
+      - stage: "independent_validation"
+        owner: "quant_validator"
+        input:
+          - "approved_quant_spec"
+          - "implementation_candidate"
+        output: "validation_evidence"
+      - stage: "human_decision"
+        owner: "human_authority"
+        when: "required by project governance"
+
+  data_to_research:
+    sequence:
+      - stage: "data_preparation"
+        owner: "quant_data_engineer"
+        output: "validated_dataset"
+      - stage: "data_validation"
+        owner: "quant_validator"
+        output: "dataset_evidence"
+      - stage: "research"
+        owner: "quant_researcher"
+        requires:
+          - "validated_dataset"
+          - "dataset_evidence"
+
+  mixed_quant_product:
+    rules:
+      - "Route unresolved quantitative meaning to quant_researcher first."
+      - "Route approved quantitative implementation to quant_developer."
+      - "Route ordinary application integration to software_engineer."
+      - "Route presentation to ui_ux_engineer."
+      - "Route only the protected quantitative portion to quant_validator when required."
+
+handoff_contract:
+  required_fields:
+    - "handoff_id"
+    - "source_role"
+    - "target_role"
+    - "task"
+    - "authoritative_inputs"
+    - "assumptions"
+    - "decisions_made"
+    - "decisions_not_authorized"
+    - "expected_outputs"
+    - "required_tests"
+    - "known_limitations"
+    - "evidence_paths"
+    - "status"
+  allowed_status:
+    - "DRAFT"
+    - "READY_FOR_REVIEW"
+    - "APPROVED_FOR_HANDOFF"
+    - "REJECTED"
+    - "BLOCKED"
+  rules:
+    - "Do not hand off unresolved critical assumptions as facts."
+    - "Do not change an upstream approved specification silently."
+    - "Downstream specialists MUST report conflicts with upstream artifacts."
+    - "A failed required gate sets the handoff status to BLOCKED."
+
+escalation:
+  to_portfolio_manager_when:
+    - "project objective changes"
+    - "critical invariant must change"
+    - "material quantitative assumption is disputed"
+    - "residual financial risk requires acceptance"
+    - "live financial side effects are requested"
+    - "production release is requested"
+    - "critical validation remains unresolved"
+  orchestrator_must_not:
+    - "resolve human-authority decisions autonomously"
+    - "hide specialist disagreement"
+    - "convert BLOCKED into PASS"
+    - "skip required specialist stages for convenience"
+
+routing_status:
+  preparation_status: "DRAFT"
+  human_approved: false

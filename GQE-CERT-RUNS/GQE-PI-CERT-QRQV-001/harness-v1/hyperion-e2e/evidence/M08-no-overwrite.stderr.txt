@@ -1,0 +1,1 @@
+ERROR: El directorio ya existe. Elige uno nuevo; no se sobrescribe.

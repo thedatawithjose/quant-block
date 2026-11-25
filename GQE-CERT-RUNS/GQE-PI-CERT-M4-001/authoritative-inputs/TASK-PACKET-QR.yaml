@@ -1,0 +1,261 @@
+schema_version: "1.0"
+
+task_packet:
+
+  task_id: "GQE-PI-CERT-M4-QR-001"
+  task_version: "1.0"
+
+  project: "GQE-PI-CERT-M4-001"
+
+  assigned_role: "quant-researcher"
+
+  created_at: "2026-09-26T20:09:00Z"
+
+  status: "READY"
+
+allowed_status: ["DRAFT", "READY", "BLOCKED", "CANCELLED", "SUPERSEDED"]
+
+allowed_specialist_roles:
+  - "quant-data-engineer"
+  - "quant-researcher"
+  - "quant-developer"
+  - "quant-validator"
+
+objective:
+
+  requested_outcome: >
+    Design a bounded quantitative methodology that determines whether Expected
+    Shortfall / CVaR provides useful tail-risk information beyond VaR for a trading
+    strategy whose returns may be fat-tailed and regime-dependent. The methodology
+    MUST compare VaR and Expected Shortfall, MUST NOT assume normal returns, MUST state
+    assumptions and sign conventions, MUST include fat-tail and regime-dependent
+    analysis, MUST define evidence that would support using both metrics, MUST define
+    evidence that would weaken or reject that conclusion, and MUST state important
+    limitations. Research methodology only.
+
+  reason: >
+    Certify that the Pi runtime can execute the canonical GQE research stage with
+    governance-loaded authority, produce a structured terminal result, and hand a
+    hash-bound artifact to an independent validator.
+
+  definition_of_completion:
+    - "A structured research result is returned with status COMPLETED | BLOCKED | INCONCLUSIVE."
+    - "The methodology compares VaR and Expected Shortfall without a normality assumption."
+    - "Sign conventions, assumptions, units and confidence-level semantics are stated explicitly."
+    - "Fat-tail and regime-dependence treatment is defined."
+    - "Supporting evidence criteria and refuting evidence criteria are both defined."
+    - "Limitations, unresolved risks and required human decisions are listed."
+    - "A handoff status and next recommended specialist are declared."
+
+  intended_downstream_consumer: "quant-validator"
+
+scope:
+
+  in_scope:
+    - "Quantitative research methodology specification (mathematical, statistical, evaluative)."
+    - "VaR and Expected Shortfall definitions, estimators, and comparison design."
+    - "Fat-tail representations, regime definitions, and estimator-error treatment."
+    - "Evidence criteria for and against using both metrics."
+    - "Research oracles and expected numerical behavior."
+
+  out_of_scope:
+    - "Production implementation of any kind."
+    - "Data ingestion, timestamp normalization, or dataset provisioning."
+    - "Live trading, broker integration, or any financial side effect."
+    - "Independent certification of the research (owned by quant-validator)."
+    - "Changing project objectives, critical invariants, or governance."
+
+  prohibited_changes:
+    - "Any file under /home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM"
+    - ".governance/CONTRACT.md"
+    - ".governance/INVARIANTS.md"
+    - ".governance/enforcement.yaml"
+    - ".governance/TEAM.yaml"
+    - ".governance/ROUTING.yaml"
+    - "authoritative-inputs/TASK-PACKET-QR.yaml (this packet)"
+
+authority:
+
+  role_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/ROLE.md"
+  subagent_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/SUBAGENT.md"
+  canonical_subagent_spec: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/SUBAGENT-CONTRACT-SPEC.md"
+  task_packet_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/TASK-PACKET-CONTRACT-SPEC.md"
+  handoff_contract: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/HANDOFF-CONTRACT-SPEC.md"
+  operational_loop_spec: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/orchestration/GENTLE-OPERATIONAL-LOOP-SPEC.md"
+
+governance:
+
+  workspace: "/home/datawithjose/Documents/GQE-CERT-RUNS/GQE-PI-CERT-M4-001"
+  contract: ".governance/CONTRACT.md"
+  invariants: ".governance/INVARIANTS.md"
+  enforcement: ".governance/enforcement.yaml"
+  team: ".governance/TEAM.yaml"
+  routing: ".governance/ROUTING.yaml"
+
+  status: "VALID"
+
+allowed_governance_status: ["NOT_EVALUATED", "VALID", "INCOMPLETE", "CONTRADICTORY", "BLOCKED"]
+
+required_skills: []
+
+# No canonical project skill is declared for this task. The canonical GQE skills
+# directory contains only governance-onboard and quant-orchestrate; neither is required
+# by a research-methodology task. The orchestrator MUST NOT substitute a lossy
+# approximation for a skill that does exist.
+
+authoritative_inputs:
+
+  - id: "acceptance-brief"
+    type: "user_request"
+    classification: "USER_DECLARED"
+    path: null
+    version: "1.0"
+    status: "VERIFIED"
+
+  - id: "canonical-researcher-role"
+    type: "specification"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/ROLE.md"
+    git_commit: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+    status: "VERIFIED"
+
+  - id: "canonical-agent-rules"
+    type: "specification"
+    classification: "DISCOVERED"
+    path: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/governance/core/AGENT-RULES.md"
+    git_commit: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+    status: "VERIFIED"
+
+  - id: "dataset-primary"
+    type: "dataset"
+    classification: "UNKNOWN"
+    path: null
+    version: null
+    hash: null
+    fingerprint: null
+    status: "NOT_PROVIDED"
+
+allowed_input_classification:
+  - "DISCOVERED"
+  - "USER_DECLARED"
+  - "UPSTREAM_APPROVED"
+  - "DERIVED"
+  - "UNKNOWN"
+
+upstream_handoffs: []
+
+invariants:
+
+  applicable:
+    - "PROJECT-INV-001"
+    - "PROJECT-INV-002"
+    - "PROJECT-INV-003"
+    - "PROJECT-INV-008"
+    - "PROJECT-INV-009"
+
+  critical:
+    - "PROJECT-INV-001"
+    - "PROJECT-INV-002"
+    - "PROJECT-INV-003"
+    - "PROJECT-INV-008"
+
+  preservation_required: true
+
+  known_conflicts: []
+
+required_outputs:
+
+  - id: "research-result"
+    type: "research_specification"
+    path: "authoritative-inputs/qr-result.md"
+    required: true
+    intended_consumer: "quant-validator"
+
+  - id: "research-handoff"
+    type: "handoff"
+    path: "authoritative-inputs/HANDOFF-QR-to-QV.yaml"
+    required: true
+    intended_consumer: "quant-validator"
+
+verification:
+
+  required_checks:
+    - id: "self-consistency-of-methodology"
+      type: "manual_review"
+      expected_result: "methodology internally consistent; sign conventions stated"
+      blocking: false
+    - id: "no-normality-assumption"
+      type: "manual_review"
+      expected_result: "no step assumes normally distributed returns"
+      blocking: false
+
+  not_applicable_checks:
+    - id: "causality-test"
+      reason: "No time-series data or implementation exists; the task is research methodology."
+    - id: "truncation-invariance"
+      reason: "No dataset or implementation is in scope."
+
+  evidence_required: true
+
+evidence_requirements:
+
+  machine_verifiable_preferred: true
+
+  required:
+    - "structured result returned by the specialist"
+    - "explicit statement of assumptions, sign conventions and limitations"
+
+  acceptable_types: ["command_output", "test_report", "hash", "fingerprint", "artifact", "diff", "log", "validation_result"]
+
+human_authority:
+
+  decisions_required:
+    - "approve_critical_invariants"
+    - "accept_or_reject_residual_risk"
+    - "approve_production_release"
+
+  approval_already_granted:
+    - "definition of this certification run and its acceptance criteria"
+
+  inferred_approval_allowed: false
+
+context_policy:
+
+  required: "ISOLATED_PREFERRED"
+
+  silent_degradation_allowed: false
+
+delegation_policy:
+
+  required: "FORBIDDEN"
+
+  silent_expansion_allowed: false
+
+change_control:
+
+  stop_on_material_authority_change: true
+  stale_input_action: "BLOCK"
+  updated_task_packet_required: true
+
+execution:
+
+  allowed_terminal_states: ["COMPLETED", "BLOCKED", "INCONCLUSIVE"]
+
+  current_state: null
+  started_at: null
+  completed_at: null
+
+downstream:
+
+  handoff_required: true
+  target_role: "quant-validator"
+  required_handoff_template: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/handoffs/HANDOFF.template.yaml"
+
+completion_gate:
+
+  ready_for_execution: true
+  blocking_reasons: []
+  notes: >
+    Ready. Governance status VALID; no upstream handoff required; no dataset is in scope
+    because the deliverable is research methodology, not an empirical estimate. The
+    absent dataset is declared UNKNOWN/NOT_PROVIDED rather than silently assumed.

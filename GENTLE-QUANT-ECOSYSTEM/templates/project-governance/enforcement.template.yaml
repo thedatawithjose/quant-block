@@ -1,0 +1,92 @@
+schema_version: "1.0"
+
+project:
+  name: "<PROJECT_NAME>"
+  governance_status: "DRAFT"
+  human_approved: false
+
+policy:
+  fail_closed: true
+  agent_claims_are_evidence: false
+  unknown_control_state: "BLOCK"
+
+  critical_invariants:
+    require_verification: true
+    require_blocking_failure: true
+
+  evidence:
+    directory: ".governance/evidence"
+    preserve_failed_checks: true
+
+defaults:
+  working_directory: "."
+  timeout_seconds: 300
+  expected_exit_code: 0
+
+invariants:
+
+  - id: "PROJECT-INV-001"
+    title: "<SHORT_INVARIANT_NAME>"
+
+    severity: "CRITICAL"
+    source: "USER_DECLARED"
+
+    # Allowed:
+    # NOT_ENFORCED
+    # TEST_REQUIRED
+    # MANUAL_GATE
+    # ENFORCED
+    enforcement_status: "NOT_ENFORCED"
+
+    owner: "<RESPONSIBLE_ROLE>"
+
+    verification:
+
+      # Allowed:
+      # none
+      # test
+      # command
+      # static_analysis
+      # runtime_assertion
+      # manual_gate
+      type: "none"
+
+      command: null
+      working_directory: "."
+      timeout_seconds: 300
+      expected_exit_code: 0
+
+    evidence:
+      required: true
+
+      # Examples:
+      # TEST_RESULT
+      # CI_JOB
+      # REPORT
+      # AUDIT_RECORD
+      # MANUAL_APPROVAL
+      type: null
+
+      path: null
+
+    failure_policy:
+      block_task_completion: true
+      block_review: true
+      block_merge: true
+      block_deployment: true
+      block_financial_side_effects: true
+      require_human_decision: true
+
+    manual_gate:
+      required: false
+      approver_role: null
+      approval_record: null
+
+    traceability:
+      contract_section: null
+      invariant_reference: "PROJECT-INV-001"
+      tests: []
+      specifications: []
+      decisions: []
+
+    notes: null

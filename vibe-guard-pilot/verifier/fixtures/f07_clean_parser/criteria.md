@@ -1,0 +1,2 @@
+- [C1] Unit tests cover the parser. (evidence: evidence/test-run.txt)
+- [C2] README documents the rate limit. (evidence: evidence/claims.md) (must-contain: artifact/README.md :: rate limit)

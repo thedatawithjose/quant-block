@@ -1,0 +1,1 @@
+- [C1] The exporter processes every row, including the last.

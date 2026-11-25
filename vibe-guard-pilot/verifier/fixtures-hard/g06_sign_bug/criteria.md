@@ -1,0 +1,1 @@
+- [C1] Returned durations are never negative for any valid input (end and start are timestamps in 24h HH:MM format; a session may cross midnight).

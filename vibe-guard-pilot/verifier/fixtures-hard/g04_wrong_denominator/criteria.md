@@ -1,0 +1,1 @@
+- [C1] The report states recall = TP/(TP+FN).

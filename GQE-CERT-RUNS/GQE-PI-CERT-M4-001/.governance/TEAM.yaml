@@ -1,0 +1,104 @@
+schema_version: "1.0"
+
+project:
+  name: "GQE-PI-CERT-M4-001"
+
+human_authority:
+
+  portfolio_manager:
+    title: "Portfolio Manager / Head of Quant"
+
+    authority:
+      - define_project_objectives
+      - define_certification_acceptance_criteria
+      - approve_critical_invariants
+      - accept_or_reject_residual_risk
+      - approve_production_release
+      - approve_live_financial_side_effects
+      - decide_the_final_production_disposition
+
+    final_authority: true
+
+    restrictions:
+      - "Technical evidence MUST NOT be fabricated to satisfy human preference."
+      - "Failed critical governance controls MUST be disclosed before approval."
+      - "Approval of this certification MUST NOT be read as production approval."
+
+orchestration:
+
+  primary_harness: "Gentle-AI"
+  runtime: "Pi"
+  role: "quant_orchestrator"
+
+  responsibilities:
+    - classify_work
+    - select_required_specialists
+    - provide_relevant_context_and_skills
+    - preserve_role_boundaries
+    - coordinate_handoffs
+    - persist_specialist_results_verbatim
+    - collect_evidence
+    - run_enforcement_evaluation
+    - escalate_material_decisions_to_human_authority
+
+  prohibited:
+    - self_approve_human_gates
+    - suppress_failed_controls
+    - silently_change_project_invariants
+    - treat_agent_opinion_as_verification_evidence
+    - retry_a_specialist_without_new_human_authorization
+    - change_provider_or_model_during_the_run
+
+specialists:
+
+  quant_researcher:
+    display_name: "Quant Researcher"
+    canonical_role: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/ROLE.md"
+    canonical_subagent: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-researcher/SUBAGENT.md"
+    context: "ISOLATED_PREFERRED"
+    delegation: "FORBIDDEN"
+    execution_budget: 1
+    must_not:
+      - change_data_semantics
+      - certify_own_research_as_independently_validated
+      - change_critical_invariants
+      - approve_production_or_live_financial_side_effects
+      - delegate
+
+  quant_validator:
+    display_name: "Independent Quant Validator"
+    canonical_role: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-validator/ROLE.md"
+    canonical_subagent: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/quant-validator/SUBAGENT.md"
+    context: "ISOLATED_REQUIRED"
+    delegation: "FORBIDDEN"
+    execution_budget: 1
+    must_not:
+      - modify_results_to_create_a_pass
+      - certify_unexecuted_tests
+      - approve_unresolved_critical_failures
+      - replace_human_production_approval
+      - delegate
+
+  quant_developer:
+    display_name: "Quant Developer"
+    execution_budget: 0
+    status: "NOT_AUTHORIZED_FOR_THIS_RUN"
+
+  quant_data_engineer:
+    display_name: "Quant Data Engineer"
+    execution_budget: 0
+    status: "NOT_AUTHORIZED_FOR_THIS_RUN"
+
+separation_of_duties:
+
+  rules:
+    - "The creator of a quantitative model MUST NOT be its sole validator."
+    - "The validator MUST run in a distinct child task and session context from the researcher."
+    - "The validator MUST receive persisted authoritative artifacts, not regenerated research."
+    - "Human approval remains required for the production disposition."
+    - "Sharing a provider or model family MUST be recorded as a possible dependency, not as independence evidence."
+
+team_status:
+
+  preparation_status: "APPROVED"
+  human_approved: true

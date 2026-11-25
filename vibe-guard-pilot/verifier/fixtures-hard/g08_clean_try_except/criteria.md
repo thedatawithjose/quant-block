@@ -1,0 +1,1 @@
+- [C1] Errors raised while loading config are logged and then propagated to the caller unchanged.

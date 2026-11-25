@@ -1,0 +1,189 @@
+schema_version: "1.0"
+
+adapter:
+  name: "<ADAPTER_NAME>"
+  version: "<ADAPTER_VERSION>"
+  maturity: "EXPERIMENTAL"
+
+runtime:
+  name: "<RUNTIME_NAME>"
+  version: "<RUNTIME_VERSION>"
+
+capability_levels:
+  allowed:
+    - "NATIVE"
+    - "EMULATED"
+    - "UNAVAILABLE"
+
+capabilities:
+
+  primary_orchestrator:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  delegated_task_execution:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  specialist_role_instructions:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  isolated_specialist_context:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  independent_validator_context:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  contextual_skill_loading:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  project_governance_loading:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  tool_restrictions:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  filesystem_scope_restrictions:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  verification_command_execution:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  structured_result_return:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  human_approval_gates:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  persistent_project_memory:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+  deterministic_deployment_generation:
+    support: "UNAVAILABLE"
+    evidence: null
+    limitations: []
+
+governance_mapping:
+
+  orchestrator_only_invocation:
+    supported: false
+    mechanism: null
+
+  isolated_preferred:
+    supported: false
+    mechanism: null
+
+  isolated_required:
+    supported: false
+    mechanism: null
+
+  delegation_forbidden:
+    supported: false
+    mechanism: null
+
+  fail_closed_enforcement:
+    supported: false
+    mechanism: null
+
+  human_authority_preservation:
+    supported: false
+    mechanism: null
+
+specialist_support:
+
+  quant_data_engineer:
+    executable: false
+    isolation: "UNAVAILABLE"
+
+  quant_researcher:
+    executable: false
+    isolation: "UNAVAILABLE"
+
+  quant_developer:
+    executable: false
+    isolation: "UNAVAILABLE"
+
+  quant_validator:
+    executable: false
+    isolation: "UNAVAILABLE"
+
+known_limitations: []
+
+validation:
+
+  canonical_role_preservation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  governance_loading:
+    status: "NOT_TESTED"
+    evidence: null
+
+  specialist_isolation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  skill_delivery:
+    status: "NOT_TESTED"
+    evidence: null
+
+  structured_results:
+    status: "NOT_TESTED"
+    evidence: null
+
+  failure_state_preservation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  human_gate_preservation:
+    status: "NOT_TESTED"
+    evidence: null
+
+  deterministic_regeneration:
+    status: "NOT_TESTED"
+    evidence: null
+
+allowed_validation_status:
+  - "PASS"
+  - "FAIL"
+  - "INCONCLUSIVE"
+  - "NOT_TESTED"
+  - "BLOCKED"
+
+compatibility:
+
+  overall_status: "NOT_EVALUATED"
+
+  allowed_status:
+    - "SUPPORTED"
+    - "SUPPORTED_WITH_LIMITATIONS"
+    - "CAPABILITY_BLOCKED"
+    - "NOT_EVALUATED"
+
+  blocking_capabilities: []
+
+  notes: null

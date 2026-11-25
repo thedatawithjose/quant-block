@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-12T14:48:23.023184+00:00",
+  "reviewer": "python3 /home/datawithjose/Documents/vibe-guard-pilot/verifier/opencode_reviewer.py",
+  "thresholds": {
+    "min_detection_rate": 0.9,
+    "max_false_positive_rate": 0.1
+  },
+  "counts": {
+    "defect_fixtures": 7,
+    "detected": 7,
+    "clean_fixtures": 3,
+    "false_positives": 0,
+    "reviewer_errors": 0
+  },
+  "detection_rate": 1.0,
+  "false_positive_rate": 0.0,
+  "calibration_passed": true,
+  "failure_reasons": [],
+  "results": [
+    {
+      "fixture": "g01_off_by_one_last_row",
+      "defect": true,
+      "defect_type": "off_by_one_last_row",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The loop uses range(len(rows) - 1), which excludes the final row, so the last element is never processed.",
+          "proof": "artifact/exporter.py: for i in range(len(rows) - 1) iterates only indices 0..len-2; evidence/claims.md itself shows only 4 of the 5 rows (1,2,3,4), confirming row 5 is missing."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g02_inverted_condition",
+      "defect": true,
+      "defect_type": "inverted_condition",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The gate logic is inverted: it rejects scores above the threshold and accepts scores below it, the opposite of the criterion.",
+          "proof": "gate.py line 4 `if score > threshold: return accepted False` \u2014 recomputed: decide(0.3) returns accepted=True but 0.3 < 0.7 must be rejected; decide(0.95) returns accepted=False but 0.95 >= 0.7 must be accepted."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g03_swallowed_error",
+      "defect": true,
+      "defect_type": "swallowed_error",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "validate() swallows the ValueError with a bare `except Exception: pass` and unconditionally returns True, so invalid input never propagates a ValueError to the caller.",
+          "proof": "artifact/validate.py: validate() wraps _check() in try/except Exception: pass and returns True; validate({\"age\": -1, \"email\": \"x\"}) returns True instead of raising ValueError."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g04_wrong_denominator",
+      "defect": true,
+      "defect_type": "wrong_metric_formula",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The recall() function computes TP/(TP+FP), which is precision, not TP/(TP+FN) as the criterion demands.",
+          "proof": "metrics.py: recall() returns `tp / (tp + fp)`; recomputed from the sample: TP=3, FP=1, FN=2, so true recall = 3/(3+2) = 0.6000, but the code and evidence report 0.7500 (= precision)."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g05_test_enforces_wrong_value",
+      "defect": true,
+      "defect_type": "test_enforces_wrong_behavior",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "clamp never applies the upper bound: clamp(11, 0, 10) returns 11, which is above 10.",
+          "proof": "artifact/clamp.py:2-4 only handles x < lo and returns x otherwise, so hi is ignored; artifact/test_clamp.py:12 asserts clamp(11, 0, 10) == 11, encoding the bug as the expected value."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g06_sign_bug",
+      "defect": true,
+      "defect_type": "sign_bug",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "duration_minutes returns negative for valid inputs where end precedes start by <=12h because the midnight-crossing adjustment is skipped.",
+          "proof": "duration_minutes(\"10:00\", \"09:00\") -> -60 (s=600, e=540, s-e=60 not > 720, so e not adjusted; returns 540-600=-60); reproduced by executing artifact/duration.py."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g07_off_by_one_window",
+      "defect": true,
+      "defect_type": "off_by_one_window",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "The slice end is `start + limit + 1`, so it returns up to `limit + 1` items, not `limit`.",
+          "proof": "artifact/paginate.py:6 `end = start + limit + 1`; paginate(list(range(100)), 1, 10) \u2192 items[0:11] = 11 items, exceeding limit=10."
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "g08_clean_try_except",
+      "defect": false,
+      "defect_type": "clean_log_and_reraise",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "The artifact logs with log.exception (ERROR level, traceback included) and uses a bare raise which re-raises the original exception unchanged.",
+          "proof": "loader.py:10-13 `except Exception: log.exception(...); raise` \u2014 I tried to find a path where the exception would be swallowed or replaced (e.g. `raise SomeNewError` or a bare return) and found none; bare raise preserves original type and traceback."
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    },
+    {
+      "fixture": "g09_clean_boundary",
+      "defect": false,
+      "defect_type": "clean_boundary",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "The loop `for i in range(len(xs))` writes every index 0..len-1, so first and last elements are both processed; recomputed outputs match the evidence.",
+          "proof": "Recomputed normalize([3,7,5]): lo=3 hi=7 span=4 -> [(3-3)/4, (7-3)/4, (5-3)/4] = [0.0, 1.0, 0.5]; i=0 is first, i=len-1 is last, both written."
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    },
+    {
+      "fixture": "g10_clean_metric",
+      "defect": false,
+      "defect_type": "clean_metric",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "The code computes recall as tp/(tp+fn), which is exactly TP/(TP+FN), and the value recomputed from the raw arrays matches the reported 0.6000.",
+          "proof": "Recomputed from raw data: TP=3 (idx 0,1,8), FN=2 (idx 2,3), FP=1 (idx 4) \u2192 recall=3/(3+2)=0.6000; metrics.py uses `return tp/(tp+fn)` (denominator is FN, not FP), and I found no look-ahead, so I could not falsify the claim."
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    }
+  ]
+}

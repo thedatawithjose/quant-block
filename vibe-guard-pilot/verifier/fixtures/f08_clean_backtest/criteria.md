@@ -1,0 +1,1 @@
+- [C1] Backtest uses no look-ahead: signals use only past data. (evidence: evidence/backtest-log.txt)

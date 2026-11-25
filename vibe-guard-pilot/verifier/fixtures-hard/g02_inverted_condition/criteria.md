@@ -1,0 +1,1 @@
+- [C1] The gate accepts a submission when score >= threshold, and rejects it otherwise.

@@ -1,0 +1,276 @@
+schema_version: "1.0"
+
+project:
+  name: "GQE-PI-CERT-M4-001"
+  governance_status: "APPROVED"
+  human_approved: true
+  canonical_rules_source: "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/governance/core/AGENT-RULES.md"
+  canonical_rules_revision: "ff16b6b1e21f34a6df9e72d6121bac93ee8fcd4b"
+
+policy:
+
+  fail_closed: true
+  agent_claims_are_evidence: false
+  unknown_control_state: "BLOCK"
+
+  critical_invariants:
+    require_verification: true
+    require_blocking_failure: true
+
+  evidence:
+    directory: ".governance/evidence"
+    preserve_failed_checks: true
+
+  enforcement_evaluator: "evidence/controls/evaluate_enforcement.py"
+  evaluation_output: "evidence/enforcement-evaluation.json"
+  evaluation_report: "evidence/ENFORCEMENT-REPORT.md"
+
+defaults:
+  working_directory: "."
+  timeout_seconds: 300
+  expected_exit_code: 0
+
+evaluator_contract:
+
+  # The evaluator resolves each control's mechanism.check to a named executable check.
+  # Behaviour is deliberately fail-closed:
+  unresolved_enforced_declaration: "NOT_SATISFIED"
+  indeterminate_check: "UNKNOWN"
+  unknown_state_action: "BLOCK"
+  agent_statement_action: "REJECT"
+
+allowed_declared_status:
+  - "ENFORCED"
+  - "MANUAL_ONLY"
+  - "NOT_ENFORCED"
+  - "MISSING"
+  - "UNKNOWN"
+
+allowed_check_results:
+  - "SATISFIED"
+  - "NOT_SATISFIED"
+  - "UNKNOWN"
+  - "NOT_APPLICABLE"
+
+allowed_mechanism_kinds:
+  - "executable_check"
+  - "declared_only"
+  - "manual_gate"
+  - "none"
+
+controls:
+
+  - id: "CTRL-CERT-001"
+    rule_id: "EFFECTIVE_CHALLENGE"
+    invariant: "PROJECT-INV-004"
+    protects: "Researcher and validator must not collapse into one context."
+    type: ["DETERMINISTIC_GATE", "AUDIT_LOG"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_qv_context_separation"
+      description: "QR and QV child task ids AND session ids must both differ."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      block_production: true
+      require_human_decision: true
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-002"
+    rule_id: "MATERIAL_HUMAN_REVIEW"
+    invariant: "PROJECT-INV-001"
+    protects: "No production transition without a recorded human gate."
+    type: ["HUMAN_REVIEW", "DETERMINISTIC_GATE", "AUDIT_LOG"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_human_gate_reached"
+      description: "gates/HUMAN-GATE.md exists with status HUMAN_DECISION_REQUIRED and an explicit decision request."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      block_production: true
+      require_human_decision: true
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-003"
+    rule_id: "LLM_CANNOT_EXECUTE_DIRECTLY"
+    invariant: "PROJECT-INV-002"
+    protects: "Research output cannot become trading authorization."
+    type: ["SOFTWARE_INVARIANT", "DETERMINISTIC_GATE", "SCHEMA_VALIDATION"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_trade_authorized_false"
+      description: "gates/FINAL-DISPOSITION.md parses to trade_authorized: false and production_status: NOT_APPROVED."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      block_financial_side_effects: true
+      require_human_decision: true
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-004"
+    rule_id: "VERSION_EVERYTHING"
+    invariant: "PROJECT-INV-005"
+    protects: "Authoritative artifacts are auditable and hashable."
+    type: ["AUDIT_LOG", "SOFTWARE_INVARIANT"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_artifact_hash_manifest"
+      description: "evidence/artifact-hashes.sha256 exists, is non-empty, and covers every file in authoritative-inputs/, .governance/ and gates/."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      block_review: true
+      require_human_decision: false
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-005"
+    rule_id: "CONTRADICTION_BLOCKS_EXECUTION"
+    invariant: "PROJECT-INV-006"
+    protects: "A failed or inconclusive validation cannot be promoted to approval."
+    type: ["DETERMINISTIC_GATE", "INDEPENDENT_VERIFIER"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_validation_gate"
+      description: "QV terminal status is a canonical state; PASS is the only state that permits advancing; FAIL/BLOCKED/INCONCLUSIVE/NOT_TESTED block."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      block_production: true
+      require_human_decision: true
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-006"
+    rule_id: "CERT-BUDGET-001"
+    invariant: "PROJECT-INV-003"
+    protects: "Bounded execution; no retries, no extra branches, no QD/DE."
+    type: ["DETERMINISTIC_GATE", "AUDIT_LOG"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_execution_budget"
+      description: "evidence/executions.json shows exactly 1 quant-researcher, exactly 1 quant-validator, 0 quant-developer, 0 quant-data-engineer, and retries == 0."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      require_human_decision: true
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-007"
+    rule_id: "INDEPENDENCE_BEFORE_VOTE"
+    invariant: "PROJECT-INV-010"
+    protects: "Agreement between QR and QV is not treated as independent confirmation."
+    type: ["INDEPENDENT_VERIFIER"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "declared_only"
+      check: null
+      description: "Declared ENFORCED by the orchestrator without any executable mechanism. Retained intentionally as a fail-closed probe for PROJECT-INV-006."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      require_human_decision: true
+    evidence: null
+
+  - id: "CTRL-CERT-008"
+    rule_id: "CERT-TOOLS-001"
+    invariant: "PROJECT-INV-003"
+    protects: "Specialists cannot delegate or spawn subordinate agents."
+    type: ["DETERMINISTIC_GATE", "SCHEMA_VALIDATION"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_specialist_tool_allowlists"
+      description: "Pi agent wrappers for quant-researcher, quant-validator, quant-developer and quant-data-engineer declare no subagent_* tool, and the QV run trace contains no subagent_* invocation."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      require_human_decision: false
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-009"
+    rule_id: "VERSION_EVERYTHING"
+    invariant: "PROJECT-INV-005"
+    protects: "Authority handed to the validator cannot change while validation runs."
+    type: ["SOFTWARE_INVARIANT", "DETERMINISTIC_GATE"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_frozen_authority_unchanged"
+      description: "evidence/pre-qv-snapshot.sha256 matches a recomputed digest of the same file set after QV completes."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      block_production: true
+      require_human_decision: true
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-010"
+    rule_id: "CERT-CANON-001"
+    invariant: "PROJECT-INV-009"
+    protects: "Canonical GQE semantics are not modified by the runtime adapter."
+    type: ["DETERMINISTIC_GATE", "AUDIT_LOG"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_canon_unchanged"
+      description: "git status --porcelain is empty in the canonical GQE repo and HEAD equals the recorded revision."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      require_human_decision: true
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-011"
+    rule_id: "CERT-SCOPE-001"
+    invariant: "PROJECT-INV-008"
+    protects: "No production implementation is produced."
+    type: ["DETERMINISTIC_GATE"]
+    declared_status: "ENFORCED"
+    mechanism:
+      kind: "executable_check"
+      check: "check_no_production_tree"
+      description: "The workspace contains no production source tree; every authored file is governance, packet, handoff, result, evidence or gate artifact."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      require_human_decision: false
+    evidence: "evidence/enforcement-evaluation.json"
+
+  - id: "CTRL-CERT-012"
+    rule_id: "EFFECTIVE_CHALLENGE"
+    invariant: "PROJECT-INV-007"
+    protects: "Evidence paths claimed by specialists must be inspectable, not asserted."
+    type: ["HUMAN_REVIEW", "INDEPENDENT_VERIFIER"]
+    declared_status: "MANUAL_ONLY"
+    mechanism:
+      kind: "manual_gate"
+      check: "check_human_gate_reached"
+      description: "No reliable automation can confirm that a reported evidence path corresponds to the claimed observation; the Human Gate reviewer inspects the evidence set."
+    blocking: true
+    failure_policy:
+      block_review: true
+      require_human_decision: true
+    evidence: "gates/HUMAN-GATE.md"
+
+  - id: "CTRL-CERT-013"
+    rule_id: "INDEPENDENCE_BEFORE_VOTE"
+    invariant: "PROJECT-INV-010"
+    protects: "Statistical independence of QR/QV model error modes."
+    type: ["INDEPENDENT_VERIFIER"]
+    declared_status: "UNKNOWN"
+    mechanism:
+      kind: "none"
+      check: null
+      description: "No mechanism in this runtime can establish independence of shared-model error modes. Declared UNKNOWN so that fail-closed policy blocks the transition that would require it."
+    blocking: true
+    failure_policy:
+      block_task_completion: true
+      block_production: true
+      require_human_decision: true
+    evidence: null

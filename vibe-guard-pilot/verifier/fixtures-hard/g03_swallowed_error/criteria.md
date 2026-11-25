@@ -1,0 +1,1 @@
+- [C1] Invalid input raises ValueError.

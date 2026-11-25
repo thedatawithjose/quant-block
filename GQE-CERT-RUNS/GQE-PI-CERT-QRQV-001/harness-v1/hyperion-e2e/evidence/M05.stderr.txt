@@ -1,0 +1,6 @@
+test_blank_and_self_review_and_unknown_delivery_rejected_without_writes (test_external_flow.ExternalCLI.test_blank_and_self_review_and_unknown_delivery_rejected_without_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.524s
+
+OK

@@ -1,0 +1,182 @@
+[
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/quant_agent_harness.py",
+    "destination": "core/source/quant_harness_v2/quant_agent_harness.py",
+    "sha256": "34383542d3398b86b7321362167eb57ea11a454f8cd06245ec9e13700565951b",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/demo.py",
+    "destination": "core/source/quant_harness_v2/demo.py",
+    "sha256": "74d7d701e8182a3feb2c3f6a38a6fe64d9a51b0d6acadd3716565a19386e760c",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/causality_checks.py",
+    "destination": "core/source/quant_harness_v2/causality_checks.py",
+    "sha256": "3ffd66543f74fc706b4553c17d624ea5245b61f6abb595394cc7ee649771af82",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/tests/test_harness.py",
+    "destination": "core/source/quant_harness_v2/tests/test_harness.py",
+    "sha256": "0f1fc255fb63ecf6a46b39af22a34f904679c7e1c968ce4c2c80b4e5f956b5cb",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/README.md",
+    "destination": "core/source/quant_harness_v2/README.md",
+    "sha256": "9ea88a811313583cc1d672af10c337c81c65adad507205e2ad4d70284762337c",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/VALIDATION.md",
+    "destination": "core/source/quant_harness_v2/VALIDATION.md",
+    "sha256": "d24b4d95261227510698e4179ab73d9c533214b59b28b8d7cff2a165ba8caac1",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/TEST_RESULTS.txt",
+    "destination": "core/source/quant_harness_v2/TEST_RESULTS.txt",
+    "sha256": "8db26331ff258a1badea8a62d5e1477aaec196acb3972805fef68018d4b4e4f1",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/examples/synthetic_demo_report.json",
+    "destination": "core/source/quant_harness_v2/examples/synthetic_demo_report.json",
+    "sha256": "a80eeb7b0799fa0c529f7670cf87157d10902d35fa60c485ce1e873df12528c4",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/.gitignore",
+    "destination": "core/source/quant_harness_v2/.gitignore",
+    "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+    "group": "core"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/quant_agent_harness.py",
+    "destination": "domains/quant/source/quant_harness_v2/quant_agent_harness.py",
+    "sha256": "34383542d3398b86b7321362167eb57ea11a454f8cd06245ec9e13700565951b",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/demo.py",
+    "destination": "domains/quant/source/quant_harness_v2/demo.py",
+    "sha256": "74d7d701e8182a3feb2c3f6a38a6fe64d9a51b0d6acadd3716565a19386e760c",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/causality_checks.py",
+    "destination": "domains/quant/source/quant_harness_v2/causality_checks.py",
+    "sha256": "3ffd66543f74fc706b4553c17d624ea5245b61f6abb595394cc7ee649771af82",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/tests/test_harness.py",
+    "destination": "domains/quant/source/quant_harness_v2/tests/test_harness.py",
+    "sha256": "0f1fc255fb63ecf6a46b39af22a34f904679c7e1c968ce4c2c80b4e5f956b5cb",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/README.md",
+    "destination": "domains/quant/source/quant_harness_v2/README.md",
+    "sha256": "9ea88a811313583cc1d672af10c337c81c65adad507205e2ad4d70284762337c",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/VALIDATION.md",
+    "destination": "domains/quant/source/quant_harness_v2/VALIDATION.md",
+    "sha256": "d24b4d95261227510698e4179ab73d9c533214b59b28b8d7cff2a165ba8caac1",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/TEST_RESULTS.txt",
+    "destination": "domains/quant/source/quant_harness_v2/TEST_RESULTS.txt",
+    "sha256": "8db26331ff258a1badea8a62d5e1477aaec196acb3972805fef68018d4b4e4f1",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/examples/synthetic_demo_report.json",
+    "destination": "domains/quant/source/quant_harness_v2/examples/synthetic_demo_report.json",
+    "sha256": "a80eeb7b0799fa0c529f7670cf87157d10902d35fa60c485ce1e873df12528c4",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/harness-quant/quant_harness_v2/.gitignore",
+    "destination": "domains/quant/source/quant_harness_v2/.gitignore",
+    "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+    "group": "quant"
+  },
+  {
+    "original": "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/agents/TASK-PACKET-CONTRACT-SPEC.md",
+    "destination": "contracts/agents/TASK-PACKET-CONTRACT-SPEC.md",
+    "sha256": "3e01c37e2e36a1043fc5a8d90fcf419c4a76654c11500fbf75a4e4f4d1e510bf",
+    "group": "contracts"
+  },
+  {
+    "original": "/home/datawithjose/Documents/GENTLE-QUANT-ECOSYSTEM/templates/tasks/TASK-PACKET.template.yaml",
+    "destination": "contracts/templates/tasks/TASK-PACKET.template.yaml",
+    "sha256": "ea26f073bd2fefddb6fb2eec0ec726012132c54dd72d3f1e82768ce9d510557a",
+    "group": "contracts"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/index.ts",
+    "destination": "adapters/pi/extensions/quant-gate/index.ts",
+    "sha256": "2dd5f3401282d6ae8f3d2c05eb84d98c25dfdbc0663147aff24d1c749c7a8120",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/core.ts",
+    "destination": "adapters/pi/extensions/quant-gate/core.ts",
+    "sha256": "bfb8b2edd78c480547c4f85e3013da1812ed2f7c3d8a886c2ba1457f5de202ce",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/completion.ts",
+    "destination": "adapters/pi/extensions/quant-gate/completion.ts",
+    "sha256": "7e92530b34c2db67441f713a9f029bc21b4c98ebed4a488256f66ffc107cfd74",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/audit.ts",
+    "destination": "adapters/pi/extensions/quant-gate/audit.ts",
+    "sha256": "6c3027a50c05c724d1000f0ccf8b17d80cd7fe124c890ab1998b4465dba93e76",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/protect.py",
+    "destination": "adapters/pi/extensions/quant-gate/protect.py",
+    "sha256": "d203fb080cf772fc4ffebe42ee313c00157d0e70667f0ce18740948dede7a6a7",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/core.test.ts",
+    "destination": "adapters/pi/extensions/quant-gate/core.test.ts",
+    "sha256": "03b939de161ad9fa2f18e7e72071f6778ee8541f313e6ed961422767c0c00bca",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/completion.test.ts",
+    "destination": "adapters/pi/extensions/quant-gate/completion.test.ts",
+    "sha256": "f7b99ee565dccb2af73152bfe9ac27eba01675242369e9585ca209dbcf925b05",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/audit.test.ts",
+    "destination": "adapters/pi/extensions/quant-gate/audit.test.ts",
+    "sha256": "ccfc5a49b75b7ebc4cda5a6ec81323a27710adcb54272a31e406007c447a6af6",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/extensions/quant-gate/mode.test.ts",
+    "destination": "adapters/pi/extensions/quant-gate/mode.test.ts",
+    "sha256": "9de1ce48208712400cdc4712bc643db4814b7e0db45f37d233e5fa1b285e31c3",
+    "group": "pi"
+  },
+  {
+    "original": "/home/datawithjose/.pi/agent/prompts/quant-mode.md",
+    "destination": "adapters/pi/prompts/quant-mode.md",
+    "sha256": "cf31fa6105cce8b3e060ad578575a38ba0f524299b302625b547ffd981bf861f",
+    "group": "pi"
+  }
+]

@@ -1,0 +1,7 @@
+test_base_fails_expected_assertion_and_corrected_candidate_passes (test_external_flow.ExternalCLI.test_base_fails_expected_assertion_and_corrected_candidate_passes) ... ok
+test_acceptance_timeout_is_bound_failure (test_external_flow.ExternalCLI.test_acceptance_timeout_is_bound_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.870s
+
+OK

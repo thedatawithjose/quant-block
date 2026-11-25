@@ -1,0 +1,8 @@
+test_scope_precedes_passing_acceptance_and_approval (test_external_flow.ExternalCLI.test_scope_precedes_passing_acceptance_and_approval) ... ok
+test_deleted_and_renamed_old_and_new_paths_are_checked (test_external_flow.ExternalCLI.test_deleted_and_renamed_old_and_new_paths_are_checked) ... ok
+test_deleted_unauthorized_path_is_blocked (test_external_flow.ExternalCLI.test_deleted_unauthorized_path_is_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.935s
+
+OK

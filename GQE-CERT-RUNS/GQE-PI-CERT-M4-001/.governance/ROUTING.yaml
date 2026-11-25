@@ -1,0 +1,165 @@
+schema_version: "1.0"
+
+project:
+  name: "GQE-PI-CERT-M4-001"
+
+routing_policy:
+
+  orchestrator: "Gentle-AI"
+
+  principles:
+    - "Route work to the smallest set of specialists required."
+    - "Do not use one general agent context for multi-discipline work."
+    - "Use a fresh specialist context when independent reasoning matters."
+    - "Pass artifacts and evidence between specialists, not informal conversational summaries."
+    - "A specialist MUST NOT silently perform work owned by another role."
+    - "Material uncertainty about ownership MUST escalate to the orchestrator."
+
+task_classes:
+
+  quantitative_research:
+    triggers:
+      - hypothesis
+      - statistical_model
+      - risk_metric
+      - expected_shortfall
+      - var
+      - tail_risk
+      - regime
+      - methodology
+
+    primary: "quant_researcher"
+
+    required_reviewers:
+      - "quant_validator"
+
+    independent_context: true
+
+    conditional:
+      - when: "research requires data transformation or a new dataset"
+        action: "BLOCKED"
+        reason: "quant-data-engineer has execution budget 0 in this certification."
+
+      - when: "approved research must become production code"
+        action: "BLOCKED"
+        reason: "No production implementation is authorized in this certification."
+
+  production_implementation:
+    primary: "quant_developer"
+    enabled: false
+    action: "BLOCKED"
+    reason: "Production implementation is out of scope for GQE-PI-CERT-M4-001."
+
+  data_infrastructure:
+    primary: "quant_data_engineer"
+    enabled: false
+    action: "BLOCKED"
+    reason: "Data engineering is out of scope for GQE-PI-CERT-M4-001."
+
+  quantitative_validation:
+    primary: "quant_validator"
+    independent_context: true
+    must_not_delegate_validation_to:
+      - "original_researcher_only"
+
+workflow_patterns:
+
+  certification_research_loop:
+
+    sequence:
+      - stage: "governance_preflight"
+        owner: "quant_orchestrator"
+        output: "governance_status"
+
+      - stage: "classification_and_routing"
+        owner: "quant_orchestrator"
+        output: "task_class"
+
+      - stage: "task_packet_ready"
+        owner: "quant_orchestrator"
+        output: "TASK-PACKET-QR.yaml"
+
+      - stage: "research"
+        owner: "quant_researcher"
+        input: "TASK-PACKET-QR.yaml"
+        output: "qr-result.md"
+
+      - stage: "handoff"
+        owner: "quant_researcher"
+        input: "qr-result.md"
+        output: "HANDOFF-QR-to-QV.yaml"
+
+      - stage: "task_packet_ready"
+        owner: "quant_orchestrator"
+        output: "TASK-PACKET-QV.yaml"
+
+      - stage: "independent_validation"
+        owner: "quant_validator"
+        input:
+          - "qr-result.md"
+          - "HANDOFF-QR-to-QV.yaml"
+          - "TASK-PACKET-QV.yaml"
+        output: "qv-result.md"
+
+      - stage: "enforcement_evaluation"
+        owner: "quant_orchestrator"
+        output: "enforcement-evaluation.json"
+
+      - stage: "human_decision"
+        owner: "portfolio_manager"
+        input:
+          - "qr-result.md"
+          - "qv-result.md"
+          - "enforcement-evaluation.json"
+        output: "final_production_disposition"
+
+handoff_contract:
+
+  required_fields:
+    - "handoff_id"
+    - "source_role"
+    - "target_role"
+    - "task"
+    - "authoritative_inputs"
+    - "assumptions"
+    - "decisions_made"
+    - "decisions_not_authorized"
+    - "expected_outputs"
+    - "required_tests"
+    - "known_limitations"
+    - "evidence_paths"
+    - "status"
+
+  allowed_status:
+    - "DRAFT"
+    - "READY_FOR_REVIEW"
+    - "APPROVED_FOR_HANDOFF"
+    - "REJECTED"
+    - "BLOCKED"
+
+  rules:
+    - "Downstream work MUST NOT begin unless status is APPROVED_FOR_HANDOFF."
+    - "Do not hand off unresolved critical assumptions as facts."
+    - "A failed required gate sets the handoff status to BLOCKED."
+
+escalation:
+
+  to_portfolio_manager_when:
+    - "production release is requested"
+    - "residual financial risk requires acceptance"
+    - "critical validation remains unresolved"
+    - "statistical independence cannot be established"
+    - "a declared ENFORCED control has no executable evidence"
+    - "any control state is UNKNOWN"
+
+  orchestrator_must_not:
+    - "resolve human-authority decisions autonomously"
+    - "hide specialist disagreement"
+    - "convert BLOCKED into PASS"
+    - "skip required specialist stages for convenience"
+    - "start a second research iteration without explicit human authorization"
+
+routing_status:
+
+  preparation_status: "APPROVED"
+  human_approved: true

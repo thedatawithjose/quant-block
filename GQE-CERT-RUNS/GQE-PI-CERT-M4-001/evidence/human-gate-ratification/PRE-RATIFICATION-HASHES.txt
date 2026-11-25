@@ -1,0 +1,5 @@
+92d536aaf92eadc1e4f3ea38b8ef450edd0acfe8adf017a853a8d20d4d4ffb97  gates/HUMAN-GATE.md
+b9e3867a3656f9038add2d35d58cf62e68c11440565c99a457f496c27e8f063d  gates/FINAL-DISPOSITION.md
+d27f373fd0f3c0af7ac1caa6304dbaf044d905dfd6e93ff6a9fc7a1e9d14bdae  authoritative-inputs/qr-result.md
+275402b1ee901e8c372494707246599f13f350e66b8b02ddebe0539a1fd7880e  authoritative-inputs/HANDOFF-QR-to-QV.yaml
+35b861a305c39c9a8133f6f721ac11ce3e1cba41b1238bee193f8ca1dda6e8d8  authoritative-inputs/qv-result.md

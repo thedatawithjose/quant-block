@@ -1,0 +1,1 @@
+- [C1] Reported accuracy matches the raw results. (evidence: evidence/metrics.json)

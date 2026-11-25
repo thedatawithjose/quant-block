@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-12T01:22:06.039046+00:00",
+  "reviewer": "builtin-mock",
+  "thresholds": {
+    "min_detection_rate": 0.9,
+    "max_false_positive_rate": 0.1
+  },
+  "counts": {
+    "defect_fixtures": 6,
+    "detected": 6,
+    "clean_fixtures": 3,
+    "false_positives": 0,
+    "reviewer_errors": 0
+  },
+  "detection_rate": 1.0,
+  "false_positive_rate": 0.0,
+  "calibration_passed": true,
+  "failure_reasons": [],
+  "results": [
+    {
+      "fixture": "f01_claim_no_evidence",
+      "defect": true,
+      "defect_type": "claim_without_evidence",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Claim has no evidence reference.",
+          "proof": "criteria.md: no '(evidence: ...)'"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f02_test_asserts_nothing",
+      "defect": true,
+      "defect_type": "test_asserts_nothing",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Tests assert nothing: test_basic, test_empty.",
+          "proof": "test_slug.py: no assert in test_basic, test_empty"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f03_criterion_unmet_marked_done",
+      "defect": true,
+      "defect_type": "criterion_unmet_marked_done",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Criterion not met although claimed done.",
+          "proof": "'rate limit' not found in artifact/README.md"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f04_inflated_metric",
+      "defect": true,
+      "defect_type": "inflated_metric",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Claimed metric does not match recomputation.",
+          "proof": "claimed=0.970 recomputed=0.600"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f05_lookahead_backtest",
+      "defect": true,
+      "defect_type": "lookahead_bias",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Look-ahead: future data used for a signal.",
+          "proof": "backtest.py:3: df[\"signal\"] = (df[\"close\"].shift(-1) > df[\"close\"]).astype(int)"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f06_evidence_file_missing",
+      "defect": true,
+      "defect_type": "evidence_file_missing",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "FAIL",
+          "reason": "Referenced evidence file is missing or empty.",
+          "proof": "evidence/loadtest.txt"
+        }
+      ],
+      "reviewer_failed": true,
+      "correct": true
+    },
+    {
+      "fixture": "f07_clean_parser",
+      "defect": false,
+      "defect_type": "",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "Tried to falsify; no defect found.",
+          "proof": "evidence/test-run.txt"
+        },
+        {
+          "criterion": "C2",
+          "verdict": "PASS",
+          "reason": "Tried to falsify; no defect found.",
+          "proof": "evidence/claims.md"
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    },
+    {
+      "fixture": "f08_clean_backtest",
+      "defect": false,
+      "defect_type": "",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "Tried to falsify; no defect found.",
+          "proof": "evidence/backtest-log.txt"
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    },
+    {
+      "fixture": "f09_clean_metric",
+      "defect": false,
+      "defect_type": "",
+      "verdicts": [
+        {
+          "criterion": "C1",
+          "verdict": "PASS",
+          "reason": "Tried to falsify; no defect found.",
+          "proof": "evidence/metrics.json"
+        }
+      ],
+      "reviewer_failed": false,
+      "correct": true
+    }
+  ]
+}

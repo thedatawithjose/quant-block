@@ -1,0 +1,22 @@
+# chartpy baseline fingerprint captured at the start of the Human-Gate disposition task
+captured_at_utc=2026-09-26T20:47:49Z
+git_status_fingerprint=a7c3a6a54ccf54251f0970d001e4cb977b04a8d1ab6661fa5eb8b3ef4bee0543
+tracked_head=bb09ba9bfdc9dba5cf62d81e443bb61239b2e6bb
+86cf4148807a29c2d07b511a0e92224f6fd8a958895f4268cec07a955409403b  /home/datawithjose/Documents/Workspace/chartpy_copy/AGENTS.md
+1f1bb9883c7dc1a62d229081289d5aaae991648292543d1ff3bd2a4895c3b81c  /home/datawithjose/Documents/Workspace/chartpy_copy/.gitignore
+7caa3c9e4ac93f89c890bdbdb33940a05dde5cb5ab5bacb2312018e892aa656a  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/ATTEMPT-01-provider-failure.md
+70eec440c65793993da26c190886e2ee264907ec6b3d28923147c597305b3059  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/canonical-input-hashes.txt
+ee4b82f9b5a43569ce81ce25c197a989aa714520072e7a1df95a62ab8fe82802  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/HANDOFF-QR-to-QV.yaml
+504fce2ae2000e16c5c3a8ee99d2c44049b7927350af232a7df658aa07dfd072  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/packet-qr-hash.txt
+7ed345e624b0b193c6432a83c85962e75acd4149bbcb2cf612e336f080554e99  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/pre-qv-snapshot.txt
+0c9cc536903249e723553dbb04ccd0109b72f2abe218fd1be3b4afb647413070  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-artifact-hash.txt
+1d9b7cee31176881d3b5de2b3efaf0db4de34d00b8be5a9527dab607b1dcfbde  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-result.md
+3eb272181e4de3212df40130011a340150d39db6bd4837f0c1ec103e67495530  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/qr-result.meta.txt
+c3a6f1ab0f596c72220af8c300c57992d4c3a6c15350836271136a7f2173d9e8  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/TASK-PACKET-QR.yaml
+7f8299dc15bcf6bcf8f64b136266acf7e817c654ab51f952eb95f54b73235756  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/TASK-PACKET-QV.yaml
+d7b8117405dfb26ce13450b386bff1179156862e7b6985d21a4177021647574d  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/certification/gqe-pi-qr-qv/wrapper-model-repin.txt
+e780f91e2dc48054e0ef2c223251191c9d38edbe7a1955c700bf8da2a9ba1afc  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/tasks/gqe-pi-m4-acceptance.md
+cdb6df79c27f224ef9f681fa28a75d9009cccebc4ebbd1335b0e079be61c41ee  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/tasks/gqe-pi-qr-qv-certification.md
+a1c04cd0de63e0a6b15cf6bb5a6ef1b6ff0a1ce6ab5ded74578ac91524655f8a  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/tasks/mvp-test-log.md
+3500138888193c0cb8a9759da2b323eb704034de48c9b55e56fc74f4adfc77b4  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/tasks/register-gqe-pi-specialists.md
+1cf19cb7cbac5d1fcf7c7793d3d3f3777e10bc1b7521d97301c37b17c49e74c4  /home/datawithjose/Documents/Workspace/chartpy_copy/odd/tasks/v7-portfolio-analytics-frontend.md
